@@ -1,0 +1,79 @@
+\documentclass[12pt, psamsfonts]{amsart}
+
+%-------Packages---------
+\usepackage{amssymb,amsfonts}
+\usepackage{semantic}
+\usepackage{fullpage}
+\usepackage{tikz-cd}
+\usepackage{todonotes}
+\usepackage{physics}
+\usepackage[all,arc]{xy}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{theoremref}
+\usepackage{graphicx}
+\usepackage[bookmarks]{hyperref}
+
+%--------Theorem Environments--------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem*{exer}{Exercise}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+
+\makeatletter
+\let\c@equation\c@thm
+\makeatother
+\numberwithin{equation}{section}
+
+\bibliographystyle{plain}
+
+\begin{document}
+
+\title{Stellar Consensus Protocol}
+\author{Hidenori Shinohara}
+\maketitle
+
+\begin{abstract}
+    This is my personal notes on the Stellar consensus protocol.
+    This roughly follows the structure of the white paper on https://www.stellar.org/.
+\end{abstract}
+
+\begin{thm}
+    If an FBAS enjoys quorum intersection and contains no ill-behaved node, then two contradictory statements cannot be both ratified.
+\end{thm}
+
+\begin{proof}
+    Suppose the statement is false and let $a, \bar{a}$ denote two contradictory statements ratified in such an FBAS.
+    Let $U_a, U_{\bar{a}}$ denote quorums ratifying such statements, respectively.
+    By the definition of quorum intersection, $U_a \cap U_{\bar{a}} \ne \emptyset$.
+    Let $v \in U_a \cap U_{\bar{a}}$.
+    This implies that $v$ voted for both $a$ and $\bar{a}$.
+    However, this goes against the definition of voting.
+    In other words, $v$ must be ill-behaved, which is a contradiction to our assumption.
+\end{proof}
+
+
+\end{document}
+
+
