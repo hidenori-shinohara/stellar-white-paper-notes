@@ -108,6 +108,17 @@
     Therefore, $U'$ is a quorum in $\ev{V, Q}^B$.
 \end{proof}
 
+\begin{defn}
+    Let $\ev{V, Q}$ be an FBAS and $B \subset V$ be a set of nodes.
+    $B$ is called a dispensable set, or DSet, if and only if the following conditions are satisfied:
+    \begin{itemize}
+        \item
+            $\ev{V, Q}^B$ enjoys quorum intersection.
+        \item
+            $B = V$ or $V \setminus B$ is a quorum in $\ev{V, Q}$.
+    \end{itemize}
+\end{defn}
+
 
 \begin{thm}
     If an FBAS enjoys quorum intersection and contains no ill-behaved node, then two contradictory statements cannot be both ratified.
