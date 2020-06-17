@@ -59,7 +59,7 @@
     This roughly follows the structure of the white paper on https://www.stellar.org/.
 \end{abstract}
 
-\section{Preliminary}
+\section{Basic Properties of Quorums}
 
 \begin{defn}
     Let $V$ be a set and $Q:V \rightarrow 2^{2^V} \setminus \{ \emptyset \}$ be a function such that $\forall v \in V, \forall q \in Q(v), v \in q$.
@@ -159,6 +159,8 @@
             $B = V$ or $V \setminus B$ is a quorum in $\ev{V, Q}$.
     \end{itemize}
 \end{defn}
+
+\begin{section}{Voting}
 
 \begin{thm}
     If an FBAS enjoys quorum intersection and contains no ill-behaved node, then two contradictory statements cannot be both ratified.
