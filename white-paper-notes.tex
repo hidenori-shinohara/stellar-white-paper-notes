@@ -59,6 +59,21 @@
     This roughly follows the structure of the white paper on https://www.stellar.org/.
 \end{abstract}
 
+\begin{thm}\label{quorum_intersection_projected_system}
+    Let $U$ be a quorum in FBAS $\ev{V, Q}$, let $B \subset V$ be a set of nodes, and let $U' = U \setminus B$.
+    If $U' \ne \emptyset$, then $U'$ is a quorum in $\ev{V, Q}^B$.
+\end{thm}
+
+\begin{proof}
+    Since $U' \ne \emptyset$, it suffices to show that $\forall v \in U', \exists q \in Q^B(v), q \subset U'$.
+    Let $v \in U'$.
+    Then $v \in U$.
+    Since $U$ is a quorum in $\ev{V, Q}$, we can find $q \in Q(v)$ such that $q \subset U$.
+    Then $q' = q \setminus B \in Q^B(v)$, and $q' = q \setminus B \subset U \setminus B = U'$.
+    Therefore, $U'$ is a quorum in $\ev{V, Q}^B$.
+\end{proof}
+
+
 \begin{thm}
     If an FBAS enjoys quorum intersection and contains no ill-behaved node, then two contradictory statements cannot be both ratified.
 \end{thm}
@@ -73,7 +88,24 @@
     In other words, $v$ must be ill-behaved, which is a contradiction to our assumption.
 \end{proof}
 
+\begin{thm}
+    Let $\ev{V, Q}$ be an FBAS.
+    Let $B \subsetneq V$ be a subset containing all the ill-behaved nodes and suppose that $\ev{V, Q}^B$ enjoys quorum intersection.
+    Let $v_1 \ne v_2 \in V \setminus B$.
+    If $v_1$ ratifies a statement $a$, then $v_2$ cannot ratify any statement that contradicts $a$.
+\end{thm}
+
+\begin{proof}
+    Suppose that the theorem is false and let $U_1, U_2$ be quorums of $v_1, v_2$ that ratify $a, \bar{a}$, respectively where $a$ and $\bar{a}$ are contradictory.
+    Since $v_1 \in U_1 \setminus B$,  $U_1 \setminus B \ne \emptyset$.
+    By Theorem \ref{quorum_intersection_projected_system}, $U_1' = U_1 \setminus B$ is a quorum in $\ev{V, Q}^B$.
+    Similarly, $U_2' = U_2 \setminus B$ is a quorum in $\ev{V, Q}^B$.
+    Since $\ev{V, Q}^B$ enjoys quorum intersection, $U_1' \cap U_2' \ne \emptyset$.
+    Let $v \in U_1' \cap U_2'$.
+    Then $v \in U_1 \cap U_2$.
+    In order for $U_1, U_2$ to ratify $a, \bar{a}$, respectively, $v$ must vote for both $a$ and $\bar{a}$.
+    However, this is against the definition of voting.
+    $v$ must be an ill-behaved node, so $v \in B$, which is a contradiction because $v \in U_1 \setminus B$.
+\end{proof}
 
 \end{document}
-
-
