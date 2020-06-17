@@ -65,6 +65,13 @@
     Then we call the pair $\ev{V, Q}$ a Byzantine agreement system, or FBAS for short.
 \end{defn}
 
+\begin{defn}
+    Let $\ev{V, Q}$ be an FBAS.
+    $U \subset V$ is called a quorum if and only if $\forall v \in U, \exists q \in Q(v), q \subset U$.
+\end{defn}
+
+\section{Theorems}
+
 \begin{thm}\label{quorum_intersection_projected_system}
     Let $U$ be a quorum in FBAS $\ev{V, Q}$, let $B \subset V$ be a set of nodes, and let $U' = U \setminus B$.
     If $U' \ne \emptyset$, then $U'$ is a quorum in $\ev{V, Q}^B$.
