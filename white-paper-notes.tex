@@ -76,10 +76,23 @@
     We say $\ev{V, Q}$ enjoys quorum intersection if and only if for any pair of quorums $U_1, U_2$, $U_1 \cap U_2 \ne \emptyset$.
 \end{defn}
 
-\begin{defn}
+\begin{defn}\label{delete_fbas}
     Let $\ev{V, Q}$ be an FBAS and $B \subset V$.
-    Then $\ev{V, Q}^B$ is defined to be $\ev{V \setminus B, Q'}$ where $\forall v \in V, Q'(v) = \{ q \setminus B \mid q \in Q(v) \}$.
+    Then the FBAS $\ev{V, Q}^B$ is defined to be $\ev{V \setminus B, Q^B}$ where $\forall v \in V, Q^B(v) = \{ q \setminus B \mid q \in Q(v) \}$.
 \end{defn}
+
+\begin{thm}
+    Definition \ref{delete_fbas} is well-defined.
+    In other words, if $\ev{V, Q}$ is an FBAS and $B \subset V$, then $\ev{V, Q}^B$ is an FBAS.
+\end{thm}
+
+\begin{proof}
+    Let $v \in V \setminus B, q' \in Q^B(v)$ be given.
+    Then $q' = q \setminus B$ for some $q \in Q(v)$.
+    By the definition of an FBAS, $v \in q$.
+    Since $v \notin B$, $v \in q \setminus B = q'$.
+    Therefore, $\ev{V, Q}^B$ is an FBAS.
+\end{proof}
 
 \begin{thm}\label{quorum_intersection_projected_system}
     Let $U$ be a quorum in FBAS $\ev{V, Q}$, let $B \subset V$ be a set of nodes, and let $U' = U \setminus B$.
