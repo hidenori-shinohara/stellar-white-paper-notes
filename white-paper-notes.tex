@@ -71,6 +71,18 @@
     $U \subset V$ is called a quorum if and only if $\forall v \in U, \exists q \in Q(v), q \subset U$.
 \end{defn}
 
+\begin{thm}
+    In an FBAS $\ev{V, Q}$, the union of two quorums is a quorum.
+\end{thm}
+
+\begin{proof}
+    Let $U_1, U_2$ be two quorums.
+    Let $v \in U_1 \cup U_2$.
+    Then $v \in U_i$ for $i = 1$ or $i = 2$.
+    Then $q \subset U_i$ for some $q \in Q(v)$.
+    Therefore, $q \subset U_1 \cup U_2$, so $U_1 \cup U_2$ is indeed a quorum.
+\end{proof}
+
 \begin{defn}
     Let $\ev{V, Q}$ be an FBAS.
     We say $\ev{V, Q}$ enjoys quorum intersection if and only if for any pair of quorums $U_1, U_2$, $U_1 \cap U_2 \ne \emptyset$.
