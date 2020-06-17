@@ -171,7 +171,7 @@
     $v$ is said to be befouled if and only if $v$ is not intact.
 \end{defn}
 
-\begin{thm}
+\begin{thm}\label{intersection_dset}
     If $B_1$ and $B_2$ are DSets in an FBAS $\ev{V, Q}$ enjoying quorum intersection, then $B = B_1 \cap B_2$ is a DSet, too.
 \end{thm}
 
@@ -240,6 +240,30 @@
 	Since $U_a \setminus B_1$ and $U_b \setminus B_1$ are quorums in $\ev{V, Q}^{B_1}$ and $B_1$ is a DSet, $(U_a \setminus B_1) \cap (U_b \setminus B_1) \ne \emptyset$ by the definition of a DSet.
 	This implies $(U_a \cap U_b) \setminus B_1 \ne \emptyset$.
 	Therefore, $U_a \cap U_b \ne \emptyset$.
+\end{proof}
+
+\begin{thm}
+	In an FBAS with quorum intersection, the set of befouled nodes is a DSet.
+\end{thm}
+
+\begin{proof}
+	Let $\ev{V, Q}$ be an FBAS with quorum intersection.
+	Let $B$ be the intersection of all DSets that contain all ill-behaved nodes.
+	By Theorem \ref{intersection_dset}, $B$ is a DSet.
+
+	\begin{itemize}
+		\item
+			Case 1: $v \in B$.
+			Then there exists no DSet $B_v$ such that $B_v$ contains all ill-behaved nodes and $v \notin B_v$.
+			Therefore, $v$ is not an intact node.
+			In other words, $v$ is a befouled node.
+		\item
+			Case 2: $v \notin B$.
+			Then there exists a DSet $B_v$ that contains all ill-behaved nodes and $v \notin B_v$.
+			In other words, $v$ is intact and thus $v$ is not a befouled node.
+	\end{itemize}
+
+	Therefore, $B$ is precisely the set of befouled nodes and it is a DSet.
 \end{proof}
 
 \section{Voting}
