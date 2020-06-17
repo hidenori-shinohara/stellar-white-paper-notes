@@ -71,7 +71,7 @@
     $U \subset V$ is called a quorum if and only if $\forall v \in U, \exists q \in Q(v), q \subset U$.
 \end{defn}
 
-\begin{thm}
+\begin{thm}\label{union_quorums}
     In an FBAS $\ev{V, Q}$, the union of two quorums is a quorum.
 \end{thm}
 
@@ -91,6 +91,26 @@
     For any $v \in V$, for any $q \in Q(v)$, $q \subset V$.
     Therefore, $V$ is indeed a quorum.
 \end{proof}
+
+\begin{exmp}
+    One might imagine that the intersection of quorums is always a quorum.
+    However, this is not true in general.
+
+    Let $V = \{ v_1, \cdots, v_4 \}$ and
+    \begin{itemize}
+        \item
+            $Q(v_1) = \{ \{ v_1, v_2, v_3 \}, \{ v_1, v_2, v_4 \}, \{ v_1, v_3, v_4 \} \}$,
+        \item
+            $\vdots$
+        \item
+            $Q(v_4) = \{ \{ v_1, v_2, v_4 \}, \{ v_1, v_3, v_4 \}, \{ v_2, v_3, v_4 \} \}$.
+    \end{itemize}
+
+    In other words, $Q(v_i) = \{ U \mid U \in 2^V, v_i \in U \}$.
+
+    Then $U_1 = \{ v_1, v_2, v_3 \}$ is a quorum, and $U_2 = \{ v_2, v_3, v_4 \}$ is a quorum.
+    However, $U_1 \cap U_2 = \{ v_2, v_3 \}$ is not a quorum because the size of any quorum slice is 3.
+\end{exmp}
 
 \begin{defn}
     Let $\ev{V, Q}$ be an FBAS.
