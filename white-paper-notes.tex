@@ -75,6 +75,11 @@
     We say $\ev{V, Q}$ enjoys quorum intersection if and only if for any pair of quorums $U_1, U_2$, $U_1 \cap U_2 \ne \emptyset$.
 \end{defn}
 
+\begin{defn}
+    Let $\ev{V, Q}$ be an FBAS and $B \subset V$.
+    Then $\ev{V, Q}^B$ is defined to be $\ev{V \setminus B, Q'}$ where $\forall v \in V, Q'(v) = \{ q \setminus B \mid q \in Q(v) \}$.
+\end{defn}
+
 \section{Theorems}
 
 \begin{thm}\label{quorum_intersection_projected_system}
