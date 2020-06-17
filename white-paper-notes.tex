@@ -119,7 +119,6 @@
     \end{itemize}
 \end{defn}
 
-
 \begin{thm}
     If an FBAS enjoys quorum intersection and contains no ill-behaved node, then two contradictory statements cannot be both ratified.
 \end{thm}
@@ -133,6 +132,12 @@
     However, this goes against the definition of voting.
     In other words, $v$ must be ill-behaved, which is a contradiction to our assumption.
 \end{proof}
+
+\begin{defn}
+    Let $\ev{V, Q}$ be an FBAS and $v \in V$.
+    $v$ is said to be intact if and only if there exists a DSet $B$ containing all ill-behaved nodes and $v \notin B$.
+    $v$ is said to be befouled if and only if $v$ is not intact.
+\end{defn}
 
 \begin{thm}
     Let $\ev{V, Q}$ be an FBAS.
