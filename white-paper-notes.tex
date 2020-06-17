@@ -59,6 +59,9 @@
     This roughly follows the structure of the white paper on https://www.stellar.org/.
 \end{abstract}
 
+\tableofcontents
+
+
 \section{Basic Properties of Quorums}
 
 \begin{defn}
@@ -149,7 +152,7 @@
     Therefore, $U'$ is a quorum in $\ev{V, Q}^B$.
 \end{proof}
 
-\begin{section}{DSet}
+\section{DSet}
 
 \begin{defn}
     Let $\ev{V, Q}$ be an FBAS and $B \subset V$ be a set of nodes.
@@ -162,7 +165,13 @@
     \end{itemize}
 \end{defn}
 
-\begin{section}{Voting}
+\begin{defn}
+    Let $\ev{V, Q}$ be an FBAS and $v \in V$.
+    $v$ is said to be intact if and only if there exists a DSet $B$ containing all ill-behaved nodes and $v \notin B$.
+    $v$ is said to be befouled if and only if $v$ is not intact.
+\end{defn}
+
+\section{Voting}
 
 \begin{thm}
     If an FBAS enjoys quorum intersection and contains no ill-behaved node, then two contradictory statements cannot be both ratified.
@@ -177,12 +186,6 @@
     However, this goes against the definition of voting.
     In other words, $v$ must be ill-behaved, which is a contradiction to our assumption.
 \end{proof}
-
-\begin{defn}
-    Let $\ev{V, Q}$ be an FBAS and $v \in V$.
-    $v$ is said to be intact if and only if there exists a DSet $B$ containing all ill-behaved nodes and $v \notin B$.
-    $v$ is said to be befouled if and only if $v$ is not intact.
-\end{defn}
 
 \begin{thm}
     Let $\ev{V, Q}$ be an FBAS.
