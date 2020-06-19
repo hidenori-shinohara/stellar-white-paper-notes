@@ -152,6 +152,16 @@
     Therefore, $U'$ is a quorum in $\ev{V, Q}^B$.
 \end{proof}
 
+\begin{defn}
+    Let $\ev{V, Q}$ be an FBAS and $B \subset V$ be a set of nodes.
+    We say $\ev{V, Q}$ enjoys quorum intersection despite $B$ if and only if $\ev{V, Q}^B$ enjoys quorum intersection.
+\end{defn}
+
+\begin{defn}
+    Let $\ev{V, Q}$ be an FBAS and $B \subset V$ be a set of nodes.
+    We say $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $V \setminus B$ is a quorum in $\ev{V, Q}$ or $B = V$.
+\end{defn}
+
 \section{Dispensable Sets}
 
 \begin{defn}\label{def_dset}
@@ -334,6 +344,18 @@
     By the definition of a DSet(\ref{def_dset}), $\ev{V, Q}^B$ enjoys quorum intersection.
     By Theorem \ref{ill_behaved_ratify}, $v, v'$ cannot ratify contradictory statements.
 \end{proof}
+
+\begin{defn}
+    Let $\ev{V, Q}$ be an FBAS.
+    Let $v \in V$.
+    A subset $B \subset V$ is called $v$-blocking if and only if $\forall q \in Q(v), q \cap B \ne \emptyset$.
+\end{defn}
+
+\begin{defn}
+    Let $\ev{V, Q}$ be an FBAS.
+    Let $B \subset V$.
+    $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $B$ is not $v$-blocking for any $v \in V \setminus B$.
+\end{defn}
 
 
 \end{document}
