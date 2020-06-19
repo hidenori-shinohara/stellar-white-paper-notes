@@ -268,6 +268,25 @@
 
 \section{Voting}
 
+\begin{defn}
+    A node $v$ votes for a statement $a$ if and only if $v$ asserts
+    \begin{itemize}
+        \item
+            $a$ is valid,
+        \item
+            $a$ is consistent with all statements $v$ has accepted,
+        \item
+            $v$ has never voted against $a$,
+        \item
+            $v$ promises never to vote against $a$ in the future.
+    \end{itemize}
+\end{defn}
+
+\begin{defn}
+    A quorum $U_a$ ratifies a statment $a$ if and only if every member of $U_a$ votes for $a$.
+    A node $v$ ratifies $a$ if and only if $v$ is a member of a quorum $U_a$ that ratifies $a$.
+\end{defn}
+
 \begin{thm}
     If an FBAS enjoys quorum intersection and contains no ill-behaved node, then two contradictory statements cannot be both ratified.
 \end{thm}
