@@ -345,11 +345,23 @@
     A subset $B \subset V$ is called $v$-blocking if and only if $\forall q \in Q(v), q \cap B \ne \emptyset$.
 \end{defn}
 
-\begin{defn}
+\begin{thm}
     Let $\ev{V, Q}$ be an FBAS.
     Let $B \subset V$.
     $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $B$ is not $v$-blocking for any $v \in V \setminus B$.
-\end{defn}
+\end{thm}
+
+\begin{proof}
+    \begin{align*}
+        \forall v \in V \setminus B, \neg(\text{$B$ is $v$-blocking})
+            &\iff \forall v \in V \setminus B, \neg(\forall q \in Q(v), q \cap B \ne \emptyset) \\
+            &\iff \forall v \in V \setminus B, \exists q \in Q(v), q \cap B = \emptyset \\
+            &\iff \forall v \in V \setminus B, \exists q \in Q(v), q \subset V \setminus B \\
+            &\iff \text{$V = B$ or $V \setminus B$ is a quorum in $\ev{V, Q}$} \\
+            &\iff \text{$\ev{V, Q}$ enjoys quorum availability despite $B$}
+    \end{align*}
+\end{proof}
+
 
 
 \end{document}
