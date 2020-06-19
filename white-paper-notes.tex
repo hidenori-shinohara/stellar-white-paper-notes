@@ -345,7 +345,7 @@
     A subset $B \subset V$ is called $v$-blocking if and only if $\forall q \in Q(v), q \cap B \ne \emptyset$.
 \end{defn}
 
-\begin{thm}
+\begin{thm}\label{quorum_availability_v_blocking}
     Let $\ev{V, Q}$ be an FBAS.
     Let $B \subset V$.
     $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $B$ is not $v$-blocking for any $v \in V \setminus B$.
@@ -360,6 +360,18 @@
             &\iff \text{$V = B$ or $V \setminus B$ is a quorum in $\ev{V, Q}$} \\
             &\iff \text{$\ev{V, Q}$ enjoys quorum availability despite $B$}
     \end{align*}
+\end{proof}
+
+\begin{cor}
+    Let $\ev{V, Q}$ be an FBAS and let $B \subset V$ be the set of befouled nodes.
+    If $B$ is a DSet, $B$ is not $v$-blocking for any intact $v$.
+\end{cor}
+
+\begin{proof}
+    By definition, a node $v \in V$ is intact if and only if $v \notin B$.
+    By Theorem \ref{quorum_availability_v_blocking}, $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $B$ is not $v$-blocking for any $v \in V \setminus B$.
+    Since $B$ is a DSet, $\ev{V, Q}$ enjoys quorum availability despite $B$.
+    Thus $B$ is not $v$-blocking for any intact $v$.
 \end{proof}
 
 
