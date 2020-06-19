@@ -96,7 +96,7 @@
 \end{proof}
 
 \begin{exmp}
-    One might imagine that the intersection of quorums is always a quorum.
+    One might wonder if the intersection of quorums is always a quorum.
     However, this is not true in general.
 
     Let $V = \{ v_1, \cdots, v_4 \}$ and
@@ -154,7 +154,7 @@
 
 \section{Dispensable Sets}
 
-\begin{defn}
+\begin{defn}\label{def_dset}
     Let $\ev{V, Q}$ be an FBAS and $B \subset V$ be a set of nodes.
     $B$ is called a dispensable set, or DSet, if and only if the following conditions are satisfied:
     \begin{itemize}
@@ -242,7 +242,7 @@
 	Therefore, $U_a \cap U_b \ne \emptyset$.
 \end{proof}
 
-\begin{thm}
+\begin{thm}\label{befouled_dset}
 	In an FBAS with quorum intersection, the set of befouled nodes is a DSet.
 \end{thm}
 
@@ -301,7 +301,7 @@
     In other words, $v$ must be ill-behaved, which is a contradiction to our assumption.
 \end{proof}
 
-\begin{thm}
+\begin{thm}\label{ill_behaved_ratify}
     Let $\ev{V, Q}$ be an FBAS.
     Let $B \subsetneq V$ be a subset containing all the ill-behaved nodes and suppose that $\ev{V, Q}^B$ enjoys quorum intersection.
     Let $v_1 \ne v_2 \in V \setminus B$.
@@ -320,5 +320,20 @@
     However, this is against the definition of voting.
     $v$ must be an ill-behaved node, so $v \in B$, which is a contradiction because $v \in U_1 \setminus B$.
 \end{proof}
+
+\begin{thm}
+    Let $\ev{V, Q}$ be an FBAS with quorum intersection.
+    Then two intact nodes in $V$ cannot ratify contradictory statements.
+\end{thm}
+
+\begin{proof}
+    Let $v \ne v'$ be two intact nodes in $V$.
+    Let $B \subset V$ be the set of befouled nodes.
+    Then $v \notin B$ and $v' \notin B$.
+    Since $\ev{V, Q}$ is an FBAS with quorum intersection, $B$ is a DSet by Theorem \ref{befouled_dset}.
+    By the definition of a DSet(\ref{def_dset}), $\ev{V, Q}^B$ enjoys quorum intersection.
+    By Theorem \ref{ill_behaved_ratify}, $v, v'$ cannot ratify contradictory statements.
+\end{proof}
+
 
 \end{document}
