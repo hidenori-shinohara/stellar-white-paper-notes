@@ -292,9 +292,9 @@
 	Therefore, $B$ is precisely the set of befouled nodes and it is a DSet.
 \end{proof}
 
-\section{Voting and Ratifying}
+\section{Voting, Accepting, and Ratifying}
 
-\begin{defn}
+\begin{defn}\label{def_vote}
     A node $v$ votes for a statement $a$ if and only if $v$ asserts
     \begin{itemize}
         \item
@@ -308,8 +308,25 @@
     \end{itemize}
 \end{defn}
 
-Note that we haven't defined the definition of acceptance.
-We will define in the next section, and every theorem in this section does not depend on the definition of acceptance.
+\begin{defn}\label{def_accept}
+    Let $\ev{V, Q}$ be an FBAS\@, and let $v \in V$.
+    $v$ accepts a statement $a$ if and only if 
+    \begin{itemize}
+        \item
+            It has never accepted a statement contradicting $a$.
+        \item
+            It determines that either
+            \begin{itemize}
+                \item
+                    There exists a quorum such that $v \in U$ and each member of $U$ either voted for $a$ or claims to accept $a$, or
+                \item
+                    There exists a $v$-blocking set $B$ such that every member of $B$ claims to accept $a$.
+            \end{itemize}
+    \end{itemize}
+\end{defn}
+
+Note that it is possible for a node to accept a statement it did not vote for.
+Furthermore, it is possible for a node to accept a statement after voting for a contradictory statement.
 
 \begin{defn}
     A quorum $U_a$ ratifies a statement $a$ if and only if every member of $U_a$ votes for $a$.
