@@ -42,7 +42,6 @@
 \newtheorem{sch}[thm]{Scholium}
 
 \makeatletter
-\let\c@equation\c@thm
 \makeatother
 \numberwithin{equation}{section}
 
@@ -70,7 +69,7 @@
 \end{defn}
 
 \begin{defn}
-    Let $\ev{V, Q}$ be an FBAS.
+    Let $\ev{V, Q}$ be an FBAS\@.
     $U \subset V$ is called a quorum if and only if $\forall v \in U, \exists q \in Q(v), q \subset U$.
 \end{defn}
 
@@ -99,7 +98,7 @@
     One might wonder if the intersection of quorums is always a quorum.
     However, this is not true in general.
 
-    Let $V = \{ v_1, \cdots, v_4 \}$ and
+    Let $V = \{ v_1, \ldots, v_4 \}$ and
     \begin{itemize}
         \item
             $Q(v_1) = \{ \{ v_1, v_2, v_3 \}, \{ v_1, v_2, v_4 \}, \{ v_1, v_3, v_4 \} \}$,
@@ -116,7 +115,7 @@
 \end{exmp}
 
 \begin{defn}
-    Let $\ev{V, Q}$ be an FBAS.
+    Let $\ev{V, Q}$ be an FBAS\@.
     We say $\ev{V, Q}$ enjoys quorum intersection if and only if for any pair of quorums $U_1, U_2$, $U_1 \cap U_2 \ne \emptyset$.
 \end{defn}
 
@@ -126,8 +125,8 @@
 \end{defn}
 
 \begin{thm}
-    Definition \ref{delete_fbas} is well-defined.
-    In other words, if $\ev{V, Q}$ is an FBAS and $B \subset V$, then $\ev{V, Q}^B$ is an FBAS.
+    Definition~\ref{delete_fbas} is well-defined.
+    In other words, if $\ev{V, Q}$ is an FBAS and $B \subset V$, then $\ev{V, Q}^B$ is an FBAS\@.
 \end{thm}
 
 \begin{proof}
@@ -135,7 +134,7 @@
     Then $q' = q \setminus B$ for some $q \in Q(v)$.
     By the definition of an FBAS, $v \in q$.
     Since $v \notin B$, $v \in q \setminus B = q'$.
-    Therefore, $\ev{V, Q}^B$ is an FBAS.
+    Therefore, $\ev{V, Q}^B$ is an FBAS\@.
 \end{proof}
 
 \begin{thm}\label{quorum_intersection_projected_system}
@@ -196,14 +195,14 @@
 
 	Thus, $V \setminus B = (V \setminus B_1) \cup (V \setminus B_2)$.
 	By the definition of a DSet, $V \setminus B_1$ and $V \setminus B_2$ are both quorums in $\ev{V, Q}$.
-	By Theorem \ref{union_quorums}, $V \setminus B$ is a quorum in $\ev{V, Q}$.
+	By Theorem~\ref{union_quorums}, $V \setminus B$ is a quorum in $\ev{V, Q}$.
 
 	We must now show quorum intersection despite $B$.
 	Let $U_a, U_b$ be quorums in $\ev{V, Q}^B$.
 
 	\begin{itemize}
 		\item
-			$U_a \setminus B_1$ is a quorum in $(\ev{V, Q}^B)^{B_1} = \ev{V, Q}^{B_1}$ by Theorem \ref{delete_fbas}.
+            $U_a \setminus B_1$ is a quorum in ${(\ev{V, Q}^B)}^{B_1} = \ev{V, Q}^{B_1}$ by Theorem~\ref{delete_fbas}.
 		\item
 			Similarly, $U_b \setminus B_1$ is a quorum in $\ev{V, Q}^{B_1}$, and $U_a \setminus B_2$ and $U_b \setminus B_2$ are both quorums in $\ev{V, Q}^{B_2}$.
 	\end{itemize}
@@ -226,9 +225,9 @@
 			Similarly, $V \setminus B_2$ is a quorum in $\ev{V, Q}$.
 			Because $\ev{V, Q}$ enjoys quorum intersection, $(V \setminus B_1) \cap (V \setminus B_2) \ne \emptyset$.
 			In other words, $(V \setminus B_2) \setminus B_1$ is a quorum.
-			By Theorem \ref{delete_fbas}, $(V \setminus B_2) \setminus B_1$ is a quorum in $\ev{V, Q}^{B_1}$.
+			By Theorem~\ref{delete_fbas}, $(V \setminus B_2) \setminus B_1$ is a quorum in $\ev{V, Q}^{B_1}$.
 		\item
-			$U_a \setminus B_1$ is a quorum in $(\ev{V, Q}^B)^{B_1} = \ev{V, Q}^{B_1}$ for the same reason.
+            $U_a \setminus B_1$ is a quorum in ${(\ev{V, Q}^B)}^{B_1} = {\ev{V, Q}}^{B_1}$ for the same reason.
 	\end{itemize}
 	Because $B_1$ is a DSet in $\ev{V, Q}$, $\ev{V, Q}^{B_1}$ enjoys quorum intersection.
 	Therefore, $(U_a \setminus B_1) \cap ((V \setminus B_2) \setminus B_1) \ne \emptyset$.
@@ -253,7 +252,7 @@
 \begin{proof}
 	Let $\ev{V, Q}$ be an FBAS with quorum intersection.
 	Let $B$ be the intersection of all DSets that contain all ill-behaved nodes.
-	By Theorem \ref{intersection_dset}, $B$ is a DSet.
+	By Theorem~\ref{intersection_dset}, $B$ is a DSet.
 
 	\begin{itemize}
 		\item
@@ -286,6 +285,8 @@
     \end{itemize}
 \end{defn}
 
+Note that we haven't discussed
+
 \begin{defn}
     A quorum $U_a$ ratifies a statment $a$ if and only if every member of $U_a$ votes for $a$.
     A node $v$ ratifies $a$ if and only if $v$ is a member of a quorum $U_a$ that ratifies $a$.
@@ -296,7 +297,7 @@
 \end{thm}
 
 \begin{proof}
-    Suppose the statement is false and let $a, \bar{a}$ denote two contradictory statements ratified in such an FBAS.
+    Suppose the statement is false and let $a, \bar{a}$ denote two contradictory statements ratified in such an FBAS\@.
     Let $U_a, U_{\bar{a}}$ denote quorums ratifying such statements, respectively.
     By the definition of quorum intersection, $U_a \cap U_{\bar{a}} \ne \emptyset$.
     Let $v \in U_a \cap U_{\bar{a}}$.
@@ -306,7 +307,7 @@
 \end{proof}
 
 \begin{thm}\label{ill_behaved_ratify}
-    Let $\ev{V, Q}$ be an FBAS.
+    Let $\ev{V, Q}$ be an FBAS\@.
     Let $B \subsetneq V$ be a subset containing all the ill-behaved nodes and suppose that $\ev{V, Q}^B$ enjoys quorum intersection.
     Let $v_1 \ne v_2 \in V \setminus B$.
     If $v_1$ ratifies a statement $a$, then $v_2$ cannot ratify any statement that contradicts $a$.
@@ -315,7 +316,7 @@
 \begin{proof}
     Suppose that the theorem is false and let $U_1, U_2$ be quorums of $v_1, v_2$ that ratify $a, \bar{a}$, respectively where $a$ and $\bar{a}$ are contradictory.
     Since $v_1 \in U_1 \setminus B$,  $U_1 \setminus B \ne \emptyset$.
-    By Theorem \ref{quorum_intersection_projected_system}, $U_1' = U_1 \setminus B$ is a quorum in $\ev{V, Q}^B$.
+    By Theorem~\ref{quorum_intersection_projected_system}, $U_1' = U_1 \setminus B$ is a quorum in $\ev{V, Q}^B$.
     Similarly, $U_2' = U_2 \setminus B$ is a quorum in $\ev{V, Q}^B$.
     Since $\ev{V, Q}^B$ enjoys quorum intersection, $U_1' \cap U_2' \ne \emptyset$.
     Let $v \in U_1' \cap U_2'$.
@@ -334,19 +335,19 @@
     Let $v \ne v'$ be two intact nodes in $V$.
     Let $B \subset V$ be the set of befouled nodes.
     Then $v \notin B$ and $v' \notin B$.
-    Since $\ev{V, Q}$ is an FBAS with quorum intersection, $B$ is a DSet by Theorem \ref{befouled_dset}.
-    By the definition of a DSet(\ref{def_dset}), $\ev{V, Q}^B$ enjoys quorum intersection.
-    By Theorem \ref{ill_behaved_ratify}, $v, v'$ cannot ratify contradictory statements.
+    Since $\ev{V, Q}$ is an FBAS with quorum intersection, $B$ is a DSet by Theorem~\ref{befouled_dset}.
+    By the definition of a DSet (Definition~\ref{def_dset}), $\ev{V, Q}^B$ enjoys quorum intersection.
+    By Theorem~\ref{ill_behaved_ratify}, $v, v'$ cannot ratify contradictory statements.
 \end{proof}
 
 \begin{defn}
-    Let $\ev{V, Q}$ be an FBAS.
+    Let $\ev{V, Q}$ be an FBAS\@.
     Let $v \in V$.
     A subset $B \subset V$ is called $v$-blocking if and only if $\forall q \in Q(v), q \cap B \ne \emptyset$.
 \end{defn}
 
 \begin{thm}\label{quorum_availability_v_blocking}
-    Let $\ev{V, Q}$ be an FBAS.
+    Let $\ev{V, Q}$ be an FBAS\@.
     Let $B \subset V$.
     $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $B$ is not $v$-blocking for any $v \in V \setminus B$.
 \end{thm}
@@ -369,7 +370,7 @@
 
 \begin{proof}
     By definition, a node $v \in V$ is intact if and only if $v \notin B$.
-    By Theorem \ref{quorum_availability_v_blocking}, $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $B$ is not $v$-blocking for any $v \in V \setminus B$.
+    By Theorem~\ref{quorum_availability_v_blocking}, $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $B$ is not $v$-blocking for any $v \in V \setminus B$.
     Since $B$ is a DSet, $\ev{V, Q}$ enjoys quorum availability despite $B$.
     Thus $B$ is not $v$-blocking for any intact $v$.
 \end{proof}
