@@ -367,7 +367,7 @@ Furthermore, it is possible for a node to accept a statement after voting for a 
     $v$ must be an ill-behaved node, so $v \in B$, which is a contradiction because $v \in U_1 \setminus B$.
 \end{proof}
 
-\begin{thm}
+\begin{thm}\label{intact_ratify_contradictory}
     Let $\ev{V, Q}$ be an FBAS with quorum intersection.
     Then two intact nodes in $V$ cannot ratify contradictory statements.
 \end{thm}
@@ -381,7 +381,7 @@ Furthermore, it is possible for a node to accept a statement after voting for a 
     By Theorem~\ref{ill_behaved_ratify}, $v, v'$ cannot ratify contradictory statements.
 \end{proof}
 
-\begin{cor}
+\begin{cor}\label{dset_v_blocking}
     Let $\ev{V, Q}$ be an FBAS and let $B \subset V$ be the set of befouled nodes.
     If $B$ is a DSet, $B$ is not $v$-blocking for any intact $v$.
 \end{cor}
@@ -393,6 +393,34 @@ Furthermore, it is possible for a node to accept a statement after voting for a 
     Thus $B$ is not $v$-blocking for any intact $v$.
 \end{proof}
 
+\begin{lem}\label{lem_intact_ratify}
+    Let $\ev{V, Q}$ be an FBAS enjoying quorum intersection and $B$ be the set of befouled nodes.
+    If $a$ is accepted by an intact node in $V$, then $a$ is ratified by some intact node in $\ev{V, Q}^B$.
+\end{lem}
 
+\begin{proof}
+    Since $V$ is finite, there has to be an intact node $v$ such that no intact nodes in $V$ accepted $a$ before $v$.
+
+    Since $\ev{V, Q}$ enjoys quorum intersection, $B$ is a DSet by Theorem~\ref{befouled_dset}.
+    By Corollary~\ref{dset_v_blocking}, $B$ is not $v$-blocking.
+    Therefore, by Definition~\ref{def_accept}, there must exist a quorum $U$ of $v$ such that, before $v$ accepted $a$, every member of $U$ either voted for $a$ or told $v$ that it has accepted $a$.
+    Because of the way we picked $v$, every intact node in $U$ must have voted for $a$ before $v$ accepted $a$.
+    In other words, every node in $U \setminus B$ voted for $a$.
+    By Theorem~\ref{quorum_intersection_projected_system}, $v$ ratified $a$ in ${\ev{V, Q}}^B$.
+    Finally, $v$ is indeed an intact node in ${\ev{V, Q}}^B$ because ${\ev{V, Q}}^B$ contains no ill-behaved nodes.
+\end{proof}
+
+\begin{thm}
+    Two intact nodes in an FBAS $\ev{V, Q}$ enjoying quorum intersection cannot accept contradictory statements.
+\end{thm}
+
+\begin{proof}
+    Suppose otherwise.
+    Let $a, \bar{a}$ be contradictory statements accepted by two intact nodes in $\ev{V, Q}$.
+    By Lemma~\ref{lem_intact_ratify}, $a, \bar{a}$ are ratified by some intact nodes in $\ev{V, Q}^B$.
+    By Definition~\ref{def_dset}, $\ev{V, Q}$ enjoys quorum intersection despite $B$.
+    In other words, $\ev{V, Q}^B$ enjoys quorum intersection.
+    By Theorem~\ref{intact_ratify_contradictory}, $a, \bar{a}$ cannot be ratified by $v, v'$ in $\ev{V, Q}^B$, which is a contradiction.
+\end{proof}
 
 \end{document}
