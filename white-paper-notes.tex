@@ -161,6 +161,29 @@
     We say $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $V \setminus B$ is a quorum in $\ev{V, Q}$ or $B = V$.
 \end{defn}
 
+\begin{defn}
+    Let $\ev{V, Q}$ be an FBAS\@.
+    Let $v \in V$.
+    A subset $B \subset V$ is called $v$-blocking if and only if $\forall q \in Q(v), q \cap B \ne \emptyset$.
+\end{defn}
+
+\begin{thm}\label{quorum_availability_v_blocking}
+    Let $\ev{V, Q}$ be an FBAS\@.
+    Let $B \subset V$.
+    $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $B$ is not $v$-blocking for any $v \in V \setminus B$.
+\end{thm}
+
+\begin{proof}
+    \begin{align*}
+        \forall v \in V \setminus B, \neg(\text{$B$ is $v$-blocking})
+            &\iff \forall v \in V \setminus B, \neg(\forall q \in Q(v), q \cap B \ne \emptyset) \\
+            &\iff \forall v \in V \setminus B, \exists q \in Q(v), q \cap B = \emptyset \\
+            &\iff \forall v \in V \setminus B, \exists q \in Q(v), q \subset V \setminus B \\
+            &\iff \text{$V = B$ or $V \setminus B$ is a quorum in $\ev{V, Q}$} \\
+            &\iff \text{$\ev{V, Q}$ enjoys quorum availability despite $B$}
+    \end{align*}
+\end{proof}
+
 \section{Dispensable Sets}
 
 \begin{defn}\label{def_dset}
@@ -339,29 +362,6 @@ We will define in the next section, and every theorem in this section does not d
     Since $\ev{V, Q}$ is an FBAS with quorum intersection, $B$ is a DSet by Theorem~\ref{befouled_dset}.
     By the definition of a DSet (Definition~\ref{def_dset}), $\ev{V, Q}^B$ enjoys quorum intersection.
     By Theorem~\ref{ill_behaved_ratify}, $v, v'$ cannot ratify contradictory statements.
-\end{proof}
-
-\begin{defn}
-    Let $\ev{V, Q}$ be an FBAS\@.
-    Let $v \in V$.
-    A subset $B \subset V$ is called $v$-blocking if and only if $\forall q \in Q(v), q \cap B \ne \emptyset$.
-\end{defn}
-
-\begin{thm}\label{quorum_availability_v_blocking}
-    Let $\ev{V, Q}$ be an FBAS\@.
-    Let $B \subset V$.
-    $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $B$ is not $v$-blocking for any $v \in V \setminus B$.
-\end{thm}
-
-\begin{proof}
-    \begin{align*}
-        \forall v \in V \setminus B, \neg(\text{$B$ is $v$-blocking})
-            &\iff \forall v \in V \setminus B, \neg(\forall q \in Q(v), q \cap B \ne \emptyset) \\
-            &\iff \forall v \in V \setminus B, \exists q \in Q(v), q \cap B = \emptyset \\
-            &\iff \forall v \in V \setminus B, \exists q \in Q(v), q \subset V \setminus B \\
-            &\iff \text{$V = B$ or $V \setminus B$ is a quorum in $\ev{V, Q}$} \\
-            &\iff \text{$\ev{V, Q}$ enjoys quorum availability despite $B$}
-    \end{align*}
 \end{proof}
 
 \begin{cor}
