@@ -161,11 +161,28 @@
     We say $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $V \setminus B$ is a quorum in $\ev{V, Q}$ or $B = V$.
 \end{defn}
 
-\begin{defn}
+\begin{defn}\label{def_v_blocking}
     Let $\ev{V, Q}$ be an FBAS\@.
     Let $v \in V$.
     A subset $B \subset V$ is called $v$-blocking if and only if $\forall q \in Q(v), q \cap B \ne \emptyset$.
 \end{defn}
+
+\begin{thm}\label{basic_prop_v_blocking}
+    Let $\ev{V, Q}$ be an FBAS\@.
+    Let $v \in V$.
+    Then
+    \begin{itemize}
+        \item
+            The union of two $v$-blocking sets is $v$-blocking.
+        \item
+            Any superset of a $v$-blocking set if $v$-blocking.
+    \end{itemize}
+\end{thm}
+
+\begin{proof}
+    If $B, B'$ are $v$-blocking, then $q \cap (B \cup B') = (q \cap B) \cup (q \cap B') \ne \emptyset$ for any $q \in Q(v)$ because the union of two nonempty sets is nonempty.
+    If $B \subset B'$ and $B$ is $v$-blocking, $q \cap B' \supset q \cap B \ne \emptyset$ for any $q \in Q(v)$.
+\end{proof}
 
 \begin{thm}\label{quorum_availability_v_blocking}
     Let $\ev{V, Q}$ be an FBAS\@.
@@ -183,6 +200,13 @@
             &\iff \text{$\ev{V, Q}$ enjoys quorum availability despite $B$}
     \end{align*}
 \end{proof}
+
+\begin{thm}
+    Let $\ev{V, Q}$ be an FBAS with quorum intersection.
+    Let $I, B$ denote the sets of intact and befouled nodes, respectively.
+    Let $U$ be a quorum such that $U \cap I \ne \emptyset$.
+    For any set $U \subset S \subset I$, 
+\end{thm}
 
 \section{Dispensable Sets}
 
