@@ -346,6 +346,19 @@ Furthermore, it is possible for a node to accept a statement after voting for a 
 \end{defn}
 
 \begin{thm}
+    Let $\ev{V, Q}$ be an FBAS\@.
+    If a node $v \in V$ ratifies a statement $a$, then it must accept $a$.
+\end{thm}
+
+\begin{proof}
+    If a node $v$ ratifies $a$, then it is a member of a quorum $U \subset V$ that ratifies $a$.
+    Thus every member of $U$ votes for $a$.
+    This implies that $v$ also votes for $a$.
+    By Definition~\ref{def_vote}, $v$ has never accepted a statement contradicting $a$.
+    By Definition~\ref{def_accept}, $v$ accepts $a$.
+\end{proof}
+
+\begin{thm}
     If an FBAS enjoys quorum intersection and contains no ill-behaved node, then two contradictory statements cannot be both ratified.
 \end{thm}
 
