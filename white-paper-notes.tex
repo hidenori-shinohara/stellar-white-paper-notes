@@ -345,7 +345,7 @@ Furthermore, it is possible for a node to accept a statement after voting for a 
     A node $v$ ratifies $a$ if and only if $v$ is a member of a quorum $U_a$ that ratifies $a$.
 \end{defn}
 
-\begin{thm}
+\begin{thm}\label{ratify_implies_accept}
     Let $\ev{V, Q}$ be an FBAS\@.
     If a node $v \in V$ ratifies a statement $a$, then it must accept $a$.
 \end{thm}
@@ -423,9 +423,11 @@ Furthermore, it is possible for a node to accept a statement after voting for a 
     Finally, $v$ is indeed an intact node in ${\ev{V, Q}}^B$ because ${\ev{V, Q}}^B$ contains no ill-behaved nodes.
 \end{proof}
 
-\begin{thm}
+\begin{thm}\label{intact_accept_contradictory}
     Two intact nodes in an FBAS $\ev{V, Q}$ enjoying quorum intersection cannot accept contradictory statements.
 \end{thm}
+
+Note that Theorem~\ref{intact_accept_contradictory} is a stronger version of Theorem~\ref{intact_ratify_contradictory} by Theorem~\ref{ratify_implies_accept}.
 
 \begin{proof}
     Suppose otherwise.
