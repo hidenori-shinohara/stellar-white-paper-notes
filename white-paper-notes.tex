@@ -156,7 +156,7 @@
     We say $\ev{V, Q}$ enjoys quorum intersection despite $B$ if and only if $\ev{V, Q}^B$ enjoys quorum intersection.
 \end{defn}
 
-\begin{defn}
+\begin{defn}\label{def_quorum_availability}
     Let $\ev{V, Q}$ be an FBAS and $B \subset V$ be a set of nodes.
     We say $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $V \setminus B$ is a quorum in $\ev{V, Q}$ or $B = V$.
 \end{defn}
@@ -184,6 +184,23 @@
     If $B \subset B'$ and $B$ is $v$-blocking, $q \cap B' \supset q \cap B \ne \emptyset$ for any $q \in Q(v)$.
 \end{proof}
 
+\begin{thm}\label{v_blocking_delete}
+    Let $\ev{V, Q}$ be an FBAS\@.
+    Let $A \subsetneq V$ and $U_1, U_2$ be a partition of $V \setminus A$.
+    Let $v \in U_1$.
+    If $U_2$ is not $v$-blocking in $\ev{V, Q}$, then $U_2$ is not $v$-blocking in $\ev{V, Q}^A$.
+\end{thm}
+
+\begin{proof}
+    Since $U_2$ is not $v$-blocking in $\ev{V, Q}$, there exists $q_v \in Q(v)$ such that $q_v \cap U_2 \ne \emptyset$.
+    \begin{align*}
+        (q_v \setminus A) \cap U_2
+            &= (q_v \cap U_2) \setminus (A \cap U_2) \\
+            &= q_v \cap U_2 \ne \emptyset.
+    \end{align*}
+    Thus $U_2$ is not $v$-blocking in $\ev{V, Q}^A$.
+\end{proof}
+
 \begin{thm}\label{quorum_availability_v_blocking}
     Let $\ev{V, Q}$ be an FBAS\@.
     Let $B \subset V$.
@@ -200,13 +217,6 @@
             &\iff \text{$\ev{V, Q}$ enjoys quorum availability despite $B$}
     \end{align*}
 \end{proof}
-
-\begin{thm}
-    Let $\ev{V, Q}$ be an FBAS with quorum intersection.
-    Let $I, B$ denote the sets of intact and befouled nodes, respectively.
-    Let $U$ be a quorum such that $U \cap I \ne \emptyset$.
-    For any set $U \subset S \subset I$, 
-\end{thm}
 
 \section{Dispensable Sets}
 
@@ -326,6 +336,40 @@
     By Theorem~\ref{quorum_availability_v_blocking}, $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $B$ is not $v$-blocking for any $v \in V \setminus B$.
     Since $B$ is a DSet, $\ev{V, Q}$ enjoys quorum availability despite $B$.
     Thus $B$ is not $v$-blocking for any intact $v$.
+\end{proof}
+
+\begin{thm}
+    Let $\ev{V, Q}$ be an FBAS with quorum intersection.
+    Let $B$ denote the set of befouled nodes.
+    Let $U$ be a quorum containing an intact node.
+    Let $S$ be a set such that $U \subset S \subset V$.
+    Let $S^{+} = S \setminus B$ be the set of intact nodes in $S$, and let $S^{-} = (V \setminus S) \setminus B$ be the set of intact nodes not in $S$.
+    Either $S^{-} = \emptyset$, or $\exists v \in S^{-}$ such that $S^{+}$ is $v$-blocking.
+\end{thm}
+
+\begin{proof}
+    If $\exists v \in S^{-}$ such that $S^{+}$ is $v$-blocking, then we are done.
+    Suppose that $\forall v \in S^{-}$, $S^{+}$ is not $v$-blocking in $\ev{V, Q}$.
+    By Theorem~\ref{v_blocking_delete}, $S^{+}$ is not $v$-blocking in $\ev{V, Q}^B$ for any $v \in S^{-} = (V \setminus B) \setminus S^{+}$.
+    By Theorem~\ref{quorum_availability_v_blocking}, $\ev{V, Q}^B$ enjoys quorum availability despite $S^{+}$.
+    By Definition~\ref{def_quorum_availability}, $(V \setminus B) \setminus S^{+}$ is a quorum in $\ev{V, Q}^B$, or $V \setminus B = S^{+}$.
+    If $V \setminus B = S^{+}$, then $S^{-} = \emptyset$, and we are done.
+    Suppose $(V \setminus B) \setminus S^{+}$ is a quorum in $\ev{V, Q}^B$.
+    \begin{itemize}
+        \item
+            $U \setminus B$ is a quorum in $\ev{V, Q}^B$ by Theorem~\ref{quorum_intersection_projected_system}.
+        \item
+            Since $B$ is a DSet by Theorem~\ref{befouled_dset}, $\ev{V, Q}^B$ enjoys quorum intersection by Definition~\ref{def_dset}.
+        \item
+            However,
+            \begin{align*}
+                (U \setminus B) \cap ((V \setminus B) \setminus S^{+})
+                    &= (U \setminus B) \cap S^- \\
+                    &\subset S \cap S^- \\
+                    &= \emptyset.
+            \end{align*}
+    \end{itemize}
+    This is a contradiction.
 \end{proof}
 
 \section{Voting, Accepting, and Ratifying}
