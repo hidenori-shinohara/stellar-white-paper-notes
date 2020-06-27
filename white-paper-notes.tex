@@ -363,7 +363,7 @@
             It determines that either
             \begin{itemize}
                 \item
-                    There exists a quorum such that $v \in U$ and each member of $U$ either voted for $a$ or broadcasted that it has accepted $a$, or
+                    There exists a quorum such that $v \in U$ and each member of $U$ either voted for $a$ or broadcast that it has accepted $a$, or
                 \item
                     There exists a $v$-blocking set $B$ such that every member of $B$ broadcast that it has accepted $a$.
             \end{itemize}
@@ -482,14 +482,14 @@ Note that Theorem~\ref{intact_accept_contradictory} is a stronger version of The
     A node confirms $a$ if and only if it is in such a quorum.
 \end{defn}
 
-\begin{lmm}\label{lemma_for_every_intact_node}
+\begin{lem}\label{lemma_for_every_intact_node}
     Let $\ev{V, Q}$ be an FBAS with quorum intersection.
     Let $B$ denote the set of befouled nodes.
     Let $U$ be a quorum containing an intact node.
     Let $S$ be a set such that $U \subset S \subset V$.
     Let $S^{+} = S \setminus B$ be the set of intact nodes in $S$, and let $S^{-} = (V \setminus S) \setminus B$ be the set of intact nodes not in $S$.
     Either $S^{-} = \emptyset$, or $\exists v \in S^{-}$ such that $S^{+}$ is $v$-blocking.
-\end{lmm}
+\end{lem}
 
 \begin{proof}
     If $\exists v \in S^{-}$ such that $S^{+}$ is $v$-blocking, then we are done.
@@ -508,8 +508,8 @@ Note that Theorem~\ref{intact_accept_contradictory} is a stronger version of The
             However,
             \begin{align*}
                 (U \setminus B) \cap ((V \setminus B) \setminus S^{+})
-                    &= (U \setminus B) \cap S^- \\
-                    &\subset S \cap S^- \\
+                    &= (U \setminus B) \cap S^{-} \\
+                    &\subset S \cap S^{-} \\
                     &= \emptyset.
             \end{align*}
     \end{itemize}
