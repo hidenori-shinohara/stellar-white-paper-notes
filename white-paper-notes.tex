@@ -398,9 +398,9 @@
             It determines that either
             \begin{itemize}
                 \item
-                    There exists a quorum such that $v \in U$ and each member of $U$ either voted for $a$ or told $v$ that it has accepted $a$, or
+                    There exists a quorum such that $v \in U$ and each member of $U$ either voted for $a$ or broadcasted that it has accepted $a$, or
                 \item
-                    There exists a $v$-blocking set $B$ such that every member of $B$ told $v$ that it has accepted $a$.
+                    There exists a $v$-blocking set $B$ such that every member of $B$ broadcast that it has accepted $a$.
             \end{itemize}
     \end{itemize}
 \end{defn}
@@ -484,7 +484,7 @@ Furthermore, it is possible for a node to accept a statement after voting for a 
 
     Since $\ev{V, Q}$ enjoys quorum intersection, $B$ is a DSet by Theorem~\ref{befouled_dset}.
     By Theorem~\ref{dset_v_blocking}, $B$ is not $v$-blocking.
-    Therefore, by Definition~\ref{def_accept}, there must exist a quorum $U$ of $v$ such that, before $v$ accepted $a$, every member of $U$ either voted for $a$ or told $v$ that it has accepted $a$.
+    Therefore, by Definition~\ref{def_accept}, there must exist a quorum $U$ of $v$ such that, before $v$ accepted $a$, every member of $U$ either voted for $a$ or broadcast that it has accepted $a$.
     Because of the way we picked $v$, every intact node in $U$ must have voted for $a$ before $v$ accepted $a$.
     In other words, every node in $U \setminus B$ voted for $a$.
     By Theorem~\ref{quorum_intersection_projected_system}, $v$ ratified $a$ in ${\ev{V, Q}}^B$.
@@ -505,5 +505,17 @@ Note that Theorem~\ref{intact_accept_contradictory} is a stronger version of The
     In other words, $\ev{V, Q}^B$ enjoys quorum intersection.
     By Theorem~\ref{intact_ratify_contradictory}, $a, \bar{a}$ cannot be ratified by $v, v'$ in $\ev{V, Q}^B$, which is a contradiction.
 \end{proof}
+
+\section{Confirmation}
+
+\begin{defn}\label{def_irrefutable}
+    A statement $a$ is irrefutable in an FBAS if no intact node can ever vote against it.
+\end{defn}
+
+\begin{defn}\label{def_confirm}
+    A quorum $U_a$ in an FBAS confirms a statement $a$ if and only if every element in $U_a$ broadcasts that it has accepted $a$.
+    A node confirms $a$ if and only if it is in such a quorum.
+\end{defn}
+
 
 \end{document}
