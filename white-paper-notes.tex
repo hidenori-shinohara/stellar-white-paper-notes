@@ -337,41 +337,6 @@
     Since $B$ is a DSet, $\ev{V, Q}$ enjoys quorum availability despite $B$.
     Thus $B$ is not $v$-blocking for any intact $v$.
 \end{proof}
-
-\begin{thm}
-    Let $\ev{V, Q}$ be an FBAS with quorum intersection.
-    Let $B$ denote the set of befouled nodes.
-    Let $U$ be a quorum containing an intact node.
-    Let $S$ be a set such that $U \subset S \subset V$.
-    Let $S^{+} = S \setminus B$ be the set of intact nodes in $S$, and let $S^{-} = (V \setminus S) \setminus B$ be the set of intact nodes not in $S$.
-    Either $S^{-} = \emptyset$, or $\exists v \in S^{-}$ such that $S^{+}$ is $v$-blocking.
-\end{thm}
-
-\begin{proof}
-    If $\exists v \in S^{-}$ such that $S^{+}$ is $v$-blocking, then we are done.
-    Suppose that $\forall v \in S^{-}$, $S^{+}$ is not $v$-blocking in $\ev{V, Q}$.
-    By Theorem~\ref{v_blocking_delete}, $S^{+}$ is not $v$-blocking in $\ev{V, Q}^B$ for any $v \in S^{-} = (V \setminus B) \setminus S^{+}$.
-    By Theorem~\ref{quorum_availability_v_blocking}, $\ev{V, Q}^B$ enjoys quorum availability despite $S^{+}$.
-    By Definition~\ref{def_quorum_availability}, $(V \setminus B) \setminus S^{+}$ is a quorum in $\ev{V, Q}^B$, or $V \setminus B = S^{+}$.
-    If $V \setminus B = S^{+}$, then $S^{-} = \emptyset$, and we are done.
-    Suppose $(V \setminus B) \setminus S^{+}$ is a quorum in $\ev{V, Q}^B$.
-    \begin{itemize}
-        \item
-            $U \setminus B$ is a quorum in $\ev{V, Q}^B$ by Theorem~\ref{quorum_intersection_projected_system}.
-        \item
-            Since $B$ is a DSet by Theorem~\ref{befouled_dset}, $\ev{V, Q}^B$ enjoys quorum intersection by Definition~\ref{def_dset}.
-        \item
-            However,
-            \begin{align*}
-                (U \setminus B) \cap ((V \setminus B) \setminus S^{+})
-                    &= (U \setminus B) \cap S^- \\
-                    &\subset S \cap S^- \\
-                    &= \emptyset.
-            \end{align*}
-    \end{itemize}
-    This is a contradiction.
-\end{proof}
-
 \section{Voting, Accepting, and Ratifying}
 
 \begin{defn}\label{def_vote}
@@ -516,6 +481,64 @@ Note that Theorem~\ref{intact_accept_contradictory} is a stronger version of The
     A quorum $U_a$ in an FBAS confirms a statement $a$ if and only if every element in $U_a$ broadcasts that it has accepted $a$.
     A node confirms $a$ if and only if it is in such a quorum.
 \end{defn}
+
+\begin{lmm}\label{lemma_for_every_intact_node}
+    Let $\ev{V, Q}$ be an FBAS with quorum intersection.
+    Let $B$ denote the set of befouled nodes.
+    Let $U$ be a quorum containing an intact node.
+    Let $S$ be a set such that $U \subset S \subset V$.
+    Let $S^{+} = S \setminus B$ be the set of intact nodes in $S$, and let $S^{-} = (V \setminus S) \setminus B$ be the set of intact nodes not in $S$.
+    Either $S^{-} = \emptyset$, or $\exists v \in S^{-}$ such that $S^{+}$ is $v$-blocking.
+\end{lmm}
+
+\begin{proof}
+    If $\exists v \in S^{-}$ such that $S^{+}$ is $v$-blocking, then we are done.
+    Suppose that $\forall v \in S^{-}$, $S^{+}$ is not $v$-blocking in $\ev{V, Q}$.
+    By Theorem~\ref{v_blocking_delete}, $S^{+}$ is not $v$-blocking in $\ev{V, Q}^B$ for any $v \in S^{-} = (V \setminus B) \setminus S^{+}$.
+    By Theorem~\ref{quorum_availability_v_blocking}, $\ev{V, Q}^B$ enjoys quorum availability despite $S^{+}$.
+    By Definition~\ref{def_quorum_availability}, $(V \setminus B) \setminus S^{+}$ is a quorum in $\ev{V, Q}^B$, or $V \setminus B = S^{+}$.
+    If $V \setminus B = S^{+}$, then $S^{-} = \emptyset$, and we are done.
+    Suppose $(V \setminus B) \setminus S^{+}$ is a quorum in $\ev{V, Q}^B$.
+    \begin{itemize}
+        \item
+            $U \setminus B$ is a quorum in $\ev{V, Q}^B$ by Theorem~\ref{quorum_intersection_projected_system}.
+        \item
+            Since $B$ is a DSet by Theorem~\ref{befouled_dset}, $\ev{V, Q}^B$ enjoys quorum intersection by Definition~\ref{def_dset}.
+        \item
+            However,
+            \begin{align*}
+                (U \setminus B) \cap ((V \setminus B) \setminus S^{+})
+                    &= (U \setminus B) \cap S^- \\
+                    &\subset S \cap S^- \\
+                    &= \emptyset.
+            \end{align*}
+    \end{itemize}
+    This is a contradiction.
+\end{proof}
+
+\begin{thm}
+    If an intact node in an FBAS $\ev{V, Q}$ with quorum intersection confirms a statement $a$, then every intact node will accept and confirm $a$ once sufficient messages are delivered.
+\end{thm}
+
+\begin{proof}
+    Let $B$ denote the set of befouled nodes.
+    Then there exists a quorum $U \not\subset B$ such that every node in $U$ broadcast that it accepted $a$.
+    After every node in $U$ broadcast it accepted $a$, there may be a node $v$ that accept $a$ since $U$ is $v$-blocking.
+    After all such nodes broadcast that they accepted $a$, there may be other nodes that accept $a$ as well.
+    Since $V$ is a finite set, there is a point in time where the number of nodes that accept $a$ does not increase.
+    Let $S$ be the set of all nodes that accepted $a$ and broadcast it.
+    \begin{itemize}
+        \item
+            $U$ is a quorum containing an intact node.
+        \item
+            $U \subset S \subset V$.
+        \item
+            Let $S^{+} = S \setminus B$ be the set of intact nodes in $S$, and let $S^{-} = (V \setminus S) \setminus B$ be the set of intact nodes not in $S$.
+    \end{itemize}
+    By Lemma~\ref{lemma_for_every_intact_node}, $S^{-}$ is empty, or $S^{+}$ is $v$-blocking for some $v \in S^{-}$.
+    However, the latter is impossible because it would imply that $v$ would accept $a$.
+    Therefore, $S^{-}$ is empty, and thus every intact node accepted $a$.
+\end{proof}
 
 
 \end{document}
