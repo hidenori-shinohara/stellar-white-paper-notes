@@ -71,7 +71,7 @@
         \item
             maintaining safety (i.e., no two well-behaved nodes will agree on contradictory statements)
         \item
-            maintaining liveliness (i.e., all well-behaved nodes can agree on any valid statements)
+            maintaining liveness (i.e., all well-behaved nodes can agree on any valid statements)
     \end{itemize}
 \end{thm}
 
@@ -80,7 +80,7 @@
 
     Then there are $3f + 1 - b \geq 2f + 1$ well-behaved nodes.
     Thus each well-behaved node can find a quorum it belongs to that only consists of well-behaved nodes because there are at least $2f + 1$ well-behaved nodes.
-    This shows the liveliness of the system.
+    This shows the liveness of the system.
 
     Let $v_1, v_2$ be two well-behaved nodes and suppose they agreed on contradictory statements $a_1, a_2$, repspectively.
     Let $Q_1, Q_2$ be the quorums that convinced $v_1, v_2$ on $a_1, a_2$, respectively.
@@ -89,12 +89,12 @@
     This is a contradiction because we assumed that there are at most $b \leq f$ Byzantine failures.
     Therefore, two well-behaved nodes cannot agree on contradictory statements.
 
-    We have shown that the system can survive while maintaining safety and liveliness with $b$ Byzantine failures.
+    We have shown that the system can survive while maintaining safety and liveness with $b$ Byzantine failures.
     We will now show that $f$ is the largest number with such a property.
 
     Let $b > f$ and assume that the system experiences $b$ Byzantine failures.
     By the pigeonhole principle, each quorum contains a Byzantine failure.
-    We cannot guarantee liveliness because Byzantine nodes can all disagree with everything. 
+    We cannot guarantee liveness because Byzantine nodes can all disagree with everything. 
 \end{proof}
 
 \section{Basic Properties of Quorums}
