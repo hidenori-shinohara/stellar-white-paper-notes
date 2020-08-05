@@ -144,7 +144,7 @@
             $Q(v_4) = \{ \{ v_1, v_2, v_4 \}, \{ v_1, v_3, v_4 \}, \{ v_2, v_3, v_4 \} \}$.
     \end{itemize}
 
-    In other words, $Q(v_i) = \{ U \mid U \in 2^V, v_i \in U \}$.
+    In other words, $Q(v_i) = \{ U \subset V \mid \abs{U} = 3, v_i \in U \}$.
 
     Then $U_1 = \{ v_1, v_2, v_3 \}$ is a quorum, and $U_2 = \{ v_2, v_3, v_4 \}$ is a quorum.
     However, $U_1 \cap U_2 = \{ v_2, v_3 \}$ is not a quorum because the size of any quorum slice is 3.
