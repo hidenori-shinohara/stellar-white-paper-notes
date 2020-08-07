@@ -148,7 +148,7 @@
 \end{proof}
 
 \begin{thm}
-    In an FBAS $(V, Q)$, $V$ is a quorum.
+    In an FBAS $\ev{V, Q}$, $V$ is a quorum.
 \end{thm}
 
 \begin{proof}
@@ -183,7 +183,7 @@
 
 \begin{defn}\label{delete_fbas}
     Let $\ev{V, Q}$ be an FBAS and $B \subset V$.
-    Then the FBAS $\ev{V, Q}^B$ is defined to be $\ev{V \setminus B, Q^B}$ where $\forall v \in V, Q^B(v) = \{ q \setminus B \mid q \in Q(v) \}$.
+    Then the FBAS $\ev{V, Q}^B$ is defined to be $\ev{V \setminus B, Q^B}$ where $\forall v \in V \setminus B, Q^B(v) = \{ q \setminus B \mid q \in Q(v) \}$.
 \end{defn}
 
 \begin{thm}
