@@ -232,13 +232,22 @@
 \end{proof}
 
 \begin{rem}
-    One can think of this as a quorum in the \textit{original} universe is a quorum in the \textit{alternate} universe.
+    One can think of this theorem as ``\textit{A quorum in the `original' universe is a quorum in the `alternate' universe.}"
 \end{rem}
 
 \begin{defn}
     Let $\ev{V, Q}$ be an FBAS and $B \subset V$ be a set of nodes.
     We say $\ev{V, Q}$ enjoys quorum intersection despite $B$ if and only if $\ev{V, Q}^B$ enjoys quorum intersection.
 \end{defn}
+
+\begin{rem}
+    Quorum intersection despite $B$ is related to system-level safety when nodes in $B$ act arbitrarily.
+    For instance, suppose $\ev{V, Q}$ is an FBAS, $B$ is the set of all ill-behaved nodes, and $\ev{V, Q}$ enjoys quorum intersection despite $B$.
+    Suppose two well-behaved nodes $v_1, v_2$ agree with contraditory statements $a_1, a_2$ in quorums $q_1, q_2$, respectively.
+    Then $q_1 \cap q_2 \ne \emptyset$ have well-behaved nodes who agreed with both $a_1$ and $a_2$.
+    This is a contradiction because a well-behaved node cannot contradict itself.
+    This example illustrates how the concept of quorum intersection despite $B$ is related to system-level safety when nodes in $B$ experience Byzantine failures.
+\end{rem}
 
 \begin{defn}\label{def_quorum_availability}
     Let $\ev{V, Q}$ be an FBAS and $B \subset V$ be a set of nodes.
