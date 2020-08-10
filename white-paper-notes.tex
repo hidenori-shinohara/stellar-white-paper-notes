@@ -254,6 +254,29 @@
     We say $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $V \setminus B$ is a quorum in $\ev{V, Q}$ or $B = V$.
 \end{defn}
 
+\begin{thm}\label{quorum_availability_equivalence_condition}
+    Let $\ev{V, Q}$ be an FBAS and $B \subset V$.
+    $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $\forall v \in V \setminus B$, there exists a quorum $U_v$ such that $v \in U_v \subset (V \setminus B)$.
+\end{thm}
+
+\begin{proof}
+    If $V = B$, we are done.
+    Suppose otherwise.
+    \begin{align*}
+        \forall v \in V \setminus B, \exists \text{a quorum $U_v$}, v \in U_v \subset (V \setminus B)
+            &\implies \bigcup_{v \in V \setminus B} U_v \text{ is a quorum in $\ev{V, Q}$} \\
+            &\implies \text{$V \setminus B$ is a quorum in $\ev{V, Q}$}
+    \end{align*}
+    by Theorem~\ref{union_quorums}.
+    On the other hand, if $V \setminus B$ is a quorum in $\ev{V, Q}$, then $\forall v \in V \setminus B, \exists \text{a quorum $U_v$}, v \in U_v \subset (V \setminus B)$ because we can let $U_v = V \setminus B$ for each $v$.
+\end{proof}
+
+\begin{rem}
+    Theorem~\ref{quorum_availability_equivalence_condition} shows that $\ev{V, Q}$ enjoys quorum availability despite $B$ if all nodes in $V \ B$ can find a quorum without $B$.
+    This is related to liveness of the system.
+    If $\ev{V, Q}$ enjoys quorum availability despite $B$, then regardless of what happens to nodes in $B$, nodes in $V \setminus B$ can keep going.
+\end{rem}
+
 \begin{defn}\label{def_v_blocking}
     Let $\ev{V, Q}$ be an FBAS\@.
     Let $v \in V$.
