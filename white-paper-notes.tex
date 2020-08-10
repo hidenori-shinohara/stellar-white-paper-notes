@@ -198,6 +198,12 @@
     Then the FBAS $\ev{V, Q}^B$ is defined to be $\ev{V \setminus B, Q^B}$ where $\forall v \in V \setminus B, Q^B(v) = \{ q \setminus B \mid q \in Q(v) \}$.
 \end{defn}
 
+\begin{rem}
+    One may think that this is related to fail-stop behaviors where $B$ is the set of nodes that stopped responding.
+    In general, however, this is not true as we also remove nodes from quorum slices.
+    One can think of this as the alternate universe where nodes from $B$ simply did not even exist from the beginning.
+\end{rem}
+
 \begin{thm}
     Definition~\ref{delete_fbas} is well-defined.
     In other words, if $\ev{V, Q}$ is an FBAS and $B \subset V$, then $\ev{V, Q}^B$ is an FBAS\@.
