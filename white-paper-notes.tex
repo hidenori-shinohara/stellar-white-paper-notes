@@ -130,6 +130,14 @@
     Then we call the pair $\ev{V, Q}$ a federated Byzantine agreement system, or FBAS for short.
 \end{defn}
 
+\begin{rem}
+    For each node $v$, $Q(v)$ is a set of subsets of $V$.
+    For instance, node $v_1$ may trust $v_2, v_3, v_4$ and may have $Q(v_1) = \{ \{ v_1, v_2, v_3, v_4 \} \} \subset 2^V$.
+
+    We explicitly exclude $\{ \emptyset \}$ from the co-domain because we want $Q(v) \ne \emptyset$ for all $v \in V$.
+    This is necessary because if $Q(v) = \emptyset$ for some $v \in V$, it satisfies $\forall q \in Q(v), v \in q$.
+\end{rem}
+
 \begin{defn}
     Let $\ev{V, Q}$ be an FBAS\@.
     $U \subset V$ is called a quorum if and only if $\forall v \in U, \exists q \in Q(v), q \subset U$.
