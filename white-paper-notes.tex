@@ -396,7 +396,7 @@
                     Therefore, $E$ is indeed a smallest DSet containing $v_5$ and $v_6$.
                 \item
                     We showed that $B = \{ v_5, v_6 \}$ is not a DSet because $\ev{V, Q}$ does not enjoy quorum intersection despite $B$.
-                    If both $v_5$ and $v_6$ either stop responding or are malicious, then it is not possible to guanratee safety for $v_9$ and $v_{10}$.
+                    What this means is that if both $v_5$ and $v_6$ either stop responding or are malicious, then it is not possible to guanratee safety for $v_9$ and $v_{10}$.
                     For instance, consider the following situation:
                     \begin{itemize}
                         \item
@@ -433,7 +433,7 @@
                     Therefore, the intersection of any two quorums must contain at least one of $v_2, v_3, v_4$ by the pigeon hole principle.
 
                     Next, we need to check if $\ev{V, Q}$ enjoys quorum availability despite $B$.
-                    $V \setminus B$ is indeed a quorum in $\ev{V, Q}$ because each node in $V \setminus B$ has a quorum slice that doesn't contain $v_1$.
+                    $V \setminus B$ is indeed a quorum in $\ev{V, Q}$ because each node in $V \setminus B$ has a quorum slice that does not contain $v_1$.
             \end{itemize}
     \end{itemize}
 \end{exmp}
