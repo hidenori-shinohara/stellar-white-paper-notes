@@ -434,6 +434,17 @@
 
                     Next, we need to check if $\ev{V, Q}$ enjoys quorum availability despite $B$.
                     $V \setminus B$ is indeed a quorum in $\ev{V, Q}$ because each node in $V \setminus B$ has a quorum slice that does not contain $v_1$.
+                \item
+                    We showed that $B$ is indeed a DSet.
+                    What this means is that even if $v_1$ stops responding or becomes malicious, the rest of the network can make progress safely.
+                    For instance, suppose that $v_1$ becomes malicious and tries to double spend its 100 dollars.
+                    $v_1$ might tell $v_5$ that $v_1$ is sending $v_5$ 100 dollars.
+                    Similarly, $v_1$ might tell $v_6$ that $v_1$ is sending $v_6$ 100 dollars.
+                    However, every quorum slice of $v_5$ and $v_6$ contains at least one more tier-1 node.
+                    Suppose that $v_5$ asks $v_2$ what it thinks, and $v_6$ asks $v_3$ what it thinks.
+                    Then every quorum slice of $v_2$ and $v_3$ contains 3 tier-1 nodes.
+                    By the pigeon hole principle, at least one tier-1 node that is not $v_1$ gets asked what it thinks about $v_5$ double spending its 100 dollars.
+                    The tier-1 node does not agree with the two transactions and $v_1$'s attempt to double spend money fails.
             \end{itemize}
     \end{itemize}
 \end{exmp}
