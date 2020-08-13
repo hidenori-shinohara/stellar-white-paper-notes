@@ -394,6 +394,29 @@
                     Therefore, any intersection contains at least two of $v_1, v_2, v_3, v_4$ by the pigeon hole principle.
 
                     Therefore, $E$ is indeed a smallest DSet containing $v_5$ and $v_6$.
+                \item
+                    We showed that $B = \{ v_5, v_6 \}$ is not a DSet because $\ev{V, Q}$ does not enjoy quorum intersection despite $B$.
+                    If both $v_5$ and $v_6$ either stop responding or are malicious, then it is not possible to guanratee safety for $v_9$ and $v_{10}$.
+                    For instance, consider the following situation:
+                    \begin{itemize}
+                        \item
+                            In prior transactions, $v_5$ and $v_6$ act as well-behaved nodes and $v_5$ obtains 100 dollars in its account.
+                        \item
+                            Both $v_5$ and $v_6$ tell $v_9$ and $v_{10}$ that $Q(v_5) = Q(v_6) = \{ \{ v_5, v_6 \} \}$ convincing that $\{ v_5, v_9, v_{10} \}$ and $\{ v_6, v_9, v_{10} \}$ are both quorums.
+                        \item
+                            Both $v_5$ and $v_6$ tell $v_9$ that $v_5$ is willing to send $v_9$ 100 dollars.
+                            This transaction does not contradict what $v_9$ knows about $v_5$.
+                            Moreover, everyone in the quorum $\{ v_5, v_6, v_9 \}$ is in favor of this transaction.
+                            Thus there is no reason for $v_5$ to not believe this transaction.
+                        \item
+                            Both $v_5$ and $v_6$ tell $v_{10}$ that $v_5$ is willing to send $v_{10}$ 100 dollars.
+                            For the same reason, there is no reason for $v_{10}$ to not believe this transaction.
+                        \item
+                            Thus $v_5$ manages to spend the 100 dollars twice, which can lead to some bad results.
+                            For instance, $v_5$ may be able to obtain 100 dollars worth of goods from $v_9$ and $v_{10}$.
+                        \item
+                            One can verify that this is possible by looking into the definition of accepting, confirming and such that are introduced in later chapters.
+                    \end{itemize}
             \end{itemize}
         \item
             $B = \{ v_1 \}$ is a DSet.
