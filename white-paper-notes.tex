@@ -81,7 +81,7 @@
     Thus each well-behaved node can find a quorum it belongs to that only consists of well-behaved nodes because there are at least $f + 1$ well-behaved nodes.
     This shows the liveness of the system.
 
-    Let $v_1, v_2$ be two well-behaved nodes and suppose they agreed on contradictory statements $a_1, a_2$, repspectively.
+    Let $v_1, v_2$ be two well-behaved nodes and suppose they agreed on contradictory statements $a_1, a_2$, respectively.
     Let $Q_1, Q_2$ be the quorums that convinced $v_1, v_2$ on $a_1, a_2$, respectively.
     By the pigeonhole principle, $\abs{Q_1 \cap Q_2} \geq 1$.
     In other words, there exists a node that agreed on both $a_1$ and $a_2$.
@@ -108,7 +108,7 @@
     Thus each well-behaved node can find a quorum it belongs to that only consists of well-behaved nodes because there are at least $2f + 1$ well-behaved nodes.
     This shows the liveness of the system.
 
-    Let $v_1, v_2$ be two well-behaved nodes and suppose they agreed on contradictory statements $a_1, a_2$, repspectively.
+    Let $v_1, v_2$ be two well-behaved nodes and suppose they agreed on contradictory statements $a_1, a_2$, respectively.
     Let $Q_1, Q_2$ be the quorums that convinced $v_1, v_2$ on $a_1, a_2$, respectively.
     By the pigeonhole principle, $\abs{Q_1 \cap Q_2} \geq f + 1$.
     In other words, at least $f + 1$ nodes agreed on both $a_1$ and $a_2$.
@@ -243,7 +243,7 @@
 \begin{rem}
     Quorum intersection despite $B$ is related to system-level safety when nodes in $B$ act arbitrarily.
     For instance, suppose $\ev{V, Q}$ is an FBAS, $B$ is the set of all ill-behaved nodes, and $\ev{V, Q}$ enjoys quorum intersection despite $B$.
-    Suppose two well-behaved nodes $v_1, v_2$ agree with contraditory statements $a_1, a_2$ in quorums $q_1, q_2$, respectively.
+    Suppose two well-behaved nodes $v_1, v_2$ agree with contradictory statements $a_1, a_2$ in quorums $q_1, q_2$, respectively.
     Then $q_1 \cap q_2 \ne \emptyset$ have well-behaved nodes who agreed with both $a_1$ and $a_2$.
     This is a contradiction because a well-behaved node cannot contradict itself.
     This example illustrates how the concept of quorum intersection despite $B$ is related to system-level safety when nodes in $B$ experience Byzantine failures.
@@ -273,7 +273,7 @@
 
 \begin{rem}
     Theorem~\ref{quorum_availability_equivalence_condition} shows that $\ev{V, Q}$ enjoys quorum availability despite $B$ if all nodes in $V \ B$ can find a quorum without $B$.
-    This is related to liveness of the system.
+    This is related to the liveness of the system.
     If $\ev{V, Q}$ enjoys quorum availability despite $B$, then regardless of what happens to nodes in $B$, nodes in $V \setminus B$ can keep going.
 \end{rem}
 
@@ -396,7 +396,7 @@
                     Therefore, $E$ is indeed a smallest DSet containing $v_5$ and $v_6$.
                 \item
                     We showed that $B = \{ v_5, v_6 \}$ is not a DSet because $\ev{V, Q}$ does not enjoy quorum intersection despite $B$.
-                    What this means is that if both $v_5$ and $v_6$ either stop responding or are malicious, then it is not possible to guanratee safety for $v_9$ and $v_{10}$.
+                    What this means is that if both $v_5$ and $v_6$ either stop responding or are malicious, then it is not possible to guarantee safety for $v_9$ and $v_{10}$.
                     For instance, consider the following situation:
                     \begin{itemize}
                         \item
@@ -758,7 +758,7 @@ Note that Theorem~\ref{intact_accept_contradictory} is a stronger version of The
 \begin{proof}
     Let $B$ denote the set of befouled nodes.
     Then there exists a quorum $U \not\subset B$ such that every node in $U$ broadcast that it accepted $a$.
-    After every node in $U$ broadcast it accepted $a$, there may be a node $v$ that accept $a$ since $U$ is $v$-blocking.
+    After every node in $U$ has broadcast that it accepted $a$, there may be a node $v$ that accept $a$ since $U$ is $v$-blocking.
     After all such nodes broadcast that they accepted $a$, there may be other nodes that accept $a$ as well.
     Since $V$ is a finite set, there is a point in time where the number of nodes that accept $a$ does not increase.
     Let $S$ be the set of all nodes that accepted $a$ and broadcast it.
@@ -777,7 +777,7 @@ Note that Theorem~\ref{intact_accept_contradictory} is a stronger version of The
 
 \section{Nomination}
 
-Nomination is done through voting, accpeting, and confirming a special type of statement in the form of \textit{nominate $x$}.
+Nomination is done through voting, accepting, and confirming a special type of statement in the form of \textit{nominate $x$}.
 
 \begin{defn}
     A node $v$ is said to nominate a value $x$ if and only if it votes for the statement \textit{nominate $x$}.
