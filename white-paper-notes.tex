@@ -217,7 +217,7 @@
     Therefore, $\ev{V, Q}^B$ is an FBAS\@.
 \end{proof}
 
-\begin{thm}\label{quorum_intersection_projected_system}
+\begin{thm}\label{quorum_delete_fbas}
     Let $U$ be a quorum in FBAS $\ev{V, Q}$, let $B \subset V$ be a set of nodes, and let $U' = U \setminus B$.
     If $U' \ne \emptyset$, then $U'$ is a quorum in $\ev{V, Q}^B$.
 \end{thm}
@@ -472,15 +472,8 @@
 	By the definition of a DSet, $V \setminus B_1$ and $V \setminus B_2$ are both quorums in $\ev{V, Q}$.
 	By Theorem~\ref{union_quorums}, $V \setminus B$ is a quorum in $\ev{V, Q}$.
 
-	We must now show quorum intersection despite $B$.
+    We must now show that $\ev{V, Q}$ enjoys quorum intersection despite $B$.
 	Let $U_a, U_b$ be quorums in $\ev{V, Q}^B$.
-
-	\begin{itemize}
-		\item
-            $U_a \setminus B_1$ is a quorum in ${(\ev{V, Q}^B)}^{B_1} = \ev{V, Q}^{B_1}$ by Theorem~\ref{delete_fbas}.
-		\item
-			Similarly, $U_b \setminus B_1$ is a quorum in $\ev{V, Q}^{B_1}$, and $U_a \setminus B_2$ and $U_b \setminus B_2$ are both quorums in $\ev{V, Q}^{B_2}$.
-	\end{itemize}
 
 	\begin{align*}
 	  (U_a \setminus B_1) \cup (U_a \setminus B_2)
@@ -489,33 +482,42 @@
 		&= U_a
 	\end{align*}
 
-	because $U_a$ is a quorum in $\ev{V, Q}^B$.
-	In other words, $(U_a \setminus B_1) \cup (U_a \setminus B_2) \ne \emptyset$.
-	Similarly, $(U_b \setminus B_1) \cup (U_b \setminus B_2) \ne \emptyset$.
+	because $U_a \cap B = \emptyset$.
+	This implies that $(U_a \setminus B_1) \cup (U_a \setminus B_2) \ne \emptyset$.
+    In other words, at least one of $U_a \setminus B_1$ or $U_b \setminus B_2$ is non-empty.
+    We will show that both $U_a \setminus B_1$ and $U_b \setminus B_2$ are non-empty.
 
 	Without loss of generality, assume that $U_a \setminus B_1 \ne \emptyset$.
 	\begin{itemize}
 		\item
-			$V \setminus B_1$ is a quorum in $\ev{V, Q}$ because $B_1$ is a DSet.
-			Similarly, $V \setminus B_2$ is a quorum in $\ev{V, Q}$.
+			$V \setminus B_1 \ne \emptyset$ is a quorum in $\ev{V, Q}$ because $B_1$ is a DSet.
+			Similarly, $V \setminus B_2 \ne \emptyset$ is a quorum in $\ev{V, Q}$.
 			Because $\ev{V, Q}$ enjoys quorum intersection, $(V \setminus B_1) \cap (V \setminus B_2) \ne \emptyset$.
-			In other words, $(V \setminus B_2) \setminus B_1$ is a quorum.
-			By Theorem~\ref{delete_fbas}, $(V \setminus B_2) \setminus B_1$ is a quorum in $\ev{V, Q}^{B_1}$.
+			In other words, $(V \setminus B_2) \setminus B_1 \ne \emptyset$.
+            $(V \setminus B_2) \setminus B_1$ is a quorum in $\ev{V, Q}^{B_1}$ by Theorem~\ref{quorum_delete_fbas} because $V \setminus B_2$ is a quorum in $\ev{V, Q}$ and $(V \setminus B_2) \setminus B_1 \ne \emptyset$.
 		\item
-            $U_a \setminus B_1$ is a quorum in ${(\ev{V, Q}^B)}^{B_1} = {\ev{V, Q}}^{B_1}$ for the same reason.
+            $U_a \setminus B_1$ is a quorum in ${\ev{V, Q}}^{B_1}$ by Theorem~\ref{quorum_delete_fbas} because $U_a$ is a quorum in $\ev{V, Q}$ and $U_a \setminus B_1 \ne \emptyset$.
 	\end{itemize}
 	Because $B_1$ is a DSet in $\ev{V, Q}$, $\ev{V, Q}^{B_1}$ enjoys quorum intersection.
 	Therefore, $(U_a \setminus B_1) \cap ((V \setminus B_2) \setminus B_1) \ne \emptyset$.
 	\begin{align*}
-	  (U_a \setminus B_1) \cap ((V \setminus B_2) \setminus B_1)
-		&= (U_a \cap (V \setminus B_2)) \setminus B_1 \\
-		&\subset U_a \cap (V \setminus B_2) \\
-		&= (U_a \cap V) \setminus B_2 \\
-		&= U_a \setminus B_2.
+        \emptyset
+            &\ne (U_a \setminus B_1) \cap ((V \setminus B_2) \setminus B_1) \\
+            &= (U_a \cap (V \setminus B_2)) \setminus B_1 \\
+            &\subset U_a \cap (V \setminus B_2) \\
+            &= (U_a \cap V) \setminus B_2 \\
+            &= U_a \setminus B_2.
 	\end{align*}
 	Thus, $U_a \setminus B_2 \ne \emptyset$.
+    As a result, we know that $U_a \setminus B_1$ is a quorum in $\ev{V, Q}^{B_1}$ and $U_a \setminus B_2$ is a quorum in $\ev{V, Q}^{B_2}$ by Theorem~\ref{quorum_delete_fbas}.
+
 	Using the same argument, we can show that $U_b \setminus B_1 \ne \emptyset$ and $U_b \setminus B_2 \ne \emptyset$.
-	Since $U_a \setminus B_1$ and $U_b \setminus B_1$ are quorums in $\ev{V, Q}^{B_1}$ and $B_1$ is a DSet, $(U_a \setminus B_1) \cap (U_b \setminus B_1) \ne \emptyset$ by the definition of a DSet.
+    Again, $U_b \setminus B_1$ is a quorum in $\ev{V, Q}^{B_1}$ and $U_b \setminus B_2$ is a quorum in $\ev{V, Q}^{B_2}$ by Theorem~\ref{quorum_delete_fbas}.
+
+    By putting these results together, we know that $U_a \setminus B_1$ and $U_b \setminus B_1$ are both quroums in $\ev{V, Q}^{B_1}$. 
+
+    Since $B_1$ is a DSet, $\ev{V, Q}^{B_1}$ enjoys quorum intersection.
+    Thus $(U_a \setminus B_1) \cap (U_b \setminus B_1) \ne \emptyset$.
 	This implies $(U_a \cap U_b) \setminus B_1 \ne \emptyset$.
 	Therefore, $U_a \cap U_b \ne \emptyset$.
 \end{proof}
@@ -650,7 +652,7 @@ Furthermore, it is possible for a node to accept a statement after voting for a 
 \begin{proof}
     Suppose that the theorem is false and let $U_1, U_2$ be quorums of $v_1, v_2$ that ratify $a, \bar{a}$, respectively where $a$ and $\bar{a}$ are contradictory.
     Since $v_1 \in U_1 \setminus B$,  $U_1 \setminus B \ne \emptyset$.
-    By Theorem~\ref{quorum_intersection_projected_system}, $U_1' = U_1 \setminus B$ is a quorum in $\ev{V, Q}^B$.
+    By Theorem~\ref{quorum_delete_fbas}, $U_1' = U_1 \setminus B$ is a quorum in $\ev{V, Q}^B$.
     Similarly, $U_2' = U_2 \setminus B$ is a quorum in $\ev{V, Q}^B$.
     Since $\ev{V, Q}^B$ enjoys quorum intersection, $U_1' \cap U_2' \ne \emptyset$.
     Let $v \in U_1' \cap U_2'$.
@@ -687,7 +689,7 @@ Furthermore, it is possible for a node to accept a statement after voting for a 
     Therefore, by Definition~\ref{def_accept}, there must exist a quorum $U$ of $v$ such that, before $v$ accepted $a$, every member of $U$ either voted for $a$ or broadcast that it has accepted $a$.
     Because of the way we picked $v$, every intact node in $U$ must have voted for $a$ before $v$ accepted $a$.
     In other words, every node in $U \setminus B$ voted for $a$.
-    By Theorem~\ref{quorum_intersection_projected_system}, $v$ ratified $a$ in ${\ev{V, Q}}^B$.
+    By Theorem~\ref{quorum_delete_fbas}, $v$ ratified $a$ in ${\ev{V, Q}}^B$.
     Finally, $v$ is indeed an intact node in ${\ev{V, Q}}^B$ because ${\ev{V, Q}}^B$ contains no ill-behaved nodes.
 \end{proof}
 
@@ -736,7 +738,7 @@ Note that Theorem~\ref{intact_accept_contradictory} is a stronger version of The
     Suppose $(V \setminus B) \setminus S^{+}$ is a quorum in $\ev{V, Q}^B$.
     \begin{itemize}
         \item
-            $U \setminus B$ is a quorum in $\ev{V, Q}^B$ by Theorem~\ref{quorum_intersection_projected_system}.
+            $U \setminus B$ is a quorum in $\ev{V, Q}^B$ by Theorem~\ref{quorum_delete_fbas}.
         \item
             Since $B$ is a DSet by Theorem~\ref{befouled_dset}, $\ev{V, Q}^B$ enjoys quorum intersection by Definition~\ref{def_dset}.
         \item
