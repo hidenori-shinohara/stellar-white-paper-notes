@@ -520,6 +520,23 @@
 	Therefore, $U_a \cap U_b \ne \emptyset$.
 \end{proof}
 
+\begin{rem}
+    Theorem~\ref{intersection_dset} states that the intersection of two DSets is a DSet.
+    However, the union of two Dsets is not a DSet in general.
+    Consider the FBAS $\ev{V, Q}$ where $V = \{ v_1, v_2, v_3, v_4 \}$ and $Q(v_i) = \{ U \subset V \mid v_i \in U, \abs{U} = 3 \}$.
+    Then $B = \{ v_1 \}$ is a DSet because
+    \begin{itemize}
+        \item
+            Every quorum slice in $\ev{V, Q}^B$ contains at least 2 nodes because every quorum slice in $\ev{V, Q}$ contains exactly 3 nodes.
+            This implies that any quorum in $\ev{V, Q}^B$ must contain at least 2 nodes.
+            By the pigeon-hole principle, every pair of quorums in $\ev{V, Q}^B$ must intersect.
+        \item
+            $V \setminus B = \{ v_2, v_3, v_4 \}$ is a quorum in $\ev{V, Q}$ because $\{ v_2, v_3, v_4 \} \in Q(v_i)$ for each $i = 2, 3, 4$.
+    \end{itemize}
+    Similarly, $C = \{ v_2 \}$ is a DSet.
+    However, $B \cup C = \{ v_1, v_2 \}$ is not a DSet because $B \cup C \ne V$ and $V \setminus (B \cup C) = \{ v_3, v_4 \}$ is not a quorum in $\ev{V, Q}$.
+\end{rem}
+
 \begin{thm}\label{befouled_dset}
 	In an FBAS with quorum intersection, the set of befouled nodes is a DSet.
 \end{thm}
