@@ -456,24 +456,43 @@
 	If $B_1 = V$ or $B_2 = V$, then we are done.
 	Suppose otherwise.
 
+    First, we will show that $\ev{V, Q}$ enjoys quorum availability despite $B$.
     By basic set theory, $V \setminus B = V \setminus (B_1 \cap B_2) = (V \setminus B_1) \cup (V \setminus B_2)$.
-    By the definition of a DSet(Definition~\ref{def_dset}), $V \setminus B_1$ and $V \setminus B_2$ are both quorums in $\ev{V, Q}$.
+    By the definition of a DSet(Definition~\ref{def_dset}), $V = B_1$ or $V \setminus B_1$ is a quorum in $\ev{V, Q}$.
+    Since we assumed that $V \ne B_1$ earlier, $V \setminus B_1$ is a quorum in $\ev{V, Q}$.
+    Similarly, $V \setminus B_2$ is a quorum in $\ev{V, Q}$.
 	By Theorem~\ref{union_quorums}, $V \setminus B$ is a quorum in $\ev{V, Q}$.
 
-    We must now show that $\ev{V, Q}$ enjoys quorum intersection despite $B$.
+    Next, we will show that $\ev{V, Q}$ enjoys quorum intersection despite $B$.
 	Let $U_a, U_b$ be quorums in $\ev{V, Q}^B$.
-
+    \begin{itemize}
+        \item
+            If we can show that $U_a \cap U_b \ne \emptyset$, we are done.
+            We will do so by showing a stronger statement, which is $(U_a \cap U_b) \setminus B_1 \ne \emptyset$.
+            In other words, we will show that $(U_a \setminus B_1) \cap (U_b \setminus B_1) \ne \emptyset$.
+        \item
+            Since $B_1$ is a DSet, $\ev{V, Q}$ enjoys quorum intersection despite $B_1$.
+            In other words, $\ev{V, Q}^{B_1}$ enjoys quorum intersection.
+    \end{itemize}
+    Therefore, it suffices to show that $U_a \setminus B_1$ and $U_b \setminus B_1$ are both quorums in $\ev{V, Q}^{B_1}$.
+    By Theorem~\ref{quorum_delete_fbas}, it suffices to show that $U_a \setminus B_1 \ne \emptyset$ and $U_b \setminus B_1 \ne \emptyset$.
+    
+    We will first show that $U_a \setminus B_1 \ne \emptyset$.
+    By basic set theory,
 	\begin{align*}
 	  (U_a \setminus B_1) \cup (U_a \setminus B_2)
 		&= U_a \setminus (B_1 \cap B_2) \\
 		&= U_a \setminus B \\
 		&= U_a
 	\end{align*}
-
 	because $U_a \cap B = \emptyset$.
+
 	This implies that $(U_a \setminus B_1) \cup (U_a \setminus B_2) \ne \emptyset$.
     In other words, at least one of $U_a \setminus B_1$ or $U_a \setminus B_2$ is non-empty.
     We will show that both $U_a \setminus B_1$ and $U_a \setminus B_2$ are non-empty.
+    \todo[inline,caption={}]{
+        this part is a bit weird
+    }
 
 	Without loss of generality, assume that $U_a \setminus B_1 \ne \emptyset$.
 	\begin{itemize}
