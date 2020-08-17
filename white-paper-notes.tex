@@ -465,72 +465,56 @@
 
     Next, we will show that $\ev{V, Q}$ enjoys quorum intersection despite $B$.
 	Let $U_a, U_b$ be quorums in $\ev{V, Q}^B$.
-    \begin{itemize}
-        \item
-            If we can show that $U_a \cap U_b \ne \emptyset$, we are done.
-            We will do so by showing a stronger statement, which is $(U_a \cap U_b) \setminus B_1 \ne \emptyset$.
-            In other words, we will show that $(U_a \setminus B_1) \cap (U_b \setminus B_1) \ne \emptyset$.
-        \item
-            Since $B_1$ is a DSet, $\ev{V, Q}$ enjoys quorum intersection despite $B_1$.
-            In other words, $\ev{V, Q}^{B_1}$ enjoys quorum intersection.
-    \end{itemize}
+    We want to show that $U_a \cap U_b \ne \emptyset$.
+    We will do so by proving a stronger statement, which is $(U_a \cap U_b) \setminus B_1 \ne \emptyset$.
+    In other words, we will show that $(U_a \setminus B_1) \cap (U_b \setminus B_1) \ne \emptyset$.
+
+    Since $B_1$ is a DSet, $\ev{V, Q}$ enjoys quorum intersection despite $B_1$.
+    In other words, $\ev{V, Q}^{B_1}$ enjoys quorum intersection.
     Therefore, it suffices to show that $U_a \setminus B_1$ and $U_b \setminus B_1$ are both quorums in $\ev{V, Q}^{B_1}$.
     By Theorem~\ref{quorum_delete_fbas}, it suffices to show that $U_a \setminus B_1 \ne \emptyset$ and $U_b \setminus B_1 \ne \emptyset$.
     
     We will first show that $U_a \setminus B_1 \ne \emptyset$.
     By basic set theory,
 	\begin{align*}
-	  (U_a \setminus B_1) \cup (U_a \setminus B_2)
-		&= U_a \setminus (B_1 \cap B_2) \\
-		&= U_a \setminus B \\
-		&= U_a
+        U_a &= U_a \setminus B \\
+            &= U_a \setminus (B_1 \cap B_2) \\
+            &= (U_a \setminus B_1) \cup (U_a \setminus B_2)
 	\end{align*}
 	because $U_a \cap B = \emptyset$.
 
 	This implies that $(U_a \setminus B_1) \cup (U_a \setminus B_2) \ne \emptyset$.
-    In other words, at least one of $U_a \setminus B_1$ or $U_a \setminus B_2$ is non-empty.
-    We will show that both $U_a \setminus B_1$ and $U_a \setminus B_2$ are non-empty.
-    \todo[inline,caption={}]{
-        this part is a bit weird
-    }
+    If $U_a \setminus B_1$ is nonempty, we are done.
+    Suppose $U_a \setminus B_2$ is nonempty.
+    We will show that this implies that $U_a \setminus B_1 \ne \emptyset$.
 
-	Without loss of generality, assume that $U_a \setminus B_1 \ne \emptyset$.
 	\begin{itemize}
 		\item
-			$V \setminus B_1 \ne \emptyset$ is a quorum in $\ev{V, Q}$ because $B_1$ is a DSet.
-			Similarly, $V \setminus B_2 \ne \emptyset$ is a quorum in $\ev{V, Q}$.
-			Because $\ev{V, Q}$ enjoys quorum intersection, $(V \setminus B_1) \cap (V \setminus B_2) \ne \emptyset$.
-			In other words, $(V \setminus B_2) \setminus B_1 \ne \emptyset$.
-            $(V \setminus B_2) \setminus B_1$ is a quorum in $\ev{V, Q}^{B_1}$ by Theorem~\ref{quorum_delete_fbas} because $V \setminus B_2$ is a quorum in $\ev{V, Q}$ and $(V \setminus B_2) \setminus B_1 \ne \emptyset$.
+            We claim that $U_a \setminus B_2$ is a quorum in $\ev{V, Q}^{B_2}$.
+            $U_a$ is a quorum in $\ev{V, Q}^B$.
+            Since $U_a \setminus B_2$ is assumed to be nonempty, $U_a \setminus B_2$ is a quorum in $(\ev{V, Q}^B)^{B_2}$ by Theorem~\ref{quorum_delete_fbas}.
+            Since $(\ev{V, Q}^B)^{B_2} = \ev{V, Q}^{B_2}$, $U_a \setminus B_2$ is a quorum in $\ev{V, Q}^{B_2}$.
 		\item
-            We claim that $U_a \setminus B_1$ is a quorum in ${\ev{V, Q}}^{B_1}$.
-            First, we know that $U_a$ is a quorum in $\ev{V, Q}^B$.
-            Next, $(U_a \setminus B_1) \setminus B$ is nonempty because $(U_a \setminus B_1) \setminus B = U_a \setminus B_1 \ne \emptyset$.
-            Then $(U_a \setminus B_1) \setminus B$ is a quorum in $(\ev{V, Q}^B)^{B_1}$ by Theorem~\ref{quorum_delete_fbas}.
-            Since $(\ev{V, Q}^B)^{B_1} = \ev{V, Q}^{B_1}$, $U_a \setminus B_1$ is a quorum in $\ev{V, Q}^{B_1}$.
+            $V \setminus B_2 \ne \emptyset$ is a quorum in $\ev{V, Q}$ because because $\ev{V, Q}$ must enjoy quorum availability despite $B_2$ and $B_2 \ne V$.
+			Similarly, $V \setminus B_1 \ne \emptyset$ is a quorum in $\ev{V, Q}$.
+			Because $\ev{V, Q}$ enjoys quorum intersection, $(V \setminus B_1) \cap (V \setminus B_2) \ne \emptyset$.
+			In other words, $(V \setminus B_1) \setminus B_2 \ne \emptyset$.
+            $(V \setminus B_1) \setminus B_2$ is a quorum in $\ev{V, Q}^{B_2}$ 
+            By applying Theorem~\ref{quorum_delete_fbas} to the fact that $V \setminus B_1$ is a quorum in $\ev{V, Q}$ and $(V \setminus B_1) \setminus B_2 \ne \emptyset$, we can conclude that $(V \setminus B_1) \setminus B_2$ is a quorum in $\ev{V, Q}^{B_2}$.
 	\end{itemize}
-	Because $B_1$ is a DSet in $\ev{V, Q}$, $\ev{V, Q}^{B_1}$ enjoys quorum intersection.
-	Therefore, $(U_a \setminus B_1) \cap ((V \setminus B_2) \setminus B_1) \ne \emptyset$.
+	Because $B_2$ is a DSet in $\ev{V, Q}$, $\ev{V, Q}^{B_2}$ enjoys quorum intersection.
+	Therefore, $(U_a \setminus B_2) \cap ((V \setminus B_1) \setminus B_2) \ne \emptyset$.
 	\begin{align*}
         \emptyset
-            &\ne (U_a \setminus B_1) \cap ((V \setminus B_2) \setminus B_1) \\
-            &= (U_a \cap (V \setminus B_2)) \setminus B_1 \\
-            &\subset U_a \cap (V \setminus B_2) \\
-            &= (U_a \cap V) \setminus B_2 \\
-            &= U_a \setminus B_2.
+            &\ne (U_a \setminus B_2) \cap ((V \setminus B_1) \setminus B_2) \\
+            &= (U_a \cap (V \setminus B_1)) \setminus B_2 \\
+            &\subset U_a \cap (V \setminus B_1) \\
+            &= (U_a \cap V) \setminus B_1 \\
+            &= U_a \setminus B_1.
 	\end{align*}
-	Thus, $U_a \setminus B_2 \ne \emptyset$.
-    As a result, we know that $U_a \setminus B_1$ is a quorum in $\ev{V, Q}^{B_1}$ and $U_a \setminus B_2$ is a quorum in $\ev{V, Q}^{B_2}$ by Theorem~\ref{quorum_delete_fbas}.
+	Thus, $U_a \setminus B_1 \ne \emptyset$.
 
-	Using the same argument, we can show that $U_b \setminus B_1 \ne \emptyset$ and $U_b \setminus B_2 \ne \emptyset$.
-    Again, $U_b \setminus B_1$ is a quorum in $\ev{V, Q}^{B_1}$ and $U_b \setminus B_2$ is a quorum in $\ev{V, Q}^{B_2}$ by Theorem~\ref{quorum_delete_fbas}.
-
-    By putting these results together, we know that $U_a \setminus B_1$ and $U_b \setminus B_1$ are both quroums in $\ev{V, Q}^{B_1}$. 
-
-    Since $B_1$ is a DSet, $\ev{V, Q}^{B_1}$ enjoys quorum intersection.
-    Thus $(U_a \setminus B_1) \cap (U_b \setminus B_1) \ne \emptyset$.
-	This implies $(U_a \cap U_b) \setminus B_1 \ne \emptyset$.
-	Therefore, $U_a \cap U_b \ne \emptyset$.
+	The same argument will show that $U_b \setminus B_1 \ne \emptyset$.
 \end{proof}
 
 \begin{rem}
