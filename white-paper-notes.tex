@@ -456,19 +456,8 @@
 	If $B_1 = V$ or $B_2 = V$, then we are done.
 	Suppose otherwise.
 
-	For any $v \in V$,
-
-	\begin{align*}
-	  v \in V \setminus B
-		&\iff v \in V \land v \notin B \\
-		&\iff v \in V \land (v \notin B_1 \lor v \notin B_2) \\
-		&\iff (v \in V \land v \notin B_1) \lor (v \in V \land v \notin B_2) \\
-		&\iff (v \in (V \setminus B_1)) \lor (v \in (V \setminus B_2)) \\
-		&\iff v \in ((V \setminus B_1) \cup (V \setminus B_2)).
-	\end{align*}
-
-	Thus, $V \setminus B = (V \setminus B_1) \cup (V \setminus B_2)$.
-	By the definition of a DSet, $V \setminus B_1$ and $V \setminus B_2$ are both quorums in $\ev{V, Q}$.
+    By basic set theory, $V \setminus B = V \setminus (B_1 \cap B_2) = (V \setminus B_1) \cup (V \setminus B_2)$.
+    By the definition of a DSet(Definition~\ref{def_dset}), $V \setminus B_1$ and $V \setminus B_2$ are both quorums in $\ev{V, Q}$.
 	By Theorem~\ref{union_quorums}, $V \setminus B$ is a quorum in $\ev{V, Q}$.
 
     We must now show that $\ev{V, Q}$ enjoys quorum intersection despite $B$.
