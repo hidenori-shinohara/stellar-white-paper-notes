@@ -140,7 +140,7 @@
 
 \begin{defn}
     Let $\ev{V, Q}$ be an FBAS\@.
-    $U \subset V$ is called a quorum if and only if $\forall v \in U, \exists q \in Q(v), q \subset U$.
+    $U \subset V$ is called a quorum if and only if $U \ne \emptyset$ and $\forall v \in U, \exists q \in Q(v), q \subset U$.
 \end{defn}
 
 \begin{thm}\label{union_quorums}
@@ -503,7 +503,10 @@
 			In other words, $(V \setminus B_2) \setminus B_1 \ne \emptyset$.
             $(V \setminus B_2) \setminus B_1$ is a quorum in $\ev{V, Q}^{B_1}$ by Theorem~\ref{quorum_delete_fbas} because $V \setminus B_2$ is a quorum in $\ev{V, Q}$ and $(V \setminus B_2) \setminus B_1 \ne \emptyset$.
 		\item
-            $U_a \setminus B_1$ is a quorum in ${\ev{V, Q}}^{B_1}$ by Theorem~\ref{quorum_delete_fbas} because $U_a$ is a quorum in $\ev{V, Q}$ and $U_a \setminus B_1 \ne \emptyset$.
+            $U_a \setminus B_1$ is a quorum in ${\ev{V, Q}}^{B_1}$ by Theorem~\ref{quorum_delete_fbas} because $U_a$ is a quorum in $\ev{V, Q}^B$ and $(U_a \setminus B_1) \setminus B = U_a \setminus B_1 \ne \emptyset$.
+            \todo[inline,caption={}]{
+                this seems wrong
+            }
 	\end{itemize}
 	Because $B_1$ is a DSet in $\ev{V, Q}$, $\ev{V, Q}^{B_1}$ enjoys quorum intersection.
 	Therefore, $(U_a \setminus B_1) \cap ((V \setminus B_2) \setminus B_1) \ne \emptyset$.
