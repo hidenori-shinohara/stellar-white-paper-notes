@@ -500,11 +500,10 @@
             Since $U_a \setminus B_2$ is assumed to be nonempty, $U_a \setminus B_2$ is a quorum in $(\ev{V, Q}^B)^{B_2}$ by Theorem~\ref{quorum_delete_fbas}.
             Since $(\ev{V, Q}^B)^{B_2} = \ev{V, Q}^{B_2}$, $U_a \setminus B_2$ is a quorum in $\ev{V, Q}^{B_2}$.
 		\item
-            $V \setminus B_2 \ne \emptyset$ is a quorum in $\ev{V, Q}$ because because $\ev{V, Q}$ must enjoy quorum availability despite $B_2$ and $B_2 \ne V$.
+            $V \setminus B_2 \ne \emptyset$ is a quorum in $\ev{V, Q}$ because $\ev{V, Q}$ must enjoy quorum availability despite $B_2$ and $B_2 \ne V$.
 			Similarly, $V \setminus B_1 \ne \emptyset$ is a quorum in $\ev{V, Q}$.
 			Because $\ev{V, Q}$ enjoys quorum intersection, $(V \setminus B_1) \cap (V \setminus B_2) \ne \emptyset$.
 			In other words, $(V \setminus B_1) \setminus B_2 \ne \emptyset$.
-            $(V \setminus B_1) \setminus B_2$ is a quorum in $\ev{V, Q}^{B_2}$ 
             By applying Theorem~\ref{quorum_delete_fbas} to the fact that $V \setminus B_1$ is a quorum in $\ev{V, Q}$ and $(V \setminus B_1) \setminus B_2 \ne \emptyset$, we can conclude that $(V \setminus B_1) \setminus B_2$ is a quorum in $\ev{V, Q}^{B_2}$.
 	\end{itemize}
 	Since $\ev{V, Q}^{B_2}$ enjoys quorum intersection, $(U_a \setminus B_2) \cap ((V \setminus B_1) \setminus B_2) \ne \emptyset$.
