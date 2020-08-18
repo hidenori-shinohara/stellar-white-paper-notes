@@ -544,21 +544,18 @@
 \begin{proof}
 	Let $\ev{V, Q}$ be an FBAS with quorum intersection.
 	Let $B$ be the intersection of all DSets that contain all ill-behaved nodes.
-	By Theorem~\ref{intersection_dset}, $B$ is a DSet.
+    We will show that $B$ is the set of befouled nodes by showing that $V \setminus B$ is the set of intact nodes.
 
-	\begin{itemize}
-		\item
-			Case 1: $v \in B$.
-			Then there exists no DSet $B_v$ such that $B_v$ contains all ill-behaved nodes and $v \notin B_v$.
-			Therefore, $v$ is not an intact node.
-			In other words, $v$ is a befouled node.
-		\item
-			Case 2: $v \notin B$.
-			Then there exists a DSet $B_v$ that contains all ill-behaved nodes and $v \notin B_v$.
-			In other words, $v$ is intact and thus $v$ is not a befouled node.
-	\end{itemize}
+    \begin{align*}
+        v \in V \setminus B
+            &\iff v \notin B \\
+            &\iff \text{$\exists$ DSet $B_v$ that contains all ill-behaved nodes and $v \notin B_v$} \\
+            &\iff \text{$v$ is intact}
+    \end{align*}
 
-	Therefore, $B$ is precisely the set of befouled nodes and it is a DSet.
+	Therefore, $V \setminus B$ is precisely the set of intact nodes, and thus $B$ is the set of befouled nodes.
+
+	By applying Theorem~\ref{intersection_dset} repeatedly, we can conclude that $B$ is a DSet.
 \end{proof}
 
 \begin{thm}\label{dset_v_blocking}
