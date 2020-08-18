@@ -457,11 +457,14 @@
 	Suppose otherwise.
 
     First, we will show that $\ev{V, Q}$ enjoys quorum availability despite $B$.
+    By Definition~\ref{def_quorum_availability}, it suffices to show that $V = B$ or $V \setminus B$ is a quorum in $\ev{V, Q}$.
+    Since we assumed that $B_1 \ne V$ and $B_2 \ne V$, $B \ne V$.
+    Therefore, we will show that $V \setminus B$ is a quorum in $\ev{V, Q}$.
     By basic set theory, $V \setminus B = V \setminus (B_1 \cap B_2) = (V \setminus B_1) \cup (V \setminus B_2)$.
     By the definition of a DSet(Definition~\ref{def_dset}), $V = B_1$ or $V \setminus B_1$ is a quorum in $\ev{V, Q}$.
     Since we assumed that $V \ne B_1$ earlier, $V \setminus B_1$ is a quorum in $\ev{V, Q}$.
     Similarly, $V \setminus B_2$ is a quorum in $\ev{V, Q}$.
-    By Theorem~\ref{union_quorums}, $(V \setminus B_1) \cup (V \setminus B_2) = V \setminus B$ is a quorum in $\ev{V, Q}$.
+    By Theorem~\ref{union_quorums}, the union $(V \setminus B_1) \cup (V \setminus B_2) = V \setminus B$ is a quorum in $\ev{V, Q}$.
 
     Next, we will show that $\ev{V, Q}$ enjoys quorum intersection despite $B$.
 	Let $U_a, U_b$ be quorums in $\ev{V, Q}^B$.
