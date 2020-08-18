@@ -490,6 +490,8 @@
     If $U_a \setminus B_1$ is nonempty, we are done.
     Suppose $U_a \setminus B_2$ is nonempty.
     We will show that this implies that $U_a \setminus B_1 \ne \emptyset$.
+    We will do so by first finding two quorums in $\ev{V, Q}^{B_2}$ whose intersection is a subset of $U_a \setminus B_1$.
+	Since $\ev{V, Q}^{B_2}$ enjoys quorum intersection, the intersection of such two quorums must be nonempty, which in turn shows that $U_a \setminus B_1$ is nonempty.
 
 	\begin{itemize}
 		\item
@@ -505,8 +507,7 @@
             $(V \setminus B_1) \setminus B_2$ is a quorum in $\ev{V, Q}^{B_2}$ 
             By applying Theorem~\ref{quorum_delete_fbas} to the fact that $V \setminus B_1$ is a quorum in $\ev{V, Q}$ and $(V \setminus B_1) \setminus B_2 \ne \emptyset$, we can conclude that $(V \setminus B_1) \setminus B_2$ is a quorum in $\ev{V, Q}^{B_2}$.
 	\end{itemize}
-	Because $B_2$ is a DSet in $\ev{V, Q}$, $\ev{V, Q}^{B_2}$ enjoys quorum intersection.
-	Therefore, $(U_a \setminus B_2) \cap ((V \setminus B_1) \setminus B_2) \ne \emptyset$.
+	Since $\ev{V, Q}^{B_2}$ enjoys quorum intersection, $(U_a \setminus B_2) \cap ((V \setminus B_1) \setminus B_2) \ne \emptyset$.
 	\begin{align*}
         \emptyset
             &\ne (U_a \setminus B_2) \cap ((V \setminus B_1) \setminus B_2) \\
