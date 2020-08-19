@@ -461,7 +461,7 @@
     Since we assumed that $B_1 \ne V$ and $B_2 \ne V$, $B \ne V$.
     Therefore, we will show that $V \setminus B$ is a quorum in $\ev{V, Q}$.
     By basic set theory, $V \setminus B = V \setminus (B_1 \cap B_2) = (V \setminus B_1) \cup (V \setminus B_2)$.
-    By the definition of a DSet(Definition~\ref{def_dset}), $V = B_1$ or $V \setminus B_1$ is a quorum in $\ev{V, Q}$.
+    Since $B_1$ is a DSet, $V = B_1$ or $V \setminus B_1$ is a quorum in $\ev{V, Q}$.
     Since we assumed that $V \ne B_1$ earlier, $V \setminus B_1$ is a quorum in $\ev{V, Q}$.
     Similarly, $V \setminus B_2$ is a quorum in $\ev{V, Q}$.
     By Theorem~\ref{union_quorums}, the union $(V \setminus B_1) \cup (V \setminus B_2) = V \setminus B$ is a quorum in $\ev{V, Q}$.
@@ -475,7 +475,8 @@
     Since $B_1$ is a DSet, $\ev{V, Q}$ enjoys quorum intersection despite $B_1$.
     In other words, $\ev{V, Q}^{B_1}$ enjoys quorum intersection.
     Therefore, it suffices to show that $U_a \setminus B_1$ and $U_b \setminus B_1$ are both quorums in $\ev{V, Q}^{B_1}$.
-    By Theorem~\ref{quorum_delete_fbas}, it suffices to show that $U_a \setminus B_1 \ne \emptyset$ and $U_b \setminus B_1 \ne \emptyset$.
+    By Theorem~\ref{quorum_delete_fbas}, $U_a \setminus B_1$ and $U_b \setminus B_1$ are quorums in $(\ev{V, Q}^B)^{B_1}$ if $U_a \setminus B_1 \ne \emptyset$ and $U_b \setminus B_1 \ne \emptyset$.
+    Since $(\ev{V, Q}^B)^{B_1} = \ev{V, Q}^{B_1}$, it suffices to show that $U_a \setminus B_1 \ne \emptyset$ and $U_b \setminus B_1 \ne \emptyset$.
     
     We will first show that $U_a \setminus B_1 \ne \emptyset$.
     By basic set theory,
@@ -512,7 +513,6 @@
             &\ne (U_a \setminus B_2) \cap ((V \setminus B_1) \setminus B_2) \\
             &= (U_a \cap (V \setminus B_1)) \setminus B_2 \\
             &\subset U_a \cap (V \setminus B_1) \\
-            &= (U_a \cap V) \setminus B_1 \\
             &= U_a \setminus B_1.
 	\end{align*}
 	Thus, $U_a \setminus B_1 \ne \emptyset$.
