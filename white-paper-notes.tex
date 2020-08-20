@@ -272,7 +272,7 @@
 \end{proof}
 
 \begin{rem}
-    Theorem~\ref{quorum_availability_equivalence_condition} shows that $\ev{V, Q}$ enjoys quorum availability despite $B$ if all nodes in $V \ B$ can find a quorum without $B$.
+    Theorem~\ref{quorum_availability_equivalence_condition} shows that $\ev{V, Q}$ enjoys quorum availability despite $B$ if all nodes in $V \setminus B$ can find a quorum without $B$.
     This is related to the liveness of the system.
     If $\ev{V, Q}$ enjoys quorum availability despite $B$, then regardless of what happens to nodes in $B$, nodes in $V \setminus B$ can keep going.
 \end{rem}
