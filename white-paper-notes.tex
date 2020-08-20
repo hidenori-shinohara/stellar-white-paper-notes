@@ -529,11 +529,19 @@
     Then $B = \{ v_1 \}$ is a DSet because
     \begin{itemize}
         \item
-            Every quorum slice in $\ev{V, Q}^B$ contains at least 2 nodes because every quorum slice in $\ev{V, Q}$ contains exactly 3 nodes.
-            This implies that any quorum in $\ev{V, Q}^B$ must contain at least 2 nodes.
-            By the pigeon-hole principle, every pair of quorums in $\ev{V, Q}^B$ must intersect.
+            Quorum intersection despite $B$
+            \begin{itemize}
+                \item
+                    Every quorum slice in $\ev{V, Q}^B$ contains at least 2 nodes because every quorum slice in $\ev{V, Q}$ contains exactly 3 nodes.
+                    This implies that any quorum in $\ev{V, Q}^B$ must contain at least 2 nodes.
+                    By the pigeon-hole principle, every pair of quorums in $\ev{V, Q}^B$ must intersect.
+            \end{itemize}
         \item
-            $V \setminus B = \{ v_2, v_3, v_4 \}$ is a quorum in $\ev{V, Q}$ because $\{ v_2, v_3, v_4 \} \in Q(v_i)$ for each $i = 2, 3, 4$.
+            Quorum availability despite $B$
+            \begin{itemize}
+                \item
+                    $V \setminus B = \{ v_2, v_3, v_4 \}$ is a quorum in $\ev{V, Q}$ because $\{ v_2, v_3, v_4 \} \in Q(v_i)$ for each $i = 2, 3, 4$.
+            \end{itemize}
     \end{itemize}
     Similarly, $C = \{ v_2 \}$ is a DSet.
     However, $B \cup C = \{ v_1, v_2 \}$ is not a DSet because $B \cup C \ne V$ and $V \setminus (B \cup C) = \{ v_3, v_4 \}$ is not a quorum in $\ev{V, Q}$.
