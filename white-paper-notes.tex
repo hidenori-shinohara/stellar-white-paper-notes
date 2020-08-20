@@ -522,8 +522,10 @@
 
 \begin{rem}
     Theorem~\ref{intersection_dset} states that the intersection of two DSets is a DSet if the FBAS enjoys quorum intersection.
-    However, the union of two DSets is not a DSet in general.
+    One might wonder if the union of two DSets is a DSet when the FBAS enjoys quorum intersection.
+    However, this is not true in general.
     Consider the FBAS $\ev{V, Q}$ where $V = \{ v_1, v_2, v_3, v_4 \}$ and $Q(v_i) = \{ U \subset V \mid v_i \in U, \abs{U} = 3 \}$.
+    This FBAS enjoys quorum intersection by the pigeon-hole principle because each quorum contains at least 3 elements.
     Then $B = \{ v_1 \}$ is a DSet because
     \begin{itemize}
         \item
