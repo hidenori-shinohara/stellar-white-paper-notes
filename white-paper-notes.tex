@@ -693,15 +693,33 @@ Furthermore, it is possible for a node to accept a statement after voting for a 
 \end{lem}
 
 \begin{proof}
+    Suppose that $a$ is accepted by one or more intact nodes in $V$.
     Since $V$ is finite, there has to be an intact node $v$ such that no intact nodes in $V$ accepted $a$ before $v$.
 
+    By the definition of accepting(Definition~\ref{def_accept}), the moment $v$ accepted $a$, either
+    \begin{itemize}
+        \item
+            there was a quorum $U$ of $v$ such that every element of $U$ either voted for $a$ or broadcast that it has accepted $a$, or
+        \item
+            there existed a $v$-blocking set such that every element in it broadcast that it has accepted $a$.
+    \end{itemize}
+    We claim that it could not have been the second one.
+    On the contrary, suppose that it was the second one.
+    Since no intact nodes in $V$ accepted $a$ before $v$, such a $v$-blocking set must have only had befouled nodes.
+    Therefore, such a $v$-blocking set must be a subset of $B$.
     Since $\ev{V, Q}$ enjoys quorum intersection, $B$ is a DSet by Theorem~\ref{befouled_dset}.
     By Theorem~\ref{dset_v_blocking}, $B$ is not $v$-blocking.
-    Therefore, by Definition~\ref{def_accept}, there must exist a quorum $U$ of $v$ such that, before $v$ accepted $a$, every member of $U$ either voted for $a$ or broadcast that it has accepted $a$.
-    Because of the way we picked $v$, every intact node in $U$ must have voted for $a$ before $v$ accepted $a$.
+    By taking the contrapositive of Theorem~\ref{basic_prop_v_blocking}, we conclude that no subset of $B$ is $v$-blocking.
+
+    Therefore, it must have been the first case.
+    In other words, there must have existed a quorum $U$ of $v$ such that, before $v$ accepted $a$, every member of $U$ either voted for $a$ or broadcast that it has accepted $a$.
+    Since no intact node accepted $a$ before $v$, every intact node in $U$ must have voted for $a$ before $v$ accepted $a$.
     In other words, every node in $U \setminus B$ voted for $a$.
-    By Theorem~\ref{quorum_delete_fbas}, $v$ ratified $a$ in ${\ev{V, Q}}^B$.
+    By Theorem~\ref{quorum_delete_fbas}, $U \setminus b$ is a quorum in $\ev{V, Q}^B$.
+    Thus  $U \setminus B$ ratified $a$ in ${\ev{V, Q}}^B$, and thus $v$ ratified $a$ in $\ev{V, Q}^B$.
     Finally, $v$ is indeed an intact node in ${\ev{V, Q}}^B$ because ${\ev{V, Q}}^B$ contains no ill-behaved nodes.
+
+    In conclusion, $v$ is an intact node in $\ev{V, Q}^B$ and $v$ ratified $a$ in $\ev{V, Q}^B$.
 \end{proof}
 
 \begin{thm}\label{intact_accept_contradictory}
