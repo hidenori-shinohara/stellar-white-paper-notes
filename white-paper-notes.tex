@@ -635,6 +635,10 @@ Furthermore, it is possible for a node to accept a statement after voting for a 
     By Definition~\ref{def_accept}, $v$ accepts $a$.
 \end{proof}
 
+\begin{rem}
+    Theorem~\ref{ratify_implies_accept} shows that ratifying is a stronger condition than accepting.
+\end{rem}
+
 \begin{thm}
     If an FBAS enjoys quorum intersection and contains no ill-behaved node, then two contradictory statements cannot be both ratified.
 \end{thm}
@@ -666,7 +670,7 @@ Furthermore, it is possible for a node to accept a statement after voting for a 
     Then $v \in U_1 \cap U_2$.
     In order for $U_1, U_2$ to ratify $a, \bar{a}$, respectively, $v$ must vote for both $a$ and $\bar{a}$.
     However, this is against the definition of voting.
-    $v$ must be an ill-behaved node, so $v \in B$, which is a contradiction because $v \in U_1 \setminus B$.
+    $v$ must be an ill-behaved node, so $v \in B$, which is a contradiction because $v \in U_1' \cap U_2' \subset U_1' = U_1 \setminus B$ where $B$ contains all ill-behaved nodes.
 \end{proof}
 
 \begin{thm}\label{intact_ratify_contradictory}
