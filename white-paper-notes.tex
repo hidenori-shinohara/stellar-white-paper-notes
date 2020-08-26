@@ -531,9 +531,8 @@
     Since $B$ is a DSet, $\ev{V, Q}$ enjoys quorum availability despite $B$.
     Thus $B$ is not $v$-blocking for any intact $v$.
 \end{proof}
-\subsection{Voting, Accepting, and Ratifying}
 
-The definitions of voting and accepting have a circular dependency.
+\subsection{Voting, Accepting, and Ratifying}
 
 \begin{defn}[Vote]\label{def_vote}
     A node $v$ votes for a statement $a$ if and only if $v$ asserts
@@ -566,6 +565,7 @@ The definitions of voting and accepting have a circular dependency.
     \end{itemize}
 \end{defn}
 
+As you can see, the definitions of voting and accepting have a circular dependency.
 Note that it is possible for a node to accept a statement it did not vote for.
 Furthermore, it is possible for a node to accept a statement after voting for a contradictory statement.
 
