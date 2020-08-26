@@ -610,8 +610,8 @@ Note that it is possible for a node to accept a statement after voting for a con
 \end{proof}
 
 \begin{thm}\label{ill_behaved_ratify}
-    Let $\ev{V, Q}$ be an FBAS\@.
-    Let $B \subsetneq V$ be a subset containing all the ill-behaved nodes and suppose that $\ev{V, Q}^B$ enjoys quorum intersection.
+    Let $\ev{V, Q}$ be an FBAS and $B \subsetneq V$.
+    Suppose that $B$ contains all the ill-behaved nodes and $\ev{V, Q}^B$ enjoys quorum intersection.
     Let $v_1 \ne v_2 \in V \setminus B$.
     If $v_1$ ratifies a statement $a$, then $v_2$ cannot ratify any statement that contradicts $a$.
 \end{thm}
@@ -622,11 +622,11 @@ Note that it is possible for a node to accept a statement after voting for a con
     By Theorem~\ref{quorum_delete_fbas}, $U_1' = U_1 \setminus B$ is a quorum in $\ev{V, Q}^B$.
     Similarly, $U_2' = U_2 \setminus B$ is a quorum in $\ev{V, Q}^B$.
     Since $\ev{V, Q}^B$ enjoys quorum intersection, $U_1' \cap U_2' \ne \emptyset$.
-    Let $v \in U_1' \cap U_2'$.
+    Choose $v \in U_1' \cap U_2'$ arbitrarily.
     Then $v \in U_1 \cap U_2$.
     In order for $U_1, U_2$ to ratify $a, \bar{a}$, respectively, $v$ must vote for both $a$ and $\bar{a}$.
     However, this is against the definition of voting.
-    $v$ must be an ill-behaved node, so $v \in B$, which is a contradiction because $v \in U_1' \cap U_2' \subset U_1' = U_1 \setminus B$ where $B$ contains all ill-behaved nodes.
+    $v$ must be an ill-behaved node, so $v \in B$, which is a contradiction because $v \in U_1' \cap U_2' \subset U_1' = U_1 \setminus B$ and $B$ contains all the ill-behaved nodes.
 \end{proof}
 
 \begin{thm}\label{intact_ratify_contradictory}
