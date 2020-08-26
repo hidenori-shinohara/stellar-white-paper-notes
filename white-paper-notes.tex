@@ -80,6 +80,7 @@
 \begin{defn}[Federated Byzantine Agreement System]
     Let $V$ be a set and $Q:V \rightarrow 2^{2^V} \setminus \{ \emptyset \}$ be a function such that $\forall v \in V, \forall q \in Q(v), v \in q$.
     Then we call the pair $\ev{V, Q}$ a federated Byzantine agreement system, or FBAS for short.
+    Each $q$ in $Q(v)$ is called a quorum slice for each $v \in V$.
 \end{defn}
 
 \begin{rem}
