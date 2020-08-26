@@ -15,6 +15,18 @@
 \usepackage{graphicx}
 \usepackage[bookmarks]{hyperref}
 
+\usepackage{amsthm}
+\makeatletter
+\def\th@plain{%
+  \thm@notefont{}% same as heading font
+  \itshape % body font
+}
+\def\th@definition{%
+  \thm@notefont{}% same as heading font
+  \normalfont % body font
+}
+\makeatother
+
 %--------Theorem Environments--------
 %theoremstyle{plain} --- default
 \newtheorem{thm}{Theorem}[section]
@@ -125,7 +137,7 @@
 
 \section{Basic Properties of Quorums}
 
-\begin{defn}
+\begin{defn}[Federated Byzantine Agreement System]
     Let $V$ be a set and $Q:V \rightarrow 2^{2^V} \setminus \{ \emptyset \}$ be a function such that $\forall v \in V, \forall q \in Q(v), v \in q$.
     Then we call the pair $\ev{V, Q}$ a federated Byzantine agreement system, or FBAS for short.
 \end{defn}
@@ -138,7 +150,7 @@
     This is necessary because if $Q(v) = \emptyset$ for some $v \in V$, it satisfies $\forall q \in Q(v), v \in q$.
 \end{rem}
 
-\begin{defn}
+\begin{defn}[Quorum]
     Let $\ev{V, Q}$ be an FBAS\@.
     $U \subset V$ is called a quorum if and only if $U \ne \emptyset$ and $\forall v \in U, \exists q \in Q(v), q \subset U$.
 \end{defn}
@@ -188,12 +200,12 @@
     However, $U_1 \cap U_2 = \{ v_2, v_3 \}$ is not a quorum because the size of any quorum slice is 3.
 \end{exmp}
 
-\begin{defn}
+\begin{defn}[Quorum Intersection]
     Let $\ev{V, Q}$ be an FBAS\@.
     We say $\ev{V, Q}$ enjoys quorum intersection if and only if for any pair of quorums $U_1, U_2$, $U_1 \cap U_2 \ne \emptyset$.
 \end{defn}
 
-\begin{defn}\label{delete_fbas}
+\begin{defn}[Delete]\label{delete_fbas}
     Let $\ev{V, Q}$ be an FBAS and $B \subset V$.
     Then the FBAS $\ev{V, Q}^B$ is defined to be $\ev{V \setminus B, Q^B}$ where $\forall v \in V \setminus B, Q^B(v) = \{ q \setminus B \mid q \in Q(v) \}$.
 \end{defn}
@@ -235,7 +247,7 @@
     One can think of this theorem as ``\textit{A quorum in the `original' universe is a quorum in the `alternate' universe.}"
 \end{rem}
 
-\begin{defn}
+\begin{defn}[Quorum Intersection Despite $B$]
     Let $\ev{V, Q}$ be an FBAS and $B \subset V$ be a set of nodes.
     We say $\ev{V, Q}$ enjoys quorum intersection despite $B$ if and only if $\ev{V, Q}^B$ enjoys quorum intersection.
 \end{defn}
@@ -249,7 +261,7 @@
     This example illustrates how the concept of quorum intersection despite $B$ is related to system-level safety when nodes in $B$ experience Byzantine failures.
 \end{rem}
 
-\begin{defn}\label{def_quorum_availability}
+\begin{defn}[Quorum Availability Despite $B$]\label{def_quorum_availability}
     Let $\ev{V, Q}$ be an FBAS and $B \subset V$ be a set of nodes.
     We say $\ev{V, Q}$ enjoys quorum availability despite $B$ if and only if $V \setminus B$ is a quorum in $\ev{V, Q}$ or $B = V$.
 \end{defn}
@@ -277,7 +289,7 @@
     If $\ev{V, Q}$ enjoys quorum availability despite $B$, then regardless of what happens to nodes in $B$, nodes in $V \setminus B$ can keep going.
 \end{rem}
 
-\begin{defn}\label{def_v_blocking}
+\begin{defn}[$v$-blocking]\label{def_v_blocking}
     Let $\ev{V, Q}$ be an FBAS\@.
     Let $v \in V$.
     A subset $B \subset V$ is called $v$-blocking if and only if $\forall q \in Q(v), q \cap B \ne \emptyset$.
@@ -341,12 +353,12 @@
 
 \section{Dispensable Sets}
 
-\begin{defn}\label{def_dset}
+\begin{defn}[Dispensable Set]\label{def_dset}
     Let $\ev{V, Q}$ be an FBAS and $B \subset V$ be a set of nodes.
     $B$ is called a dispensable set, or DSet, if and only if $\ev{V, Q}$ enjoys both quorum intersection despite $B$ and quorum availability despite $B$.
 \end{defn}
 
-\begin{defn}\label{def_intact_befouled}
+\begin{defn}[Intact and Befouled]\label{def_intact_befouled}
     Let $\ev{V, Q}$ be an FBAS and $v \in V$.
     $v$ is said to be intact if and only if there exists a DSet $B$ containing all ill-behaved nodes and $v \notin B$.
     $v$ is said to be befouled if and only if $v$ is not intact.
@@ -583,7 +595,7 @@
 
 The definitions of voting and accepting have a circular dependency.
 
-\begin{defn}\label{def_vote}
+\begin{defn}[Vote]\label{def_vote}
     A node $v$ votes for a statement $a$ if and only if $v$ asserts
     \begin{itemize}
         \item
@@ -597,7 +609,7 @@ The definitions of voting and accepting have a circular dependency.
     \end{itemize}
 \end{defn}
 
-\begin{defn}\label{def_accept}
+\begin{defn}[Accept]\label{def_accept}
     Let $\ev{V, Q}$ be an FBAS\@, and let $v \in V$.
     $v$ accepts a statement $a$ if and only if 
     \begin{itemize}
@@ -617,7 +629,7 @@ The definitions of voting and accepting have a circular dependency.
 Note that it is possible for a node to accept a statement it did not vote for.
 Furthermore, it is possible for a node to accept a statement after voting for a contradictory statement.
 
-\begin{defn}
+\begin{defn}[Ratify]\label{def_ratify}
     A quorum $U_a$ ratifies a statement $a$ if and only if every member of $U_a$ votes for $a$.
     A node $v$ ratifies $a$ if and only if $v$ is a member of a quorum $U_a$ that ratifies $a$.
 \end{defn}
@@ -739,11 +751,11 @@ Note that Theorem~\ref{intact_accept_contradictory} is a stronger version of The
 
 \section{Confirmation}
 
-\begin{defn}\label{def_irrefutable}
+\begin{defn}[Irrefutable]\label{def_irrefutable}
     A statement $a$ is irrefutable in an FBAS if no intact node can ever vote against it.
 \end{defn}
 
-\begin{defn}\label{def_confirm}
+\begin{defn}[Confirm]\label{def_confirm}
     A quorum $U_a$ in an FBAS confirms a statement $a$ if and only if every element in $U_a$ broadcasts that it has accepted $a$.
     A node confirms $a$ if and only if it is in such a quorum.
 \end{defn}
@@ -810,11 +822,11 @@ Note that Theorem~\ref{intact_accept_contradictory} is a stronger version of The
 
 Nomination is done through voting, accepting, and confirming a special type of statement in the form of \textit{nominate $x$}.
 
-\begin{defn}
+\begin{defn}[Nominate]
     A node $v$ is said to nominate a value $x$ if and only if it votes for the statement \textit{nominate $x$}.
 \end{defn}
 
-\begin{defn}
+\begin{defn}[Candidate]
     A node $v$ considers a value $x$ to be a candidate if and only if $v$ has confirmed the statement \textit{nominate $x$}.
     Alternatively, we say that a node $v$ has a candidate value $x$.
 \end{defn}
