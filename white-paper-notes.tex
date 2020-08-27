@@ -655,9 +655,9 @@ Note that it is possible for a node to accept a statement after voting for a con
     By the definition of accepting(Definition~\ref{def_accept}), the moment $v$ accepted $a$, either
     \begin{itemize}
         \item
-            there was a quorum $U$ of $v$ such that every element of $U$ either voted for $a$ or broadcast that it has accepted $a$, or
+            There was a quorum $U$ of $v$ such that every element of $U$ either voted for $a$ or broadcast that it has accepted $a$, or
         \item
-            there existed a $v$-blocking set such that every element in it broadcast that it has accepted $a$.
+            There existed a $v$-blocking set such that every element in it broadcast that it has accepted $a$.
     \end{itemize}
     We claim that it could not have been the second one.
     On the contrary, suppose that it was the second one.
@@ -682,7 +682,8 @@ Note that it is possible for a node to accept a statement after voting for a con
     Two intact nodes in an FBAS $\ev{V, Q}$ enjoying quorum intersection cannot accept contradictory statements.
 \end{thm}
 
-Note that Theorem~\ref{intact_accept_contradictory} is a stronger version of Theorem~\ref{intact_ratify_contradictory} by Theorem~\ref{ratify_implies_accept}.
+By Theorem~\ref{ratify_implies_accept}, ratifying is a stronger condition than accepting.
+Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Theorem~\ref{intact_ratify_contradictory}.
 
 \begin{proof}
     Suppose otherwise.
