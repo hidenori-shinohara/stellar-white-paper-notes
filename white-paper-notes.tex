@@ -688,10 +688,13 @@ Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Th
 \begin{proof}
     Suppose otherwise.
     Let $a, \bar{a}$ be contradictory statements accepted by two intact nodes in $\ev{V, Q}$.
+    Let $B$ denote the set of befouled nodes.
     By Lemma~\ref{lem_intact_ratify}, $a, \bar{a}$ are ratified by some intact nodes in $\ev{V, Q}^B$.
-    By Definition~\ref{def_dset}, $\ev{V, Q}$ enjoys quorum intersection despite $B$.
-    In other words, $\ev{V, Q}^B$ enjoys quorum intersection.
-    By Theorem~\ref{intact_ratify_contradictory}, $a, \bar{a}$ cannot be ratified by $v, v'$ in $\ev{V, Q}^B$, which is a contradiction.
+    By the definition of a DSet(Definition~\ref{def_dset}), $\ev{V, Q}$ enjoys quorum intersection despite $B$.
+
+    This means that $\ev{V, Q}^B$ enjoys quorum intersection and two contradictory statements are ratified by some intact nodes in $\ev{V, Q}^B$.
+    However, this is a direct contradiction to Theorem~\ref{intact_ratify_contradictory}.
+    Hence, two contradictory statements cannot be accepted by two intact nodes in $\ev{V, Q}$.
 \end{proof}
 
 \subsection{Confirmation}
