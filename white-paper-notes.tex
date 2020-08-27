@@ -708,6 +708,30 @@ Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Th
     A node confirms $a$ if and only if it is in such a quorum.
 \end{defn}
 
+\begin{thm}\label{ratify_confirm_accept}
+    Ratifying is stronger than confirming, and confirming is stronger than accepting.
+\end{thm}
+
+\begin{proof}
+    Let $\ev{V, Q}$ and $v \in V$ be given.
+    Suppose that $v$ ratifies a statement $a$.
+    Then there exists a quorum $U$ such that $v \in U$ and every member in $U$ votes for $a$.
+    For any $u \in U$,
+    \begin{itemize}
+        \item
+            $u$ has never accepted a statement contradicting $a$ by the definition of voting (Definition~\ref{def_vote}), and
+        \item
+            $U$ is a quorum such that $u \in U$ and every memeber of $U$ voted for $a$.
+    \end{itemize}
+    Therefore, $u$ accepts $a$.
+    In other words, every member of $U$ accepts $a$.
+    $U$ confirms $a$ and thus $v$ confirms $a$.
+    Thus ratifying is stronger than confirming.
+
+    The definition of confirming(Definition~\ref{def_confirm}) shows that a node must first accept a statement before confirming.
+    Therefore, confirming is stronger than accepting.
+\end{proof}
+
 \begin{lem}\label{lemma_for_every_intact_node}
     Let $\ev{V, Q}$ be an FBAS with quorum intersection.
     Let $B$ denote the set of befouled nodes.
