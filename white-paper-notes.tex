@@ -761,30 +761,7 @@ This lemma seems a bit abstract, so it may be worth explaining the main idea:
     \item
         One way to influence a node $v$ outside such a quorum (i.e., make $v$ agree and confirm a statement) is for $U$ to be $v$-blocking.
     \item
-        Again, we are generally concerned with the safety and liveness of intact nodes, so we might consider the intact nodes in $U$.
-    \item
-        Here is an oversimplified proof of Theorem~\ref{all_intact_nodes_accept_confirm_same_things} to illustrate how this (seemingly overly complicated) lemma might be useful:
-        \begin{itemize}
-            \item
-                Let $S^{+}$ denote a set containing only intact nodes and all of the intact nodes in $U$.
-                Suppose that any such $S^+$ is $v$-blocking for some intact node $v \notin S^{+}$.
-            \item
-                Let $S_0^{+}$ be the set of all the intact nodes in $U$.
-                Then $S_0^{+}$ is $v_0$-blocking for some intact node $v_0 \notin S_0^{+}$.
-                Thus $v_0$ accepts and confirms the same statement as $S_0^{+}$.
-            \item
-                Let $S_1^{+} = S_0^{+} \cup \{ v_0 \}$.
-                Then $S_1^{+}$ is $v_1$-blocking for some intact node $v_1 \notin S_1^{+}$.
-                Thus $v_1$ accepts and confirms the same statement as $S_1^{+}$.
-            \item
-                Let $S_2^{+} = S_1^{+} \cup \{ v_1 \}$.
-                Then $S_2^{+}$ is $v_2$-blocking for some intact node $v_2 \notin S_2^{+}$.
-                Thus $v_2$ accepts and confirms the same statement as $S_2^{+}$.
-            \item
-                $\vdots$
-            \item
-                Eventually, all intact nodes accept and confirm the same statement.
-        \end{itemize}
+        For more intuition, one might consider reading the proof of Theorem~\ref{all_intact_nodes_accept_confirm_same_things}.
 \end{itemize}
 
 
@@ -819,11 +796,10 @@ This lemma seems a bit abstract, so it may be worth explaining the main idea:
 
 \begin{proof}
     Let $B$ denote the set of befouled nodes.
-    Then there exists a quorum $U \not\subset B$ such that every node in $U$ broadcast that it accepted $a$.
-    After every node in $U$ has broadcast that it accepted $a$, there may be a node $v$ that accepts $a$ since $U$ is $v$-blocking.
-    After all such nodes broadcast that they accepted $a$, there may be other nodes that accept $a$ as well.
-    Since $V$ is a finite set, there is a point in time where the number of nodes that accept $a$ does not increase.
-    Let $S$ be the set of all nodes that accepted $a$ and broadcast it.
+    When an intact node confirms $a$, a quorum containing such an intact node confirms $a$.
+    In other words, there exists a quorum $U \not\subset B$ such that every node in $U$ broadcast that it accepted $a$.
+
+    Let $S = U$.
     \begin{itemize}
         \item
             $U$ is a quorum containing an intact node.
@@ -833,8 +809,24 @@ This lemma seems a bit abstract, so it may be worth explaining the main idea:
             Let $S^{+} = S \setminus B$ be the set of intact nodes in $S$, and let $S^{-} = (V \setminus S) \setminus B$ be the set of intact nodes not in $S$.
     \end{itemize}
     By Lemma~\ref{lemma_for_every_intact_node}, $S^{-}$ is empty, or $S^{+}$ is $v$-blocking for some $v \in S^{-}$.
-    However, the latter is impossible because it would imply that $v$ would accept $a$.
-    Therefore, $S^{-}$ is empty, and thus every intact node accepted $a$.
+    Suppose $S^{-}$ is empty.
+    Then we are done because:
+    \begin{itemize}
+        \item
+            Every intact node accepted $a$.
+        \item
+            By Theorem~\ref{befouled_dset}, $B$ is a DSet.
+            By the definition of a DSet, $V \setminus B$ is a quorum.
+            In other words, the set of all intact nodes is a quorum.
+        \item
+            Since $V \setminus B$ is a quorum in which every node accepted $a$, every intact node confirms $a$.
+    \end{itemize}
+
+    Suppose $S^{-}$ is nonempty.
+    Then $v$ accepts $a$ because $S^{+}$ is $v$-blocking and every element of $S^{+}$ broadcast that it has accepted $a$.
+    Reassign $S = S \cup \{ v \}$.
+    Then every element in $S$ accepted $a$.
+    We can repeat this process until $S^{-}$ becomes empty, and it will terminate for $V$ is finite.
 \end{proof}
 
 \section{Stellar Consensus Protocol}
