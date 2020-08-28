@@ -748,20 +748,43 @@ Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Th
     (See Figure~\ref{fig:lemma_for_every_intact_node}.)
 \end{lem}
 
-One way to interpret this lemma is:
+This lemma is used to prove Theorem~\ref{all_intact_nodes_accept_confirm_same_things} and another theorem in the ballot protocol.
+This lemma seems a bit abstract, so it may be worth explaining the main idea:
 
 \begin{itemize}
     \item
-        We choose to care about a quorum containing at least one intact node.
-        This is reasonable because, for instance, we might not care much about what quorums consisting only of ill-behaved nodes confirm.
+        In the FBAS and SCP, we are generally concerned with the safety and liveness of intact nodes.
+        Thus we choose to consider a quorum containing at least one intact node.
     \item
-        We hope that a statement such a quorum accepts and confirms will be accepted and confirmed by \textit{all} intact nodes.
-        This is reasonable because we hope that \textit{all} intact nodes in the network agree and confirm the same thing all the time.
+        We hope that, if such a quorum accepts and confirms a statement, \textit{all} intact nodes will accept and confirm it.
+        This is because we hope that \textit{all} intact nodes in the network always agree and confirm the same thing.
     \item
-        One way to make a node $v$ outside such a quorum agree and confirm a statement is for $U$ to be $v$-blocking.
+        One way to influence a node $v$ outside such a quorum (i.e., make $v$ agree and confirm a statement) is for $U$ to be $v$-blocking.
     \item
-        \todo[inline,caption={}]{
-        }
+        Again, we are generally concerned with the safety and liveness of intact nodes, so we might consider the intact nodes in $U$.
+    \item
+        Here is an oversimplified proof of Theorem~\ref{all_intact_nodes_accept_confirm_same_things} to illustrate how this (seemingly overly complicated) lemma might be useful:
+        \begin{itemize}
+            \item
+                Let $S^{+}$ denote a set containing only intact nodes and all of the intact nodes in $U$.
+                Suppose that any such $S^+$ is $v$-blocking for some intact node $v \notin S^{+}$.
+            \item
+                Let $S_0^{+}$ be the set of all the intact nodes in $U$.
+                Then $S_0^{+}$ is $v_0$-blocking for some intact node $v_0 \notin S_0^{+}$.
+                Thus $v_0$ accepts and confirms the same statement as $S_0^{+}$.
+            \item
+                Let $S_1^{+} = S_0^{+} \cup \{ v_0 \}$.
+                Then $S_1^{+}$ is $v_1$-blocking for some intact node $v_1 \notin S_1^{+}$.
+                Thus $v_1$ accepts and confirms the same statement as $S_1^{+}$.
+            \item
+                Let $S_2^{+} = S_1^{+} \cup \{ v_1 \}$.
+                Then $S_2^{+}$ is $v_2$-blocking for some intact node $v_2 \notin S_2^{+}$.
+                Thus $v_2$ accepts and confirms the same statement as $S_2^{+}$.
+            \item
+                $\vdots$
+            \item
+                Eventually, all intact nodes accept and confirm the same statement.
+        \end{itemize}
 \end{itemize}
 
 
@@ -790,7 +813,7 @@ One way to interpret this lemma is:
     This is a contradiction.
 \end{proof}
 
-\begin{thm}
+\begin{thm}\label{all_intact_nodes_accept_confirm_same_things}
     If an intact node in an FBAS $\ev{V, Q}$ with quorum intersection confirms a statement $a$, then every intact node will accept and confirm $a$ once sufficient messages are delivered.
 \end{thm}
 
