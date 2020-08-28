@@ -820,7 +820,7 @@ This lemma seems a bit abstract, so it may be worth explaining the main idea:
 \begin{proof}
     Let $B$ denote the set of befouled nodes.
     Then there exists a quorum $U \not\subset B$ such that every node in $U$ broadcast that it accepted $a$.
-    After every node in $U$ has broadcast that it accepted $a$, there may be a node $v$ that accept $a$ since $U$ is $v$-blocking.
+    After every node in $U$ has broadcast that it accepted $a$, there may be a node $v$ that accepts $a$ since $U$ is $v$-blocking.
     After all such nodes broadcast that they accepted $a$, there may be other nodes that accept $a$ as well.
     Since $V$ is a finite set, there is a point in time where the number of nodes that accept $a$ does not increase.
     Let $S$ be the set of all nodes that accepted $a$ and broadcast it.
