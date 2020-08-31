@@ -798,35 +798,41 @@ This lemma seems a bit abstract, so it may be worth explaining the main idea:
     Let $B$ denote the set of befouled nodes.
     When an intact node confirms $a$, a quorum containing such an intact node confirms $a$.
     In other words, there exists a quorum $U \not\subset B$ such that every node in $U$ broadcast that it accepted $a$.
+    Some nodes may decide to accept $a$ upon hearing that nodes in $U$ broadcast that it accepted $a$.
+    This may, in turn, make more nodes accept $a$.
+    Thus we may experience a gradual increase in the number of nodes that accepted $a$.
+    Since $V$ only contains finitely many nodes, there will be a point at which the number of nodes that accepted $a$ stops increasing.
+    Let $S$ be the set of nodes that accepted $a$ at that point.
+    We claim that $S$ contains all intact nodes.
 
-    Let $S = U$.
     \begin{itemize}
         \item
             $U$ is a quorum containing an intact node.
         \item
-            $U \subset S \subset V$.
+            $U \subset S \subset V$ because every node in $U$ accepted $a$ in the beginning.
         \item
             Let $S^{+} = S \setminus B$ be the set of intact nodes in $S$, and let $S^{-} = (V \setminus S) \setminus B$ be the set of intact nodes not in $S$.
     \end{itemize}
     By Lemma~\ref{lemma_for_every_intact_node}, $S^{-}$ is empty, or $S^{+}$ is $v$-blocking for some $v \in S^{-}$.
-    Suppose $S^{-}$ is empty.
-    Then we are done because:
+    Suppose $S^{-}$ is nonempty.
+    Then $v$ accepts $a$ because $S^{+}$ is $v$-blocking and every element of $S^{+}$ broadcast that it has accepted $a$.
+    This is a contradiction because we assumed that the number of nodes that accept $a$ stopped increasing.
+    Therefore, $S^{-}$ must be empty.
+    If $S^{-}$ is empty, then that implies that every intact node accepted and confirmed $a$ assuming sufficient messages are delivered because
+
     \begin{itemize}
         \item
-            Every intact node accepted $a$.
+            Since $S^{-}$ is empty, $S^{+}$ contains all intact nodes.
+            $S^{+} \subset S$, so $S$ contains all intact nodes.
+            Since every node in $S$ accepted $a$, every intact node accepted $a$.
         \item
-            By Theorem~\ref{befouled_dset}, $B$ is a DSet.
+            Since $\ev{V, Q}$ enjoys quorum intersection, $B$ is a DSet by Theorem~\ref{befouled_dset}.
             By the definition of a DSet, $V \setminus B$ is a quorum.
             In other words, the set of all intact nodes is a quorum.
         \item
-            Since $V \setminus B$ is a quorum in which every node accepted $a$, every intact node confirms $a$.
+            Since $V \setminus B$ is a quorum in which every node accepted $a$, every intact node confirmed $a$.
     \end{itemize}
 
-    Suppose $S^{-}$ is nonempty.
-    Then $v$ accepts $a$ because $S^{+}$ is $v$-blocking and every element of $S^{+}$ broadcast that it has accepted $a$.
-    Reassign $S = S \cup \{ v \}$.
-    Then every element in $S$ accepted $a$.
-    We can repeat this process until $S^{-}$ becomes empty, and it will terminate for $V$ is finite.
 \end{proof}
 
 \section{Stellar Consensus Protocol}
