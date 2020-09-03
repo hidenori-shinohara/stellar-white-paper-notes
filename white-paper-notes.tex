@@ -85,11 +85,19 @@
 \end{defn}
 
 \begin{rem}
-    For each node $v$, $Q(v)$ is a set of subsets of $V$.
-    For instance, node $v_1$ may trust $v_2, v_3, v_4$ and may have $Q(v_1) = \{ \{ v_1, v_2, v_3, v_4 \} \} \subset 2^V$.
-
-    We explicitly exclude $\{ \emptyset \}$ from the co-domain because we want $Q(v) \ne \emptyset$ for all $v \in V$.
-    This is necessary because if $Q(v) = \emptyset$ for some $v \in V$, it satisfies $\forall q \in Q(v), v \in q$.
+    $ $
+    \begin{itemize}
+        \item
+            For each node $v$, $Q(v)$ is a set of subsets of $V$.
+            For instance, node $v_1$ may trust $v_2, v_3, v_4$ and may have $\{ v_1, v_2, v_3, v_4 \} \in Q(v_1) \subset 2^V$.
+        \item
+            We explicitly exclude $\{ \emptyset \}$ from the co-domain because we want $Q(v) \ne \emptyset$ for all $v \in V$.
+            This is necessary because if $Q(v) = \emptyset$ for some $v \in V$, it satisfies $\forall q \in Q(v), v \in q$.
+        \item
+            Consider the case when $V = \emptyset$.
+            Note that $2^\emptyset = \{ \emptyset \}$ and thus $2^{2^\emptyset} = \{ \emptyset, \{ \emptyset \} \}$.
+            Thus $V$ forms an FBAS where $Q$ is the map $\emptyset \mapsto \{ \emptyset \}$.
+    \end{itemize}
 \end{rem}
 
 \begin{defn}[Quorum]
@@ -195,7 +203,7 @@
 \end{defn}
 
 \begin{rem}
-    Quorum intersection despite $B$ is related to system-level safety when nodes in $B$ act arbitrarily.
+    Quorum intersection despite $B$ is related to the system-level safety when nodes in $B$ act arbitrarily.
     For instance, suppose $\ev{V, Q}$ is an FBAS, $B$ is the set of all ill-behaved nodes, and $\ev{V, Q}$ enjoys quorum intersection despite $B$.
     Suppose two well-behaved nodes $v_1, v_2$ agree with contradictory statements $a_1, a_2$ in quorums $q_1, q_2$, respectively.
     Then $q_1 \cap q_2 \ne \emptyset$ have well-behaved nodes who agreed with both $a_1$ and $a_2$.
