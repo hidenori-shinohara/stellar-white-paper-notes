@@ -303,6 +303,40 @@
     $B$ is called a dispensable set, or DSet, if and only if $\ev{V, Q}$ enjoys both quorum intersection despite $B$ and quorum availability despite $B$.
 \end{defn}
 
+We will first show some basic properties of DSets.
+\begin{thm}
+    Let $\ev{V, Q}$ be an FBAS.
+    Then
+    \begin{itemize}
+        \item
+            $V$ is a DSet.
+        \item
+            If $\forall v \in V, Q(v) = \{ V \}$, then $\emptyset$ and $V$ are the only DSets of $\ev{V, Q}$.
+    \end{itemize}
+\end{thm}
+
+\begin{proof}
+    $ $
+    \begin{itemize}
+        \item
+            $\ev{V, Q}^V$ enjoys quorum intersection because there is no quorum.
+            $\ev{V, Q}$ enjoys quorum availability despite $V$ because $V = V$.
+        \item
+            Suppose $\forall v \in V, Q(v) = \{ V \}$.
+            As shown above, $V$ is a DSet of $\ev{V, Q}$.
+            The empty set is a DSet because
+            \begin{itemize}
+                \item
+                    $\ev{V, Q}$ enjoys quorum intersection despite $\emptyset$ because the only quorum is $V$.
+                \item
+                    $\ev{V, Q}$ enjoys quorum availability despite $B$ because $V \setminus \emptyset = V$ is a quorum.
+            \end{itemize}
+            Let $\emptyset \subsetneq S \subsetneq V$ be given.
+            Then $V \ne S$ and $V \setminus S$ is not a quorum for it is nonempty and does not contain any quorum slice.
+            Therefore, $\ev{V, Q}$ does not enjoy quorum availabilty despite $B$, so no nonempty, proper subset of $V$ is a DSet.
+    \end{itemize}
+\end{proof}
+
 \begin{defn}[Intact and Befouled]\label{def_intact_befouled}
     Let $\ev{V, Q}$ be an FBAS and $v \in V$.
     $v$ is said to be intact if and only if there exists a DSet $B$ containing all ill-behaved nodes and $v \notin B$.
