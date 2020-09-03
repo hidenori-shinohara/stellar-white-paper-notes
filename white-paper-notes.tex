@@ -85,7 +85,7 @@
     Each $q$ in $Q(v)$ is called a quorum slice for each $v \in V$.
 \end{defn}
 
-\begin{rem}
+\begin{rem}\label{rem_fbas}
     $ $
     \begin{itemize}
         \item
@@ -177,10 +177,18 @@
 \end{thm}
 
 \begin{proof}
-    Let $v \in V \setminus B, q' \in Q^B(v)$ be given.
+    If $V = B$, then we are done because of Remark~\ref{rem_fbas}.
+
+    Suppose otherwise.
+    Let $v \in V \setminus B$ be given.
+    By the definition of an FBAS, $Q(v) \ne \emptyset$.
+    Therefore, $Q^B(v) = \{ q \setminus B \mid q \in Q(v) \}$ is nonempty.
+
+    Let $q' \in Q^B(v)$ be given arbitrarily.
     Then $q' = q \setminus B$ for some $q \in Q(v)$.
-    By the definition of an FBAS, $v \in q$.
-    Since $v \notin B$, $v \in q \setminus B = q'$.
+    Then $v \in q$ by the definition of an FBAS, so $v \in q'$.
+    
+    Thus $Q^B$ is indeed a quorum function.
     Therefore, $\ev{V, Q}^B$ is an FBAS\@.
 \end{proof}
 
