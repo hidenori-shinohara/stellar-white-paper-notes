@@ -91,12 +91,16 @@
             For each node $v$, $Q(v)$ is a set of subsets of $V$.
             For instance, node $v_1$ may trust $v_2, v_3, v_4$ and may have $\{ v_1, v_2, v_3, v_4 \} \in Q(v_1) \subset 2^V$.
         \item
-            We explicitly exclude $\{ \emptyset \}$ from the co-domain because we want $Q(v) \ne \emptyset$ for all $v \in V$.
-            This is necessary because if $Q(v) = \emptyset$ for some $v \in V$, it satisfies $\forall q \in Q(v), v \in q$.
+            Note that we explicitly exclude $\emptyset$ from the co-domain.
+            In other words, we want $Q(v) \ne \emptyset$ for all $v \in V$.
+            If $Q(v) = \emptyset$ for some $v \in V$, it satisfies $\forall q \in Q(v), v \in q$.
+            As we will see, each $q \in Q(v)$ is the list of nodes that $v$ trusts.
+            If $v$ has no list of nodes that it trusts, $v$ cannot really do anything.
+            Thus we want $Q(v) \ne \emptyset$ for all $v \in V$.
         \item
             Consider the case when $V = \emptyset$.
             Note that $2^\emptyset = \{ \emptyset \}$ and thus $2^{2^\emptyset} = \{ \emptyset, \{ \emptyset \} \}$.
-            Thus $V$ forms an FBAS where $Q$ is the map $\emptyset \mapsto \{ \emptyset \}$.
+            Thus $V$ forms an FBAS where $Q$ is the map $\emptyset \mapsto \{ \{ \emptyset \} \}$.
     \end{itemize}
 \end{rem}
 
