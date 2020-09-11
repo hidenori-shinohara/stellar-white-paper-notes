@@ -634,23 +634,6 @@ We will first show some basic properties of DSets.
     For simplicity, we will often write ``\textit{accept}$(a)$" to mean ``an intact node accepted $a$."
 \end{defn}
 
-\begin{rem}
-    It might seem unusual that a node votes for the statement ``an intact node accepted $a$" because no well-behaved node can be certain that it is intact.
-    \begin{itemize}
-        \item
-            If the node is indeed intact, it will be right about the statement ``an intact node accepted $a$."
-        \item
-            Suppose the node is well-behaved and befouled.
-            This is an unfortunate situation that happens when poor quorum choices are made.
-            \todo[inline,caption={}]{
-                Explain why this makes sense.
-            }
-        \item
-            If the node is ill-behaved, we already assume that it acts arbitrarily.
-            Thus we don't really care that it says that an intact node accepted $a$ because we are building a protocol that withstands any arbitrary behavior from an ill-behaved node.
-    \end{itemize}
-\end{rem}
-
 As you can see, the definitions of voting and accepting have a circular dependency.
 Note that it is possible for a node to accept a statement after voting for a contradictory statement.
 
