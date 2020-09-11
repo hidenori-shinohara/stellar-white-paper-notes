@@ -716,7 +716,7 @@ Note that it is possible for a node to accept a statement after voting for a con
     Suppose that $a$ is accepted by one or more intact nodes in $V$.
     Since $V$ is finite, there has to be an intact node $v$ such that no intact nodes in $V$ accepted $a$ before $v$.
 
-    By the definition of accepting(Definition~\ref{def_accept}), the moment $v$ accepted $a$, either
+    By the definition of accepting(Definition~\ref{def_accept}), $v$ accepted $a$ because either
     \begin{itemize}
         \item
             There was a quorum $U$ of $v$ such that every element of $U$ either voted for $a$ or broadcast that it has accepted $a$, or
@@ -735,7 +735,7 @@ Note that it is possible for a node to accept a statement after voting for a con
     In other words, there must have existed a quorum $U$ of $v$ such that, before $v$ accepted $a$, every member of $U$ either voted for $a$ or broadcast that it has accepted $a$.
     Since no intact node accepted $a$ before $v$, every intact node in $U$ must have voted for $a$ before $v$ accepted $a$.
     In other words, every node in $U \setminus B$ voted for $a$.
-    By Theorem~\ref{quorum_delete_fbas}, $U \setminus b$ is a quorum in $\ev{V, Q}^B$.
+    By Theorem~\ref{quorum_delete_fbas}, $U \setminus B$ is a quorum in $\ev{V, Q}^B$.
     Thus  $U \setminus B$ ratified $a$ in ${\ev{V, Q}}^B$, and thus $v$ ratified $a$ in $\ev{V, Q}^B$.
     Finally, $v$ is indeed an intact node in ${\ev{V, Q}}^B$ because ${\ev{V, Q}}^B$ contains no ill-behaved nodes.
 
