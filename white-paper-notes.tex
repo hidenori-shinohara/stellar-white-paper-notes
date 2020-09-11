@@ -674,14 +674,14 @@ Note that it is possible for a node to accept a statement after voting for a con
 \end{proof}
 
 \begin{thm}\label{ill_behaved_ratify}
-    Let $\ev{V, Q}$ be an FBAS and $B \subsetneq V$.
+    Let $\ev{V, Q}$ be an FBAS and $B \subset V$.
     Suppose that $B$ contains all the ill-behaved nodes and $\ev{V, Q}^B$ enjoys quorum intersection.
     Let $v_1 \ne v_2 \in V \setminus B$.
     If $v_1$ ratifies a statement $a$, then $v_2$ cannot ratify any statement that contradicts $a$.
 \end{thm}
 
 \begin{proof}
-    Suppose that the theorem is false and let $U_1, U_2$ be quorums of $v_1, v_2$ that ratify $a, \bar{a}$, respectively where $a$ and $\bar{a}$ are contradictory.
+    Suppose that the theorem is false and let $U_1, U_2$ be quorums of $v_1, v_2$ that ratify $a, \bar{a}$, respectively, where $a$ and $\bar{a}$ are contradictory.
     Since $v_1 \in U_1 \setminus B$,  $U_1 \setminus B \ne \emptyset$.
     By Theorem~\ref{quorum_delete_fbas}, $U_1' = U_1 \setminus B$ is a quorum in $\ev{V, Q}^B$.
     Similarly, $U_2' = U_2 \setminus B$ is a quorum in $\ev{V, Q}^B$.
