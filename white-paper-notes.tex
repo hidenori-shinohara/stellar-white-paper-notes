@@ -814,7 +814,7 @@ Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Th
 
 \begin{proof}
     \todo[inline,caption={}]{
-        Proofread this!
+        Proofread this one more time!
     }
     Note that $S^{+} = S \setminus B$ and $S^{-} = (V \setminus S) \setminus B = (V \setminus B) \setminus S^{+}$.
     If $\exists v \in S^{-}$ such that $S^{+}$ is $v$-blocking, then we are done.
@@ -831,7 +831,7 @@ Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Th
     \end{itemize}
     By Theorem~\ref{v_blocking_delete}, $S^{+}$ is not $v$-blocking in $\ev{V, Q}^B$ for any $v \in S^{-}$.
     Since $S^{-} = (V \setminus B) \setminus S^{+}$, $S^{+}$ is not $v$-blocking in $\ev{V, Q}^B$ for any $v \in (V \setminus B) \setminus S^{+}$.
-    By Theorem~\ref{quorum_availability_v_blocking}, $\ev{V, Q}^B$ enjoys quorum availability despite $S^{+}$.
+    By applying Theorem~\ref{quorum_availability_v_blocking} to the FBAS $\ev{V, Q}^B$ and subset $S^{+}$, $\ev{V, Q}^B$ enjoys quorum availability despite $S^{+}$.
 
     By the definition of quorum availability(Definition~\ref{def_quorum_availability}), $(V \setminus B) \setminus S^{+}$ is a quorum in $\ev{V, Q}^B$, or $V \setminus B = S^{+}$.
     Suppose $(V \setminus B) \setminus S^{+}$ is a quorum in $\ev{V, Q}^B$.
@@ -853,10 +853,9 @@ Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Th
                     We also assumed that $(V \setminus B) \setminus S^{+}$ is a quorum in $\ev{V, Q}^B$.
                     \begin{align*}
                         (U \setminus B) \cap ((V \setminus B) \setminus S^{+})
-                            &= (U \setminus B) \cap ((U \setminus B) \setminus S^{+}) \\
-                            &= (U \setminus B) \cap S^{-} \\
-                            &\subset U  \cap S^{-} \\
-                            &\subset S \cap S^{-} \\
+                            &\subset (U \setminus B) \cap S^{-} \\
+                            &\subset (S \setminus B) \cap S^{-} \\
+                            &\subset S^{+} \cap S^{-} \\
                             &= \emptyset.
                     \end{align*}
                     Therefore, $\ev{V, Q}^B$ does not enjoy quorum intersection.
@@ -876,9 +875,9 @@ Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Th
     In other words, there exists a quorum $U \not\subset B$ such that every node in $U$ broadcast that it accepted $a$.
     Some nodes may decide to accept $a$ upon hearing that nodes in $U$ broadcast that it accepted $a$.
     This may, in turn, make more nodes accept $a$.
-    Thus we may experience a gradual increase in the number of nodes that accepted $a$ over time.
-    Since $V$ only contains finitely many nodes, there will be a point at which the number of nodes that accepted $a$ stops increasing.
-    Let $S$ be the set of nodes that accepted $a$ at that point.
+    Thus we may experience a gradual increase in the number of nodes that accept $a$ over time.
+    Since $V$ only contains finitely many nodes, there will be a point at which the number of nodes that accept $a$ stops increasing.
+    Let $S$ be the set of nodes that accept $a$ at that point.
     We claim that $S$ contains all intact nodes.
 
     \begin{itemize}
@@ -898,7 +897,7 @@ Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Th
 
     \begin{itemize}
         \item
-            Since $S^{-}$ is empty, $S^{+}$ contains all intact nodes.
+            Since $S^{-}$ is empty, $S^{+}$ contains all intact nodes in $V$.
             $S^{+} \subset S$, so $S$ contains all intact nodes.
             Since every node in $S$ accepted $a$, every intact node accepted $a$.
         \item
@@ -908,7 +907,6 @@ Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Th
         \item
             Since $V \setminus B$ is a quorum in which every node accepted $a$, every intact node confirmed $a$.
     \end{itemize}
-
 \end{proof}
 
 \newpage
