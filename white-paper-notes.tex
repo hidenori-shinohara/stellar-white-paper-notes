@@ -813,21 +813,17 @@ Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Th
 \end{lem}
 
 \begin{proof}
-    \todo[inline,caption={}]{
-        Proofread this one more time!
-    }
     Note that $S^{+} = S \setminus B$ and $S^{-} = (V \setminus S) \setminus B = (V \setminus B) \setminus S^{+}$.
     If $\exists v \in S^{-}$ such that $S^{+}$ is $v$-blocking, then we are done.
 
     Suppose that $\forall v \in S^{-}$, $S^{+}$ is not $v$-blocking in $\ev{V, Q}$.
     We want to show that $S^{-} = \emptyset$.
 
-    For any arbitrary $v \in S^{-}$,
     \begin{itemize}
         \item
             $S^{+}$ and $S^{-}$ form a partition of $V \setminus B$,
         \item
-            $S^{+}$ is not $v$-blocking in $\ev{V, Q}$.
+            $S^{+}$ is not $v$-blocking in $\ev{V, Q}$ for any arbitrary $v \in S^{-}$,
     \end{itemize}
     By Theorem~\ref{v_blocking_delete}, $S^{+}$ is not $v$-blocking in $\ev{V, Q}^B$ for any $v \in S^{-}$.
     Since $S^{-} = (V \setminus B) \setminus S^{+}$, $S^{+}$ is not $v$-blocking in $\ev{V, Q}^B$ for any $v \in (V \setminus B) \setminus S^{+}$.
@@ -853,7 +849,7 @@ Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Th
                     We also assumed that $(V \setminus B) \setminus S^{+}$ is a quorum in $\ev{V, Q}^B$.
                     \begin{align*}
                         (U \setminus B) \cap ((V \setminus B) \setminus S^{+})
-                            &\subset (U \setminus B) \cap S^{-} \\
+                            &= (U \setminus B) \cap S^{-} \\
                             &\subset (S \setminus B) \cap S^{-} \\
                             &\subset S^{+} \cap S^{-} \\
                             &= \emptyset.
