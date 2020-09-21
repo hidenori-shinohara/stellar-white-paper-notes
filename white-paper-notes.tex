@@ -960,13 +960,48 @@ Nomination is done through voting, accepting, and confirming a special type of s
     \begin{center}
       \begin{tabular}{ | c | c | }
         \hline
-          $ v_i & \weight(v_5, v_i) \\ \hline \hline
+          $v_i$ & $\weight(v_5, v_i)$ \\ \hline \hline
           $i = 1, 2, 3, 4$ & $1 / 2$ \\ \hline 
           $i = 5$ & 1 \\ \hline 
           $i = 6, 7, 8, 9, 10$ & 0 \\
         \hline
       \end{tabular}
     \end{center}
+
+    For this example, we will suppose that $h_{max} = 100$.
+    Let $N, P, i, n$ be fixed.
+    Then we will calculate the neighbors.
+    First, we will start with $v_1, v_2, v_3, v_4$.
+
+    Suppose
+    \begin{align*}
+        G_i(N, n, v_1) &= 41 \\
+        G_i(N, n, v_2) &= 72 \\
+        G_i(N, n, v_3) &= 19 \\
+        G_i(N, n, v_4) &= 84.
+    \end{align*}
+    The condition for a node $v'$ to be in $\neighbors(v_5, n)$ is $G_i(N, n, v') < 100 \cdot \weight(v_5, v')$.
+    Therefore, $v_1, v_3 \in \neighbors(v_5, n)$.
+    (e.g., $G_i(N, n, v_1) = 41 < 50 = 100 \cdot 1/2 = 100 \cdot \weight(v_5, v_1)$.)
+
+    Moreover, $v_5 \in \neighbors(v_5, n)$ since $\weight(v_5, v_5) = 1$.
+    Finally, $v_i \in \neighbors(v_5, n)$ for each $i = 6, 7, \cdots, 10$ because $\weight(v_5, v_i) = 0$.
+
+    Therefore, we have
+    \begin{align*}
+        \neighbors(v_5, n) = \{ v_1, v_3, v_5 \}.
+    \end{align*}
+    This is a reasonable choice of neighbors because
+    \begin{itemize}
+        \item
+            $v_5$ trusts $v_1, \cdots, v_4$, so it is a good thing that we have $v_1, v_3$ in $\neighbors(v_5, n)$.
+        \item
+            $v_5$ trusts $v_5$.
+        \item
+            Since $v_5$ does not trust $v_6, \cdots, v_{10}$, $v_5$ has no quorum slice containing any of them.
+            Thus it is a good thing that $\neighbors(v_5, n)$ does not contain any of them.
+    \end{itemize}
+
 \end{exmp}
 
 \newpage
