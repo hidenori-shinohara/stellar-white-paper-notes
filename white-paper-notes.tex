@@ -53,6 +53,11 @@
 \newtheorem{warn}[thm]{Warning}
 \newtheorem{sch}[thm]{Scholium}
 
+\DeclareMathOperator{\weight}{weight}
+\DeclareMathOperator{\neighbors}{neighbors}
+\DeclareMathOperator{\priority}{priority}
+
+
 \makeatletter
 \makeatother
 \numberwithin{equation}{subsection}
@@ -920,6 +925,53 @@ Nomination is done through voting, accepting, and confirming a special type of s
     A node $v$ considers a value $x$ to be a candidate if and only if $v$ has confirmed the statement \textit{nominate $x$}.
     Alternatively, we say that a node $v$ has a candidate value $x$.
 \end{defn}
+
+\begin{defn}[Weight, Neighbors, and Priority]
+    Let $H$ be a cryptographic hash function whose range can be interpreted as a set of integers $\{ 0, \cdots, h_{\max} - 1 \}$.
+    Let $G_i(m) = H(i, x_{i - 1}, m)$ be a slot-specific hash function for slot $i$, where $x_{i - 1}$ is the value chosen for the slot preceding $i$.
+    Let $N, P$ are arbitrary constants.
+    For each round $n$, each node $v$, we define
+    \begin{align*}
+        \weight(v, v') &= \frac{\abs{\{ q \mid q \in Q(v) \land v' \in q \}}}{\abs{Q(v)}} \\
+        \neighbors(v, n) &= \{ v' \mid G_i(N, n, v') < h_{\max} \cdot \weight(v, v') \} \\
+        \priority(n, v') &= G_i(P, n, v')
+    \end{align*}
+\end{defn}
+
+\begin{exmp}
+    We will calculate weight, neighbors, and priority for $v_5$ in Figure~\ref{fig:tiered_quorum_example} as an example.
+    Since each quorum slice consists of $v_5$ along with two nodes from $\{ v_1, v_2, v_3, v_4 \}$ as in
+    \begin{align*}
+        Q(v_5) &= \{ \{ v_5, v_1, v_2 \}, \{ v_5, v_1, v_3 \}, \{ v_5, v_1, v_4 \}, \cdots, \{ v_5, v_3, v_4 \} \},
+    \end{align*}
+    $Q(v_5)$ has $\binom{4}{2} = 6$ slices.
+
+    We will first calculate the weight of $v_1$.
+    \begin{align*}
+        \weight(v_5, v_1)
+            &= \frac{\abs{ q \mid q \in Q(v_5) \land v_1 \in q }}{\abs{Q(v_5)}} \\
+            &= \frac{\abs{ \{ v_5, v_1, v_2 \}, \{ v_5, v_1, v_3 \}, \{ v_5, v_1, v_4 \}}}{6} \\
+            &= \frac{3}{6} = \frac{1}{2}.
+    \end{align*}
+    By symmetry, $\weight(v_5, v_i) = \frac{1}{2}$ for each $i = 1, 2, 3, 4$.
+    $\weight(v_5, v_5) = 1$ because every quorum slice in $Q(v_5)$ contains $v_5$.
+    Finally, $\weight(v_5, v_i) = 0$ for all $i = 6, 7, 8, 9, 10$ because no quorum slice in $Q(v_5)$ contains any of $v_6, v_7, \cdots, v_{10}$.
+    Therefore, we obtain the following table:
+    \begin{center}
+      \begin{tabular}{ | c | c | }
+        \hline
+          $\weight(v_5, v_1), \weight(v_5, v_2), \weight(v_5, v_3), \weight(v_5, v_4)$
+                      & $1 / 2$ \\ \hline 
+          $\weight(v_5, v_5)$ & 1 \\ \hline 
+          $\weight(v_5, v_6), \weight(v_5, v_7), \weight(v_5, v_8), \weight(v_5, v_9), \weight(v_5, v_{10})$
+                      & 0 \\
+        \hline
+      \end{tabular}
+    \end{center}
+
+
+
+\end{exmp}
 
 \newpage
 \subsection{Ballot Protocol}
