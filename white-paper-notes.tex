@@ -932,7 +932,7 @@ Nomination is done through voting, accepting, and confirming a special type of s
     Let $N, P$ are arbitrary constants.
     For each round $n$, each node $v$, we define
     \begin{align*}
-        \weight(v, v') &= \frac{\abs{\{ q \mid q \in Q(v) \land v' \in q \}}}{\abs{Q(v)}} \\
+        \weight(v, v') &= \frac{\abs{\{ q \in Q(v) \mid v' \in q \}}}{\abs{Q(v)}} \\
         \neighbors(v, n) &= \{ v' \mid G_i(N, n, v') < h_{\max} \cdot \weight(v, v') \} \\
         \priority(n, v') &= G_i(P, n, v')
     \end{align*}
@@ -952,7 +952,7 @@ Nomination is done through voting, accepting, and confirming a special type of s
     We will first calculate the weight of $v_1$.
     \begin{align*}
         \weight(v_5, v_1)
-            &= \frac{\abs{\{ q \mid q \in Q(v_5) \land v_1 \in q \}}}{\abs{Q(v_5)}} \\
+            &= \frac{\abs{\{ q \in Q(v_5) \mid v_1 \in q \}}}{\abs{Q(v_5)}} \\
             &= \frac{\abs{ \{ v_1, v_2, v_5 \}, \{ v_1, v_3, v_5 \}, \{ v_1, v_4, v_5 \}}}{6} \\
             &= \frac{3}{6} = \frac{1}{2}.
     \end{align*}
