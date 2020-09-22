@@ -939,6 +939,9 @@ Nomination is done through voting, accepting, and confirming a special type of s
 \end{defn}
 
 \begin{exmp}[Weight, Neighbors, and Priority(Part 1)]
+    \todo[inline,caption={}]{
+        proofread!
+    }
     We will calculate weight, neighbors, and priority for $v_5$ in Figure~\ref{fig:tiered_quorum_example} as an example.
     Since each quorum slice consists of $v_5$ along with two nodes from $\{ v_1, v_2, v_3, v_4 \}$ as in
     \begin{align*}
@@ -949,7 +952,7 @@ Nomination is done through voting, accepting, and confirming a special type of s
     We will first calculate the weight of $v_1$.
     \begin{align*}
         \weight(v_5, v_1)
-            &= \frac{\abs{ q \mid q \in Q(v_5) \land v_1 \in q }}{\abs{Q(v_5)}} \\
+            &= \frac{\abs{\{ q \mid q \in Q(v_5) \land v_1 \in q \}}}{\abs{Q(v_5)}} \\
             &= \frac{\abs{ \{ v_5, v_1, v_2 \}, \{ v_5, v_1, v_3 \}, \{ v_5, v_1, v_4 \}}}{6} \\
             &= \frac{3}{6} = \frac{1}{2}.
     \end{align*}
