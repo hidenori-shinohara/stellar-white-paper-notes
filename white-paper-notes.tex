@@ -930,6 +930,7 @@ Nomination is done through voting, accepting, and confirming a special type of s
     Let $H$ be a cryptographic hash function whose range can be interpreted as a set of integers $\{ 0, \cdots, h_{\max} - 1 \}$.
     Let $G_i(m) = H(i, x_{i - 1}, m)$ be a slot-specific hash function for slot $i$, where $x_{i - 1}$ is the value chosen for the slot preceding $i$.
     Let $N, P$ are arbitrary constants.
+    (In Stellar Core, $N, P$ are always set to be $1, 2$.)
     For each round $n$, each node $v$, we define
     \begin{align*}
         \weight(v, v') &= \frac{\abs{\{ q \in Q(v) \mid v' \in q \}}}{\abs{Q(v)}} \\
@@ -1015,10 +1016,21 @@ Nomination is done through voting, accepting, and confirming a special type of s
     Then $v_5$ will simply nominate the same value as $v_3$.
 \end{exmp}
 
+\begin{rem}
+    $ $
+    \begin{itemize}
+        \item
+            $\weight$ is not symmetric in general.
+            In other words, $\weight(v_i, v_j) \ne \weight(v_j, v_i)$ in general.
+        \item
+            $\neighbors(v_i)$ is a set of nodes calculated locally at each $v_i$.
+            In general, $\neighbors(v_i) \ne \neighbors(v_j)$ for any $i \ne j$.
+        \item
+            $\priority(n, v)$ is \textit{global} in a sense that the values of $\priority(n, v)$ calculated at node $w$ and $w'$ must be identical for it only depends on $n$, the hash function $G_i$ and the constant $P$ and it does not depend on $w$. 
+    \end{itemize}
+\end{rem}
+
 \begin{exmp}[Weight, Neighbors, and Priority(Part 2)]
-    \todo[inline,caption={}]{
-        add an example where we pick neighbors for each node and simulate leader election
-    }
 \end{exmp}
 
 \newpage
