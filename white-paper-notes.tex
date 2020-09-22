@@ -945,7 +945,7 @@ Nomination is done through voting, accepting, and confirming a special type of s
     We will calculate weight, neighbors, and priority for $v_5$ in Figure~\ref{fig:tiered_quorum_example} as an example.
     Since each quorum slice consists of $v_5$ along with two nodes from $\{ v_1, v_2, v_3, v_4 \}$ as in
     \begin{align*}
-        Q(v_5) &= \{ \{ v_5, v_1, v_2 \}, \{ v_5, v_1, v_3 \}, \{ v_5, v_1, v_4 \}, \cdots, \{ v_5, v_3, v_4 \} \},
+        Q(v_5) &= \{ \{ v_1, v_2, v_5 \}, \{ v_1, v_3, v_5 \}, \{ v_1, v_4, v_5 \}, \cdots, \{ v_3, v_4, v_5 \} \},
     \end{align*}
     $Q(v_5)$ has $\binom{4}{2} = 6$ slices.
 
@@ -953,7 +953,7 @@ Nomination is done through voting, accepting, and confirming a special type of s
     \begin{align*}
         \weight(v_5, v_1)
             &= \frac{\abs{\{ q \mid q \in Q(v_5) \land v_1 \in q \}}}{\abs{Q(v_5)}} \\
-            &= \frac{\abs{ \{ v_5, v_1, v_2 \}, \{ v_5, v_1, v_3 \}, \{ v_5, v_1, v_4 \}}}{6} \\
+            &= \frac{\abs{ \{ v_1, v_2, v_5 \}, \{ v_1, v_3, v_5 \}, \{ v_1, v_4, v_5 \}}}{6} \\
             &= \frac{3}{6} = \frac{1}{2}.
     \end{align*}
     By symmetry, $\weight(v_5, v_i) = \frac{1}{2}$ for each $i = 1, 2, 3, 4$.
