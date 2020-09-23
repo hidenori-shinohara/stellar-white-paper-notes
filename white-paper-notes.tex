@@ -640,8 +640,22 @@ We will first show some basic properties of DSets.
     For simplicity, we will often write ``\textit{accept}$(a)$" to mean ``an intact node accepted $a$."
 \end{defn}
 
-As you can see, the definitions of voting and accepting have a circular dependency.
-Note that it is possible for a node to accept a statement after voting for a contradictory statement.
+\begin{rem}
+    $ $
+    \begin{itemize}
+        \item
+            As you can see, the definitions of voting and accepting have a circular dependency.
+        \item
+            It is possible for a node to accept a statement after voting for a contradictory statement by the second condition for accepting.
+        \item
+            FBAS does not tell us how to determine if two statements are contradictory.
+            In SCP, each statement is in a specific format and that tells us how to tell if two statements are contradictory.
+            For instance, two nomination statements \textit{nominate}$(a)$ and \textit{nominate}$(b)$ are not contradictory with each other regardless of what $a$ and $b$ are.
+
+            This makes sense because FBAS cannot construct a general way to check whether two statements are contradictory quickly.
+            For instance, FBAS cannot tell you if ``\textit{$n$ is an even integer greater than 2}" and ``\textit{$n$ is the sum of two primes}" are contradictory because it is Goldbach's conjecture which remains unproved.
+    \end{itemize}
+\end{rem}
 
 \begin{defn}[Ratify]\label{def_ratify}
     A quorum $U_a$ ratifies a statement $a$ if and only if every member of $U_a$ votes for $a$.
