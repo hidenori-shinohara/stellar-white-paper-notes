@@ -1031,6 +1031,52 @@ Nomination is done through voting, accepting, and confirming a special type of s
 \end{rem}
 
 \begin{exmp}[Weight, Neighbors, and Priority(Part 2)]
+    Suppose that $\priority(n, v_i) = G_i(P, n, v_i)$ for each $i$ is as follows:
+    \begin{center}
+      \begin{tabular}{ | c | c | c | c | c | c | c | c | c | c | c | }
+        \hline
+            $i$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
+            $\priority(n, v_i)$ &  26 & 3 & 60 & 89 & 18 & 56 & 35 & 19 & 61 & 27\\
+        \hline
+      \end{tabular}
+    \end{center}
+    Moreover, suppose that each node's neighbors is as follows:
+    \begin{center}
+      \begin{tabular}{ | c | c | }
+        \hline
+            $i$ & $\neighbors(v_i)$ \\ \hline
+            1 & $\{ v_1, v_3 \}$ \\ \hline
+            2 & $\{ v_1, v_4 \}$ \\ \hline
+            3 & $\{ v_2, v_3, v_4 \}$ \\ \hline
+            4 & $\{ v_1, v_2, v_4 \}$ \\ \hline
+            5 & $\{ v_2, v_5 \}$ \\ \hline
+            6 & $\{ v_1, v_3, v_6\}$ \\ \hline
+            7 & $\{ v_1, v_2, v_3, v_7 \}$ \\ \hline
+            8 & $\{ v_3, v_8 \}$ \\ \hline
+            9 & $\{ v_6, v_7, v_8, v_9 \}$ \\ \hline
+            10 & $\{ v_{10} \}$ \\
+        \hline
+      \end{tabular}
+    \end{center}
+
+    Then each node's leader (the node whose nominations it will renominate) will be as follows:
+    \begin{center}
+      \begin{tabular}{ | c | c | c | c | c | c | c | c | c | c | c | }
+        \hline
+            $i$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
+            $v_i$'s leader & $v_3$ & $v_4$ & $v_4$ & $v_4$ & $v_5$ & $v_3$ & $v_3$ & $v_3$ & $v_9$ & $v_{10}$ \\
+        \hline
+      \end{tabular}
+    \end{center}
+
+    \begin{figure}[!htb]
+        \includegraphics[width=.8\linewidth]{img/leader_election.jpeg}
+        \caption{Leader Relation Graph}
+        \label{fig:leader_relation}
+    \end{figure}
+
+    As you can see, this is a directed graph such that the only cycles are self-loops.
+    In this particular case, $v_4, v_9, v_{10}, v_5$ will produce new values, and other nodes will simply renominate those values.
 \end{exmp}
 
 \newpage
