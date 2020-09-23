@@ -233,22 +233,9 @@
 
 \begin{rem}
     Quorum intersection despite $B$ is related to the system-level safety when nodes in $B$ act arbitrarily.
-    For instance, suppose $\ev{V, Q}$ is an FBAS, $B$ is the set of all ill-behaved nodes, and $\ev{V, Q}$ enjoys quorum intersection despite $B$.
-
-    We haven't defined what voting and accepting are, so we will just illustrate the idea informally.
-
-    Let $a_1, a_2$ be contradictory transactions(e.g., double-spending) and $v_1, v_2$ be well-behaved nodes.
-    Let $q_1, q_2$ be quorums that $v_1, v_2$ belong to, respectively.
-    Suppose that $v_1$ decided to \textit{process} $a_1$ because everyone in $q_1$ said \textit{aye}.
-    Similarly, suppose that $v_2$ decided to \textit{process} $a_2$ because everyone in $q_2$ said \textit{aye}.
-
     \todo[inline,caption={}]{
-        finish this example!
+        Insert Figure 7 from the white paper.
     }
-
-    Then $q_1 \cap q_2 \ne \emptyset$ have well-behaved nodes who agreed with both $a_1$ and $a_2$.
-    This is a contradiction because a well-behaved node cannot contradict itself.
-    This example illustrates how the concept of quorum intersection despite $B$ is related to system-level safety when nodes in $B$ experience Byzantine failures.
 \end{rem}
 
 \begin{defn}[Quorum Availability Despite $B$]\label{def_quorum_availability}
