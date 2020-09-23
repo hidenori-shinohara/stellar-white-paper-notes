@@ -71,7 +71,7 @@
 
 \begin{document}
 
-\title{Stellar Consensus Protocol}
+\title{Federated Byzantine Agreement System and Stellar Consensus Protocol}
 \author{Hidenori Shinohara}
 
 \maketitle
@@ -912,7 +912,6 @@ Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Th
 
 \newpage
 \section{Stellar Consensus Protocol}
-\pagebreak
 \subsection{Nomination Protocol}
 
 Nomination is done through voting, accepting, and confirming a special type of statement in the form of \textit{nominate $x$}.
@@ -943,7 +942,7 @@ Nomination is done through voting, accepting, and confirming a special type of s
     \todo[inline,caption={}]{
         proofread!
     }
-    We will calculate weight, neighbors, and priority for $v_5$ in Figure~\ref{fig:tiered_quorum_example} as an example.
+    We will calculate the weight, neighbors, and priority for $v_5$ in Figure~\ref{fig:tiered_quorum_example} as an example.
     Since each quorum slice consists of $v_5$ along with two nodes from $\{ v_1, v_2, v_3, v_4 \}$ as in
     \begin{align*}
         Q(v_5) &= \{ \{ v_1, v_2, v_5 \}, \{ v_1, v_3, v_5 \}, \{ v_1, v_4, v_5 \}, \cdots, \{ v_3, v_4, v_5 \} \},
