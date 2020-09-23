@@ -960,14 +960,14 @@ Nomination is done through voting, accepting, and confirming a special type of s
             &= \frac{\abs{ \{ v_1, v_2, v_5 \}, \{ v_1, v_3, v_5 \}, \{ v_1, v_4, v_5 \}}}{6} \\
             &= \frac{3}{6} = \frac{1}{2}.
     \end{align*}
-    By symmetry, $\weight(v_5, v_i) = \frac{1}{2}$ for each $i = 1, 2, 3, 4$.
+    By symmetry, $\weight(v_5, v_j) = \frac{1}{2}$ for each $j = 1, 2, 3, 4$.
     $\weight(v_5, v_5) = 1$ because every quorum slice in $Q(v_5)$ contains $v_5$.
-    Finally, $\weight(v_5, v_i) = 0$ for all $i = 6, 7, 8, 9, 10$ because no quorum slice in $Q(v_5)$ contains any of $v_6, v_7, \cdots, v_{10}$.
+    Finally, $\weight(v_5, v_j) = 0$ for all $j = 6, 7, 8, 9, 10$ because no quorum slice in $Q(v_5)$ contains any of $v_6, v_7, \cdots, v_{10}$.
     Therefore, we obtain the following table:
     \begin{center}
       \begin{tabular}{ | c | c | }
         \hline
-          $i$ & $\weight(v_5, v_i)$ \\ \hline
+          $j$ & $\weight(v_5, v_j)$ \\ \hline
           1, 2, 3, 4 & $\nicefrac{1}{2}$ \\ \hline 
           5 & 1 \\ \hline 
           6, 7, 8, 9, 10 & 0 \\
@@ -1034,12 +1034,12 @@ Nomination is done through voting, accepting, and confirming a special type of s
 \end{rem}
 
 \begin{exmp}[Weight, Neighbors, and Priority(Part 2)]
-    Suppose that $\priority(n, v_i) = G_i(P, n, v_i)$ for each $i$ is as follows:
+    Suppose that $\priority(n, v_j) = G_i(P, n, v_j)$ for each $j$ is as follows:
     \begin{center}
       \begin{tabular}{ | c | c | c | c | c | c | c | c | c | c | c | }
         \hline
-            $i$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
-            $\priority(n, v_i)$ &  26 & 3 & 60 & 89 & 18 & 56 & 35 & 19 & 61 & 27\\
+            $j$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
+            $\priority(n, v_j)$ &  26 & 3 & 60 & 89 & 18 & 56 & 35 & 19 & 61 & 27\\
         \hline
       \end{tabular}
     \end{center}
@@ -1047,7 +1047,7 @@ Nomination is done through voting, accepting, and confirming a special type of s
     \begin{center}
       \begin{tabular}{ | c | c | }
         \hline
-            $i$ & $\neighbors(v_i)$ \\ \hline
+            $j$ & $\neighbors(v_j)$ \\ \hline
             1 & $\{ v_1, v_3 \}$ \\ \hline
             2 & $\{ v_1, v_4 \}$ \\ \hline
             3 & $\{ v_2, v_3, v_4 \}$ \\ \hline
@@ -1066,8 +1066,8 @@ Nomination is done through voting, accepting, and confirming a special type of s
     \begin{center}
       \begin{tabular}{ | c | c | c | c | c | c | c | c | c | c | c | }
         \hline
-            $i$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
-            $v_i$'s leader & $v_3$ & $v_4$ & $v_4$ & $v_4$ & $v_5$ & $v_3$ & $v_3$ & $v_3$ & $v_9$ & $v_{10}$ \\
+            $j$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
+            $v_j$'s leader & $v_3$ & $v_4$ & $v_4$ & $v_4$ & $v_5$ & $v_3$ & $v_3$ & $v_3$ & $v_9$ & $v_{10}$ \\
         \hline
       \end{tabular}
     \end{center}
