@@ -796,6 +796,11 @@ Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Th
     A statement $a$ is irrefutable in an FBAS if no intact node can ever vote against it.
 \end{defn}
 
+\todo[inline,caption={}]{
+    I don't use this definition anywhere.
+    That sounds wrong.
+}
+
 \begin{defn}[Confirm]\label{def_confirm}
     A quorum $U_a$ in an FBAS confirms a statement $a$ if and only if every element in $U_a$ broadcasts that it has accepted $a$.
     A node confirms $a$ if and only if it is in such a quorum.
@@ -939,18 +944,49 @@ Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Th
 
 Nomination is done through voting, accepting, and confirming a special type of statement in the form of \textit{nominate $x$}.
 
+\todo[inline,caption={}]{
+    Make sure that my interpretation of the nomination protocol is correct.
+}
+
+\begin{defn}[Nomination Statement]
+    \textit{nominate $x$} is a special statement which is short for
+    \begin{itemize}
+        \item
+            \textit{Value $x$ passes application validity checks, and}
+        \item
+            \textit{If I confirm this, I will never vote for any other nomination statement.}
+    \end{itemize}
+\end{defn}
+
 \begin{defn}[Nominate]
-    A node $v$ is said to nominate a value $x$ if and only if it votes for the statement \textit{nominate $x$}.
+    A node is said to nominate a value $x$ if and only if it votes for the statement \textit{nominate $x$} before any other node.
+\end{defn}
+
+\begin{defn}[Renominate]
+    A node is said to renominate a value $x$ if and only if it votes for the statement \textit{nominate $x$} after some other node votes for it.
 \end{defn}
 
 \begin{defn}[Candidate]
     A node $v$ considers a value $x$ to be a candidate if and only if $v$ has confirmed the statement \textit{nominate $x$}.
-    Alternatively, we say that a node $v$ has a candidate value $x$.
+    Alternatively, we say that $v$ has a candidate value $x$.
+\end{defn}
+
+\begin{defn}[Produce]
+    A node is said to produce a candidate value $x$ when it confirms \textit{nominate $x$} after nominating it.
 \end{defn}
 
 \todo[inline,caption={}]{
     Explain how the nomination protocol works!
 }
+
+\begin{rem}
+    Intact nodes can produce at least one candidate value.
+    \todo[inline,caption={}]{
+        Why is this true?
+        What if all the other intact nodes confirm a nomination statement before they hear about your nomination statement?
+    }
+\end{rem}
+
 
 \begin{defn}[Weight, Neighbors, and Priority]
     Let $H$ be a cryptographic hash function whose range can be interpreted as a set of integers $\{ 0, \cdots, h_{\max} - 1 \}$.
