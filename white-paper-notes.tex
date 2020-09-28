@@ -987,6 +987,41 @@ Nomination is done through voting, accepting, and confirming a special type of s
     }
 \end{rem}
 
+\begin{thm}
+    The set of possible candidate values eventually stops growing.
+\end{thm}
+
+\begin{proof}
+    Let $v$ be an intact node.
+    Let \textit{nominate  $x$} be the first nomination statement that it votes for.
+    Since $v$ is intact, it has a quorum $Q$ only consisting of intact nodes.
+    Once sufficient messages have been delivered, every node in $Q$ votes for \textit{nominate $x$}.
+    This makes $v$ accept and confirm \textit{nominate $x$}.
+    In other words, every intact node confirms at least one nomination statement in a finite amount of time.
+    Let $T$ denote such a moment.
+
+    After $T$, there are at most finitely many nomination statements that intact nodes have voted for.
+    We claim that the set of possible candidate values will not grow after $T$.
+
+    After $T$, no new nomination statements get any votes from intact nodes.
+    In order for an intact node $v$ to accept a new nomination statement \textit{nominate $y$}, we need
+    \begin{itemize}
+        \item
+            The existence of a quorum $U$ containing $v$ such that every member of $U$ either voted for or accepted \textit{nominate $y$}, or
+        \item
+            A $v$-blocking set consisting of nodes who accept \textit{nominate $y$}.
+    \end{itemize}
+    The first condition will never be satisfied because $v$ itself will never vote for \textit{nominate $y$}.
+
+    Since $v$ is intact, there exists a DSet $B$ containing all ill-behaved nodes and $v \notin B$.
+    By quorum availability despite $B$, $V \setminus B$ is a quorum.
+    The second condition will never be satisfied either because 
+    \todo[inline,caption={}]{
+        Finish this!
+        Do I need quorum intersection?
+    }
+\end{proof}
+
 
 \begin{defn}[Weight, Neighbors, and Priority]
     Let $H$ be a cryptographic hash function whose range can be interpreted as a set of integers $\{ 0, \cdots, h_{\max} - 1 \}$.
