@@ -1026,7 +1026,7 @@ Nomination is done through voting, accepting, and confirming a special type of s
 \begin{defn}[Weight, Neighbors, and Priority]
     Let $H$ be a cryptographic hash function whose range can be interpreted as a set of integers $\{ 0, \cdots, h_{\max} - 1 \}$.
     Let $G_i(m) = H(i, x_{i - 1}, m)$ be a slot-specific hash function for slot $i$, where $x_{i - 1}$ is the value chosen for the slot preceding $i$.
-    Let $N, P$ are arbitrary constants.
+    Let $N \ne P$ are arbitrary constants.
     Given a slot $i$, a round number $n$ and node $v$, we define
     \begin{align*}
         \weight(v, v') &= \frac{\abs{\{ q \in Q(v) \mid v' \in q \}}}{\abs{Q(v)}} \\
