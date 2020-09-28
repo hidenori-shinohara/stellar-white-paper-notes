@@ -979,13 +979,15 @@ Nomination is done through voting, accepting, and confirming a special type of s
     Explain how the nomination protocol works!
 }
 
-\begin{rem}
-    Intact nodes can produce at least one candidate value.
+\begin{thm}
+    The set of intact nodes can produce at least one candidate value.
+\end{thm}
+
+\begin{proof}
     \todo[inline,caption={}]{
-        Why is this true?
-        What if all the other intact nodes confirm a nomination statement before they hear about your nomination statement?
+        prove this!
     }
-\end{rem}
+\end{proof}
 
 \begin{thm}
     The set of possible candidate values eventually stops growing.
@@ -1042,12 +1044,12 @@ Nomination is done through voting, accepting, and confirming a special type of s
 
 \begin{defn}[Leader]
     Let a slot $i$, round number $n$, and node $v$ be given.
-    Then the node $v_0 \in \neighbors(v, n)$ that maximizes $\priority(n, v_0)$ in the neighbors is considered to be the leader by $v$.
+    Then the node $v_0 \in \neighbors(v, n)$ that maximizes $\priority(n, v_0)$ among the nodes it can communicate with is considered to be the leader by $v$.
     Node $v$ votes to nominate the same values as $v_0$.
     Only if $v = v_0$, $v$ can introduce a enw value to nominate.
 \end{defn}
 
-\begin{exmp}[Weight, Neighbors, and Priority(Part 1)]
+\begin{exmp}[Weight, Neighbors, and Priority]
     We will calculate the weight, neighbors, and priority for $v_5$ in Figure~\ref{fig:tiered_quorum_example} as an example.
     Since each quorum slice consists of $v_5$ along with two nodes from $\{ v_1, v_2, v_3, v_4 \}$ as in
     \begin{align*}
@@ -1135,7 +1137,7 @@ Nomination is done through voting, accepting, and confirming a special type of s
     \end{itemize}
 \end{rem}
 
-\begin{exmp}[Weight, Neighbors, and Priority(Part 2)]
+\begin{exmp}[Leader Election]
     We will again use the FBAS in Figure~\ref{fig:tiered_quorum_example} as an example.
     Suppose that each node's neighbors is as follows:
     \begin{center}
@@ -1186,6 +1188,29 @@ Nomination is done through voting, accepting, and confirming a special type of s
 
     As you can see, this is a directed graph such that the only cycles are self-loops.
     In this particular case, $v_4, v_9, v_{10}, v_5$ will produce new values, and other nodes will simply renominate those values.
+\end{exmp}
+
+\begin{exmp}[Leader Election With A Failed Node]
+    Suppose that, in the previous example, node $v_3$ stops responding due to a power outage.
+    Since the leader is the node in the neighbors that maximizes the priority among the nodes that it can communicate with, no node will pick $v_3$ as their leader.
+    Under this circumstance, each node will pick the following nodes as their leader:
+
+    \begin{center}
+      \begin{tabular}{ | c | c | c | c | c | c | c | c | c | c | c | }
+        \hline
+            $j$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
+            $v_j$'s leader & $v_3$ & $v_4$ & $v_4$ & $v_4$ & $v_5$ & $v_3$ & $v_3$ & $v_3$ & $v_9$ & $v_{10}$ \\
+        \hline
+      \end{tabular}
+    \end{center}
+
+    \begin{figure}[!htb]
+        \includegraphics[width=.8\linewidth]{img/leader_election_with_failed_node.jpeg}
+        \caption{Leader Relation Graph}
+        \label{fig:leader_relation}
+    \end{figure}
+    
+    In this case, all the nodes except for $v_3, v_2$ will produce new values while $v_2$ will simply renominate the what $v_4$ votes for.
 \end{exmp}
 
 \newpage
