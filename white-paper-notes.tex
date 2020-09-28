@@ -1040,6 +1040,13 @@ Nomination is done through voting, accepting, and confirming a special type of s
     In Stellar Core, $N$ and $P$ are always $1$ and $2$.
 \end{rem}
 
+\begin{defn}[Leader]
+    Let a slot $i$, round number $n$, and node $v$ be given.
+    Then the node $v_0 \in \neighbors(v, n)$ that maximizes $\priority(n, v_0)$ in the neighbors is considered to be the leader by $v$.
+    Node $v$ votes to nominate the same values as $v_0$.
+    Only if $v = v_0$, $v$ can introduce a enw value to nominate.
+\end{defn}
+
 \begin{exmp}[Weight, Neighbors, and Priority(Part 1)]
     We will calculate the weight, neighbors, and priority for $v_5$ in Figure~\ref{fig:tiered_quorum_example} as an example.
     Since each quorum slice consists of $v_5$ along with two nodes from $\{ v_1, v_2, v_3, v_4 \}$ as in
