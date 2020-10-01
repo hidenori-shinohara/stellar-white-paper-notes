@@ -159,6 +159,8 @@
     However, $U_1 \cap U_2 = \{ v_2, v_3 \}$ is not a quorum because the size of any quorum slice is 3.
 \end{exmp}
 
+Although the intersection of two quorums is not a quorum in general, we do care whether the intersection of two quorums is empty.
+
 \begin{defn}[Quorum Intersection]
     Let $\ev{V, Q}$ be an FBAS\@.
     We say $\ev{V, Q}$ enjoys quorum intersection if and only if $U_1 \cap U_2 \ne \emptyset$ for any pair of quorums $U_1, U_2$.
@@ -171,9 +173,26 @@
 \end{figure}
 
 \begin{rem}
-    Figure~\ref{fig:fbas_without_quorum_intersection} is an example of an FBAS without quorum intersection because $\{ v_1, v_2, v_3 \}, \{ v_4, v_5, v_5 \}$ are quorums without any intersectin.
-    Even though we have not defined what accepting means, it is not hard to see that $v_1, v_2, v_3$ might accept a statement while $v_4, v_5, v_6$ accept a contradictory statement.
+    Figure~\ref{fig:fbas_without_quorum_intersection} is an example of an FBAS where $v_1, v_2, v_3$ trust each other, and $v_4, v_5, v_6$ trust each other.
+    Notice that this FBAS does not enjoy quorum intersection because $\{ v_1, v_2, v_3 \}, \{ v_4, v_5, v_5 \}$ are quorums without any intersection.
+    Even though we have not defined how voting works, it is not hard to see that $v_1, v_2, v_3$ might ``go with" a statement while $v_4, v_5, v_6$ ``go with" a contradictory statement.
+    For instance, consider a case where a malicious user with \$100 in their account tries to double spend their money as following:
+    \begin{itemize}
+        \item
+            The malicious user tells $v_1, v_2, v_3$ that they are sending the \$100 to Person A.
+            The nodes have no reason to doubt the transaction, so they will ``go with" it.
+            Person A thinks that they received \$100, so they give the malicious user \$100 worth of products.
+        \item
+            Similarly, the malicious user tells $v_4, v_5, v_6$ that they are sending the \$100 to Person B.
+            Again, the nodes have no reason to doubt the transaction, so they will ``go with" it.
+            Person B thinks that they received \$100, so they give the malicious user \$100 worth of products.
+    \end{itemize}
+    The malicious user should not be able to obtain \$200 worth of products by spending their \$100 twice.
+    However, the network would not be able to prevent this due to the way each node chose its quorum slice.
     This example shows how quorum intersection is related to safety.
+    \todo[inline,caption={}]{
+        I have not defined safety yet!
+    }
 \end{rem}
 
 \begin{defn}[Delete]\label{delete_fbas}
