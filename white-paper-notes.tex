@@ -57,6 +57,7 @@
 \DeclareMathOperator{\weight}{weight}
 \DeclareMathOperator{\neighbors}{neighbors}
 \DeclareMathOperator{\priority}{priority}
+\newcommand{\textoverline}[1]{$\overline{\mbox{#1}}$}
 
 
 \makeatletter
@@ -1234,5 +1235,10 @@ Nomination is done through voting, accepting, and confirming a special type of s
 
 \newpage
 \subsection{Ballot Protocol}
+
+\begin{defn}[Commit]
+    \textit{commit} $b$ is a shorthand for ``I have confirmed \textoverline{\textit{commit} $b'$} for all $b' \lnsim b$."
+
+\end{defn}
 
 \end{document}
