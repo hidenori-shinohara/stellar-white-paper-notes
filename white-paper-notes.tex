@@ -1240,6 +1240,20 @@ Nomination is done through voting, accepting, and confirming a special type of s
     A ballot $b$ is a pair of the form $b = \ev{n, x}$ where $x \ne \bot$ is a value and $n \geq 1$ is a counter.
 \end{defn}
 
+\begin{defn}[Order]
+    For any ballots $b_1, b_2$, $b_1 \leq b_2$ if and only if $(b_1.n, b_1.x) \leq (b_2.n, b_2.x)$ in dictionary order.
+\end{defn}
+
+\begin{defn}[Compatability]
+    For a pair of ballots $b_1, b_2$, we define $\sim, \nsim, \lesssim, \lnsim$ as following:
+    \begin{align*}
+        b_1 \sim b_2 &\iff b_1.x = b_2.x \\
+        b_1 \nsim b_2 &\iff b_1.x \ne b_2.x \\
+        b_1 \lesssim b_2 &\iff b_1 \leq b_2 \land b_1 \sim b_2 \\
+        b_1 \lnsim b_2 &\iff b_1 \leq b_2 \land b_1 \nsim b_2.
+    \end{align*}
+\end{defn}
+
 \begin{defn}[Commit]
     For a given ballot $b$, \textit{commit} $b$ is a shorthand for ``I have confirmed \textoverline{\textit{commit} $b'$} for all $b' \lnsim b$."
 \end{defn}
