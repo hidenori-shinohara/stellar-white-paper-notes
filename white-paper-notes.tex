@@ -1236,6 +1236,10 @@ Nomination is done through voting, accepting, and confirming a special type of s
 \newpage
 \subsection{Ballot Protocol}
 
+\begin{defn}[Ballot]
+    A ballot $b$ is a pair of the form $b = \ev{n, x}$ where $x \ne \bot$ is a value and $n \geq 1$ is a counter.
+\end{defn}
+
 \begin{defn}[Commit]
     For a given ballot $b$, \textit{commit} $b$ is a shorthand for ``I have confirmed \textoverline{\textit{commit} $b'$} for all $b' \lnsim b$."
 \end{defn}
