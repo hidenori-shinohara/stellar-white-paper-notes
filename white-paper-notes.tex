@@ -1237,8 +1237,26 @@ Nomination is done through voting, accepting, and confirming a special type of s
 \subsection{Ballot Protocol}
 
 \begin{defn}[Commit]
-    \textit{commit} $b$ is a shorthand for ``I have confirmed \textoverline{\textit{commit} $b'$} for all $b' \lnsim b$."
-
+    For a given ballot $b$, \textit{commit} $b$ is a shorthand for ``I have confirmed \textoverline{\textit{commit} $b'$} for all $b' \lnsim b$."
 \end{defn}
+
+In this case, \textoverline{\textit{commit} $b'$} is a statement that contradicts \textit{commit} $b$.
+
+\begin{rem}[Abort]
+    For a given ballot $b$, we will often write \textit{abort} $b$ instead of \textoverline{\textit{commit} $b'$} for readability.
+\end{rem}
+
+\begin{defn}[Prepare]
+    Let $b$ be a ballot.
+    A node is said to vote, accept, or confirm that $b$ is \textit{prepared} if and only if it votes, accepts, or confirms \textit{abort} $b'$ for all $b' \lnsim b$, respectively.
+\end{defn}
+
+\begin{rem}
+    This approach is different from the white paper's approach.
+    In the white paper, the fact that \textit{commit} $b$ is valid to vote for only if $b$ is confirmed prepared is a rule.
+    However, I was not very convinced by this approach because it would mean that we are changing the definition of voting.
+    The definition of voting states that one votes for a statement \textit{if and only if} the four conditions have been met.  
+    However, this new rule will change that.
+\end{rem}
 
 \end{document}
