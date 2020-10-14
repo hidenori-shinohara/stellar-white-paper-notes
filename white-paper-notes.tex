@@ -1270,15 +1270,15 @@ In this case, \textoverline{\textit{commit} $b'$} is a statement that contradict
 
 \begin{defn}[Prepare]
     Let $b$ be a ballot.
-    A node is said to vote, accept, or confirm that $b$ is \textit{prepared} if and only if it votes, accepts, or confirms \textit{abort} $b'$ for all $b' \lnsim b$, respectively.
+    A node is said to vote, accept, or confirm that \textit{$b$ is prepared} if and only if it votes, accepts, or confirms \textit{abort} $b'$ for all $b' \lnsim b$, respectively.
 \end{defn}
 
 \begin{rem}
-    This approach is different from the white paper's approach.
+    The approach presented here is slightly different from the white paper's approach.
     In the white paper, the fact that \textit{commit} $b$ is valid to vote for only if $b$ is confirmed prepared is a rule.
     However, I was not very convinced by this approach because it would mean that we are changing the definition of voting.
     More specifically, the definition of voting states that one votes for a statement \textit{if and only if} the four conditions have been met.  
-    However, this new rule will prevent a node from voting even when the four conditions have been met.
+    However, this new rule will prevent a node from voting even when the four conditions have been met in some cases.
 \end{rem}
 
 \end{document}
