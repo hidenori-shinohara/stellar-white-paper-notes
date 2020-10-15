@@ -1262,10 +1262,10 @@ Nomination is done through voting, accepting, and confirming a special type of s
     For a given ballot $b$, \textit{commit} $b$ is a shorthand for ``I have confirmed \textoverline{\textit{commit} $b'$} for all $b' \lnsim b$."
 \end{defn}
 
-In this case, \textoverline{\textit{commit} $b'$} is a statement that contradicts \textit{commit} $b$.
+In this case, \textoverline{\textit{commit} $b'$} is a statement that contradicts \textit{commit} $b'$.
 
 \begin{rem}[Abort]
-    For a given ballot $b$, we will often write \textit{abort} $b$ instead of \textoverline{\textit{commit} $b'$} for readability.
+    For a given ballot $b$, we will often write \textit{abort} $b$ instead of \textoverline{\textit{commit} $b$} for readability.
 \end{rem}
 
 \begin{defn}[Prepare]
@@ -1280,5 +1280,9 @@ In this case, \textoverline{\textit{commit} $b'$} is a statement that contradict
     More specifically, the definition of voting states that one votes for a statement \textit{if and only if} the four conditions have been met.  
     However, this new rule will prevent a node from voting even when the four conditions have been met in some cases.
 \end{rem}
+
+\begin{defn}[Externalize]
+    A node \textit{externalizes} a value $x$ if and only if it confirms \textit{commit} $\ev{n, x}$ for some $n \geq 1$.
+\end{defn}
 
 \end{document}
