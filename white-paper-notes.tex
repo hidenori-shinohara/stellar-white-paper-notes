@@ -81,6 +81,16 @@
 \tableofcontents
 \pagebreak
 
+\section{Prerequisites}
+
+\begin{defn}[Network]\label{defn_network}
+    The network delivers any messages among nodes connected to it, but it may arbitrarily delay or reorder messages.
+\end{defn}
+
+\begin{defn}[Well-behaved]
+    A node is considered well-behaved if and only if they follow the protocol and is connected to the network.
+\end{defn}
+
 \section{Federated Byzantine Agreement System}
 \subsection{Quorums}
 
@@ -964,10 +974,6 @@ Therefore, Theorem~\ref{intact_accept_contradictory} is a stronger version of Th
 
 Nomination is done through voting, accepting, and confirming a special type of statement in the form of \textit{nominate $x$}.
 
-\todo[inline,caption={}]{
-    Make sure that my interpretation of the nomination protocol is correct.
-}
-
 \begin{defn}[Nomination Statement]
     \textit{nominate $x$} is a special statement which is short for
     \begin{itemize}
@@ -995,17 +1001,16 @@ Nomination is done through voting, accepting, and confirming a special type of s
     A node is said to produce a candidate value $x$ when it confirms \textit{nominate $x$} after nominating it.
 \end{defn}
 
-\todo[inline,caption={}]{
-    Explain how the nomination protocol works!
-}
-
 \begin{thm}
-    The set of intact nodes can produce at least one candidate value.
+    The set of intact nodes can eventually produce at least one candidate value.
 \end{thm}
 
 \begin{proof}
+    We assume that each intact node is able to produce a value that passes application validity checks.
+    
+    Since we assume that 
     \todo[inline,caption={}]{
-        prove this!
+        finish this!
     }
 \end{proof}
 
