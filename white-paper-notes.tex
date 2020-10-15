@@ -1006,12 +1006,19 @@ Nomination is done through voting, accepting, and confirming a special type of s
 \end{thm}
 
 \begin{proof}
-    We assume that each intact node is able to produce a value that passes application validity checks.
-    
-    Since we assume that 
-    \todo[inline,caption={}]{
-        finish this!
-    }
+    Suppose that, at some point in time, an intact node confirms a nominate statement.
+    Then we are done.
+    Suppose otherwise.
+
+    Let $v$ be an intact node and $x$ be a value that passes application validity checks.
+    We assume that $v$ is capable of finding such a value.
+    Then $v$ will vote for \textit{nominate $x$}.
+    By Definition \ref{defn_network}, the message will eventually get delivered to all intact nodes.
+    Since the value passes application validity checks and no intact node has confirmed a nominate statement, every intact node will eventually vote for \textit{nominate $x$}.
+    Since the set of all intact nodes is a quorum, that will let all the intact nodes accept and confirm \textit{nominate $x$} after sufficient messages have been delivered.
+    This is a contradiction because we assumed that no intact node confirms a nominate statement.
+
+    Therefore, the set of intact nodes can eventually produce at least one candidate value.
 \end{proof}
 
 \begin{thm}
@@ -1048,6 +1055,14 @@ Nomination is done through voting, accepting, and confirming a special type of s
         Do I need quorum intersection?
     }
 \end{proof}
+
+\todo[inline,caption={}]{
+    prove the third property
+}
+
+\todo[inline,caption={}]{
+    prove theorem 12
+}
 
 
 \begin{defn}[Weight, Neighbors, and Priority]
