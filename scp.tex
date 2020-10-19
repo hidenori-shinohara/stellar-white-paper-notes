@@ -44,7 +44,7 @@ Nomination is done through voting, accepting, and confirming a special type of s
     Then $v$ will vote for \textit{nominate $x$}.
     By Definition \ref{defn_network}, the message will eventually get delivered to all intact nodes.
     Since the value passes application validity checks and no intact node has confirmed a nominate statement, every intact node will eventually vote for \textit{nominate $x$}.
-    Since the set of all intact nodes is a quorum, that will let all the intact nodes accept and confirm \textit{nominate $x$} after sufficient messages have been delivered.
+    By the definition of a DSet(Definition~\ref{def_dset}), the set of all intact nodes is a quorum, so all the intact nodes will accept and confirm \textit{nominate $x$} after sufficient messages have been delivered.
     This is a contradiction because we assumed that no intact node confirms a nominate statement.
 
     Therefore, the set of intact nodes can eventually produce at least one candidate value.
