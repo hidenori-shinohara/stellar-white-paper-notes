@@ -30,8 +30,16 @@ Nomination is done through voting, accepting, and confirming a special type of s
     A node is said to produce a candidate value $x$ when it confirms \textit{nominate $x$} after nominating it.
 \end{defn}
 
-\begin{thm}
-    The set of intact nodes can eventually produce at least one candidate value.
+\begin{rem}
+    This approach is slightly different from the white paper's.
+    The white paper seems to define some special ``rule" on voting for a nomination statement.
+    However, that seems to change the definition of voting (Definition~\ref{def_vote}), and I was unable to convince myself that we could simply apply FBA arguments after changing the definition of voting.
+    On the other hand, we defined a nomination statement to be a statement containing some special instructions.
+    This approach should achieve the same thing while utilizing the fact that a well-behaved node is allowed to vote for a valid statement that is consistent with history.
+\end{rem}
+
+\begin{thm}\label{eventually_one_candidate}
+    The set of intact nodes will eventually produce at least one candidate value.
 \end{thm}
 
 \begin{proof}
@@ -55,6 +63,7 @@ Nomination is done through voting, accepting, and confirming a special type of s
 \end{thm}
 
 \begin{proof}
+    By Theorem~\ref{eventually_one_candidate}, at least one intact node will confirm a candidate value.
     Let $v$ be an intact node.
     Let \textit{nominate  $x$} be the first nomination statement that it votes for.
     Since $v$ is intact, it has a quorum $Q$ only consisting of intact nodes.
