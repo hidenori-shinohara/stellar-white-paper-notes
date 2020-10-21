@@ -61,6 +61,17 @@ However, we should be able to change it to \textit{will} as long as nodes withou
     Therefore, the set of intact nodes can eventually produce at least one candidate value.
 \end{proof}
 
+\begin{thm}\label{eventually_all_intact_nodes_consider_candidate}
+    Let $\ev{V, Q}$ be an FBAS that enjoys quorum intersection.
+    If any intact node considers $x$ to be a candidate value, then eventually every intact node will consider $x$ to be a candidate value.
+\end{thm}
+
+\begin{proof}
+    Suppose that an intact node considers $x$ to be a candidate value.
+    In other words, an intact node confirmed the statement \textit{nominate $x$}.
+    By Theorem~\ref{all_intact_nodes_accept_confirm_same_things}, all intact nodes will eventually confirm it, and thus all intact nodes will eventually consider $x$ to be a candidate value.
+\end{proof}
+
 \begin{lem}\label{intact_cannot_accept_no_vote}
     In an FBAS that enjoys quorum intersection, an intact node cannot accept a statement that no intact node voted for.
 \end{lem}
@@ -102,9 +113,8 @@ We will use this lemma to prove Theorem~\ref{nomination_property_1}.
 \end{thm}
 
 \begin{proof}
-    By Theorem~\ref{eventually_one_candidate}, at least one intact node will confirm \textit{nominate $x$} for some $x$.
-    By Theorem~\ref{all_intact_nodes_accept_confirm_same_things}, all intact nodes will confirm it.
-    Therefore, there exists a point $T$ in time where all intact nodes have at least one candidate value.
+    By applying Theorem~\ref{eventually_one_candidate} and Theorem~\ref{eventually_all_intact_nodes_consider_candidate},
+    there exists a point $T$ in time where all intact nodes have at least one candidate value.
 
     Let $S$ denote the set of all nomination statements that intact nodes voted for before $T$.
     $S$ is finite because $T$ is a specific point in time.
