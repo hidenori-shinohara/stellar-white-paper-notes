@@ -42,6 +42,9 @@ Nomination is done through voting, accepting, and confirming a special type of s
     The set of intact nodes will eventually produce at least one candidate value.
 \end{thm}
 
+The white paper mentions that the set of intact nodes \textit{can} eventually produce at least one candidate value.
+However, we should be able to change it to \textit{will} as long as nodes without candidate values continue renominating other candidate's values.
+
 \begin{proof}
     Suppose that, at some point in time, an intact node confirms a nominate statement.
     Then we are done.
@@ -58,40 +61,66 @@ Nomination is done through voting, accepting, and confirming a special type of s
     Therefore, the set of intact nodes can eventually produce at least one candidate value.
 \end{proof}
 
-\begin{thm}
-    The set of possible candidate values eventually stops growing.
+\begin{lem}\label{intact_cannot_accept_no_vote}
+    In an FBAS that enjoys quorum intersection, an intact node cannot accept a statement that no intact node voted for.
+\end{lem}
+
+We will use this lemma to prove Theorem~\ref{nomination_property_1}.
+
+\begin{proof}
+    On the contrary, suppose that it is possible.
+    Let $x$ be a statement that no intact node voted for and $v$ be the first intact node that accepts it.
+
+    In order for an intact node $v$ to accept $x$, we need
+    \begin{itemize}
+        \item
+            The existence of a quorum $U$ containing $v$ such that every member of $U$ either voted for or accepted $x$, or
+        \item
+            A $v$-blocking set consisting of nodes that accepted $x$.
+    \end{itemize}
+
+    However, neither of them is possible because
+    \begin{itemize}
+        \item
+            We assumed that no intact node ever voted for $x$.
+            Therefore, $v$ never voted for $x$.
+            Thus the first condition can never be satisfied.
+        \item
+            Let $B$ be such a $v$-blocking set.
+            The set of intact nodes is a quorum by Corollary~\ref{set_of_intact_nodes_quorum}.
+            Therefore, $B$ must contain at least one intact node $w$.
+            However, this implies that $w$ accepted $x$ before $v$.
+            This is a contradiction because we specifically picked $v$ such that $v$ is the first node to accept the statement.
+            Therefore, the second condition can never be satisfied.
+    \end{itemize}
+
+    Therefore, it is impossible for $v$ to accept $x$.
+\end{proof}
+
+\begin{thm}\label{nomination_property_1}
+    If an FBAS enjoys quorum intersection, the set of possible candidate values eventually stops growing.
 \end{thm}
 
 \begin{proof}
-    By Theorem~\ref{eventually_one_candidate}, at least one intact node will confirm a candidate value.
-    Let $v$ be an intact node.
-    Let \textit{nominate  $x$} be the first nomination statement that it votes for.
-    Since $v$ is intact, it has a quorum $Q$ only consisting of intact nodes.
-    Once sufficient messages have been delivered, every node in $Q$ votes for \textit{nominate $x$}.
-    This makes $v$ accept and confirm \textit{nominate $x$}.
-    In other words, every intact node confirms at least one nomination statement in a finite amount of time.
-    Let $T$ denote such a moment.
+    By Theorem~\ref{eventually_one_candidate}, at least one intact node will confirm \textit{nominate $x$} for some $x$.
+    By Theorem~\ref{all_intact_nodes_accept_confirm_same_things}, all intact nodes will confirm it.
+    Therefore, there exists a point $T$ in time where all intact nodes have at least one candidate value.
 
-    After $T$, there are at most finitely many nomination statements that intact nodes have voted for.
-    We claim that the set of possible candidate values will not grow after $T$.
+    Let $S$ denote the set of all nomination statements that intact nodes voted for before $T$.
+    $S$ is finite because $T$ is a specific point in time.
 
-    After $T$, no new nomination statements get any votes from intact nodes.
-    In order for an intact node $v$ to accept a new nomination statement \textit{nominate $y$}, we need
-    \begin{itemize}
-        \item
-            The existence of a quorum $U$ containing $v$ such that every member of $U$ either voted for or accepted \textit{nominate $y$}, or
-        \item
-            A $v$-blocking set consisting of nodes who accept \textit{nominate $y$}.
-    \end{itemize}
-    The first condition will never be satisfied because $v$ itself will never vote for \textit{nominate $y$}.
+    We claim that $S$ is the set of possible candidate values, and a nomination statement outside $S$ can never be confirmed.
 
-    Since $v$ is intact, there exists a DSet $B$ containing all ill-behaved nodes and $v \notin B$.
-    By quorum availability despite $B$, $V \setminus B$ is a quorum.
-    The second condition will never be satisfied either because 
-    \todo[inline,caption={}]{
-        Finish this!
-        Do I need quorum intersection?
-    }
+    We will first show that a nomination statement outside $S$ cannot be accepted by an intact node.
+    No intact node will ever vote for a nomination statement after $T$.
+    Therefore, $S$ is the set of all nomination statements that intact nodes will ever vote for.
+    By Lemma~\ref{intact_cannot_accept_no_vote}, no intact node will ever accept a statement not in $S$.
+
+    The set of intact nodes is a quorum by Corollary~\ref{set_of_intact_nodes_quorum}.
+    Since the FBAS enjoys quorum intersection, any quorum intersects the set of intact nodes.
+    In other words, any quorum contains an intact node.
+    Therefore, it is impossible for any quorum to confirm a statement not in $S$.
+    Hence, $S$ is the set of possible candidate values.
 \end{proof}
 
 \todo[inline,caption={}]{

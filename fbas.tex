@@ -532,6 +532,16 @@ We will first show some basic properties of DSets.
 	By applying Theorem~\ref{intersection_dset} repeatedly, we can conclude that $B$ is a DSet.
 \end{proof}
 
+\begin{cor}\label{set_of_intact_nodes_quorum}
+    In an FBAS with quorum intersection, the set of intact nodes is either empty or a quorum.
+\end{cor}
+
+\begin{proof}
+    The set $B$ of befouled nodes is a DSet by Theorem~\ref{befouled_dset}.
+    By the definition of a DSet, $B^c$ is either empty or a quorum.
+    Therefore, the set of intact nodes, if not empty, is a quorum.
+\end{proof}
+
 \begin{thm}\label{dset_v_blocking}
     Let $\ev{V, Q}$ be an FBAS and let $B \subset V$ be the set of befouled nodes.
     If $B$ is a DSet, $B$ is not $v$-blocking for any intact $v$.
