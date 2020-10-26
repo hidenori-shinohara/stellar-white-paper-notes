@@ -34,8 +34,9 @@ Nomination is done through voting, accepting, and confirming a special type of s
     This approach is slightly different from the white paper's.
     The white paper seems to define some special ``rule" on voting for a nomination statement.
     However, that seems to change the definition of voting (Definition~\ref{def_vote}), and I was unable to convince myself that we could simply apply FBA arguments after changing the definition of voting.
-    On the other hand, we defined a nomination statement to be a statement containing some special instructions.
-    This approach should achieve the same thing while utilizing the fact that a well-behaved node is allowed to vote for a valid statement that is consistent with history.
+
+    Instead, I decided to define a nomination statement to be a statement containing some special instructions.
+    This approach should achieve the same thing because a well-behaved node is allowed to vote for a statement only if it is consistent with history.
 \end{rem}
 
 \begin{thm}\label{eventually_one_candidate}
