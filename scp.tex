@@ -73,6 +73,35 @@ However, we should be able to change it to \textit{will} as long as nodes withou
     By Theorem~\ref{all_intact_nodes_accept_confirm_same_things}, all intact nodes will eventually confirm it, and thus all intact nodes will eventually consider $x$ to be a candidate value.
 \end{proof}
 
+\begin{rem}
+    Note that Theorem~\ref{eventually_all_intact_nodes_consider_candidate} does not hold if the FBAS does not enjoy quorum intersection.
+    \begin{figure}[!htb]
+        \includegraphics[width=.5\linewidth]{img/nomination_counterexample.jpeg}
+        \caption{Nomination Procol And Quorum Intersection}
+        \label{fig:nomination_counterexample}
+    \end{figure}
+    In Figure~\ref{fig:nomination_counterexample}, each node is intact because
+    \begin{itemize}
+        \item
+            $B = {v_4, v_5, v_6}$ is a DSet such that $v_1, v_2, v_3 \notin B$.
+            Thus $v_1, v_2, v_3$ are intact.
+        \item
+            $B = {v_1, v_2, v_3}$ is a DSet such that $v_4, v_5, v_6 \notin B$.
+            Thus $v_4, v_5, v_6$ are intact.
+    \end{itemize}
+    Suppose the nodes vote, accept, and confirm as following:
+    \begin{itemize}
+        \item
+            $v_1, v_2, v_3$ vote, accept, and confirm \textit{nominate $x$} before hearing about \textit{nominate $y$}.
+        \item
+            $v_4, v_5, v_6$ vote, accept, and confirm \textit{nominate $y$} before hearing aobut \textit{nominate $x$}.
+    \end{itemize}
+    In such a case, $v_1, v_2, v_3$ will never have the same set of candidates as $v_4, v_5, v_6$ because they can no longer vote for nomination statements.
+    The same argument applies to any FBAS without quorum intersection.
+    If an FBAS does not enjoy quorum intersection, there exists a pair of disjoint quorums $Q_1, Q_2$.
+    If every node in $Q_1$ votes, accepts and confirms \textit{nominate $x$} and every node in $Q_2$ votes, accepts and confirms \textit{nominate $y$} before hearing the other nomination statement, they can never have the same set of candidates.
+\end{rem}
+
 \begin{lem}\label{intact_cannot_accept_no_vote}
     In an FBAS that enjoys quorum intersection, an intact node cannot accept a statement that no intact node voted for.
 \end{lem}
