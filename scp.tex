@@ -163,9 +163,29 @@ We will use this lemma to prove Theorem~\ref{nomination_property_1}.
     Hence, $S$ is the set of possible candidate values.
 \end{proof}
 
-\todo[inline,caption={}]{
-    prove theorem 12
-}
+\begin{thm}\label{nominiation_protocol_convergence}
+    If an FBAS enjoys quorum intersection, all intact nodes will have the same composite value after sufficient messages have been delivered.
+\end{thm}
+
+\begin{proof}
+    By Theorem~\ref{nomination_property_1}, there exists a finite set $S$ containing the set of possible candidate values.
+    For each value $x \in S$, there exist two possibilities:
+    \begin{itemize}
+        \item
+            At one point, an intact node considers $x$ a candidate value.
+            By Theorem~\ref{eventually_all_intact_nodes_consider_candidate}, all intact nodes will consider $x$ a candidate value after sufficient messages have been delivered.
+        \item
+            No intact node ever considers $x$ to be a candidate value.
+    \end{itemize}
+    Since
+    \begin{itemize}
+        \item
+            There are only finitely many values in $S$, and
+        \item
+            Each value either becomes a candidate value at every intact node within a finite amount of time or never becomes a candidate value,
+    \end{itemize}
+    every intact node will have the same composite value within a finite amount of time.
+\end{proof}
 
 
 \begin{defn}[Weight, Neighbors, and Priority]
