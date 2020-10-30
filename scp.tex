@@ -176,10 +176,11 @@ We will use this lemma to prove Theorem~\ref{nomination_property_1}.
     For each value $x \in S$, there exist two possibilities:
     \begin{itemize}
         \item
-            At one point, an intact node considers $x$ a candidate value.
+            Within a finite amount of time, an intact node considers $x$ a candidate value.
             By Theorem~\ref{eventually_all_intact_nodes_consider_candidate}, all intact nodes will consider $x$ a candidate value after sufficient messages have been delivered.
+            In other words, within a finite amount of time, all intact nodes will consider $x$ a candidate value.
         \item
-            No intact node ever considers $x$ to be a candidate value.
+            No intact node ever considers $x$ to be a candidate value at any point.
     \end{itemize}
     Since
     \begin{itemize}
