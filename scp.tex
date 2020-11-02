@@ -417,7 +417,7 @@ We will use this lemma to prove Theorem~\ref{nomination_property_1}.
 \end{rem}
 
 \begin{exmp}
-    Let $a, b, c, d, e$ be statements.
+    Let $a, b, c, d, e$ be statements with $a < b < c < d < e$.
     The following table shows what statements a node needs to confirm to abort before \textit{commit} $(3, c)$:
     \begin{center}
         \begin{tabular}{|c|c|c|c|c|c|}
@@ -425,17 +425,20 @@ We will use this lemma to prove Theorem~\ref{nomination_property_1}.
             $(n, x)$ & $x = a$        & $x = b$        & $x = c$ & $x = d$        & $x = e$        \\ \hline
             $n = 1$  & \textit{abort} & \textit{abort} &         & \textit{abort} & \textit{abort} \\ \hline
             $n = 2$  & \textit{abort} & \textit{abort} &         & \textit{abort} & \textit{abort} \\ \hline
-            $n = 3$  & \textit{abort} & \textit{abort} &         & \textit{abort} & \textit{abort} \\ \hline
+            $n = 3$  & \textit{abort} & \textit{abort} &         &                &                \\ \hline
             $n = 4$  &                &                &         &                &                \\ \hline
         \end{tabular}
     \end{center}
 
-    Note that
+    There are a few things that may be worth mentioning:
     \begin{itemize}
         \item
-            $(2, c)$ is \textit{not} $\lnsim (3, c)$ because they have the same value.
+            $(2, c)$ is \textit{not} $\lnsim (3, c)$ because $(2, c) \sim (3, c)$.
         \item
-            $(3, a) \lnsim (3, c)$ because $3 \leq 3$ and $a \ne c$.
+            $(3, a) \lnsim (3, c)$ because $(3, a) \leq (3, c)$ and $(3, a) \nsim (3, c)$.
+        \item
+            $(3, d)$ is \textit{not} $\lnsim (3, c)$ even though $(3, d) \nsim (3, c)$.
+            This is because $(3, d)$ is \textit{not} $\leq (3, c)$.
     \end{itemize}
 \end{exmp}
 
