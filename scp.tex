@@ -418,7 +418,7 @@ We will use this lemma to prove Theorem~\ref{nomination_property_1}.
 
 \begin{exmp}
     Let $a, b, c, d, e$ be statements with $a < b < c < d < e$.
-    The following table shows what statements a node needs to confirm to abort before \textit{commit} $(3, c)$:
+    The following table shows what statements a node needs to confirm to abort before voting for \textit{commit} $(3, c)$:
     \begin{center}
         \begin{tabular}{|c|c|c|c|c|c|}
             \hline
@@ -452,14 +452,14 @@ We will use this lemma to prove Theorem~\ref{nomination_property_1}.
 \end{rem}
 
 \begin{rem}
-    The approach presented here is slightly different from the white paper's approach.
-    In the white paper, the fact that \textit{commit} $b$ is valid to vote for only if $b$ is confirmed prepared is a (seemingly arbitrary) ``rule."
-    However, I was not very convinced by this approach because it would mean that we are changing the definition of voting.
+    The approach presented here is slightly different from the white paper's.
+    In the white paper, the fact that \textit{commit} $b$ is valid to vote for only if $b$ is confirmed prepared is given as a (seemingly arbitrary) ``rule."
+    However, I was not very convinced by this approach because it would mean that we need to alter the definition of voting.
     More specifically, the definition of voting states that one votes for a statement \textit{if and only if} the four conditions have been met.  
-    However, this new ``rule" will prevent a node from voting even when the four conditions have been met in some cases.
+    However, this new ``rule" may prevent a node from voting even when all of the four conditions.
 
-    In the approach presented above, the ``rule" is embedded in the commit statement itself.
-    Therefore, there is no need to change the ``rule" around voting.
+    In the approach presented above, the ``rule" regarding voting for a \textit{commit} $b$ is embedded in the commit statement itself.
+    Therefore, we can safely apply all of our FBAS arguments.
 \end{rem}
 
 \begin{defn}[Externalize]
