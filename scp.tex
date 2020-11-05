@@ -379,6 +379,12 @@ We will use this lemma to prove Theorem~\ref{nomination_property_1}.
     \end{figure}
     
     In this case, all the nodes except for $v_3, v_2$ will produce new values while $v_2$ will simply renominate the what $v_4$ votes for.
+
+    This is actually really bad because almost all \textit{nominate} statements will only have one vote.
+    $v_2$ will vote for all the \textit{nominate} statements that $v_4$ votes for as long as $v_2$ has not confirmed anything.
+    Actually, $v_2$ is the \textit{only} one who will vote for any of the \textit{nominate} statements from $v_4$.
+    Since $\{ v_2, v_4 \}$ is not a quorum, none of the \textit{nominate} statements from $v_4$ will be accepted by any node.
+    A similar argument can be applied to every other node to show that no \textit{nominate} statement will be accepted.
 \end{exmp}
 
 \newpage
@@ -442,7 +448,7 @@ We will use this lemma to prove Theorem~\ref{nomination_property_1}.
     \end{itemize}
 \end{exmp}
 
-\begin{defn}[Prepare]
+\begin{defn}[Prepare]\label{def_prepare}
     Let $b$ be a ballot.
     A node is said to vote, accept, or confirm that \textit{$b$ is prepared} if and only if it votes, accepts, or confirms \textit{abort} $b'$ for all $b' \lnsim b$, respectively.
 \end{defn}
@@ -465,3 +471,14 @@ We will use this lemma to prove Theorem~\ref{nomination_property_1}.
 \begin{defn}[Externalize]
     A node \textit{externalizes} a value $x$ if and only if it confirms \textit{commit} $\ev{n, x}$ for some $n \geq 1$.
 \end{defn}
+
+\begin{thm}
+    Let $b = (b.n, b.x)$ be given.
+    In an FBAS with a quorum intersection, if an intact node confirms that $b$ is prepared, then every intact node will eventually confirm that $b$ is prepared.
+\end{thm}
+
+\begin{proof}
+    By Definition~\ref{def_prepare}, confirming that $b$ is prepared is equivalent to confirming \textit{abort} $b'$ for all  $b' \lnsim  b$.
+    For each $b' \lnsim b$, Theorem~\ref{all_intact_nodes_accept_confirm_same_things} states that all intact nodes will eventually confirm \textit{abort} $b'$.
+    Therefore, all intact nodes will eventually confirm that $b$ is prepared.
+\end{proof}
