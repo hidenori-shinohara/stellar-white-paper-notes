@@ -482,3 +482,28 @@ We will use this lemma to prove Theorem~\ref{nomination_property_1}.
     For each $b' \lnsim b$, Theorem~\ref{all_intact_nodes_accept_confirm_same_things} states that all intact nodes will eventually confirm \textit{abort} $b'$.
     Therefore, all intact nodes will eventually confirm that $b$ is prepared.
 \end{proof}
+
+\begin{thm}
+    Let $\ev{V, Q}$ be an FBAS with quorum intersection.
+    Let $v \in V$ be an intact node.
+    If $v$ accepts \textit{commit} $b$, all intact nodes will eventually confirm \textit{commit} $b'$ for some $b' \sim b$.
+\end{thm}
+
+\begin{proof}
+    Let $w$ be an intact node and suppose $w$ accepts \textit{commit} $b'$ for some ballot $b'$.
+    If $b \sim b'$, we are done.
+    Suppose otherwise.
+
+    Since $v, w$ accept $b, b'$, they must have confirmed that $b, b'$ are prepared, respectively.
+    Without loss of generality, $b \lnsim b'$.
+    By Definition~\ref{def_prepare}, $w$ must have confirmed \textit{abort} $b$.
+    \textit{abort} $b$ and \textit{commit} $b$ are defined to be contradictory, and Theorem~\ref{intact_accept_contradictory} states that no intact node can accept contradictory statements.
+    Therefore, this is a contradiction, so $b \sim b'$.
+
+    Since a node must first accept a statement before confirming it, the argument above shows that if an intact node confirms \textit{commit} $b'$, then $b' \sim b$.
+    
+    Now, we need to show that all intact nodes will eventually confirm \textit{commit} $b'$ for some $b' \sim b$.
+    \todo[inline,caption={}]{
+        This ``liveness" property requires the concrete ballot protocol.
+    }
+\end{proof}
