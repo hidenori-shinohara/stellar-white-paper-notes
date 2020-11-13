@@ -170,5 +170,16 @@ The 9 steps to update the local state that appears on P.24 can be understood as 
             \item
                 Setting $b \leftarrow h$ means $v$ will try to confirm $\textit{commit } h$.
         \end{itemize}
+    \item
+        If $\varphi = \text{CONFIRM}$ and the received messaged lets $v$ accept new ballots prepared, raise $p$ to the highest accepted prepared ballot such that $p \sim c$.
+        \begin{itemize}
+            \item
+                Since $\varphi = \text{CONFIRM}$, $v$ must have accepted at least one $\textit{commit}$ statement.
+                Therefore, $v$ has already decided on which value to confirm a $\textit{commit}$ statemnt for, if any.
+                Thus all $v$ can do is to continue accepting $\texit{commit}$ statements with the same value.
+                \todo[inline,caption={}]{
+                    Okay, this is true, but I'm not sure how this will help me understand this step.
+                }
+        \end{itemize}
 \end{enumerate}
 
