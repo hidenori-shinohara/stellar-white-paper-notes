@@ -120,6 +120,51 @@
 
 \subsubsection{Concrete Ballot Protocol}
 
+
+\begin{defn}\label{Ballot State}
+    The tuple $(\varphi, b, p', p, c, h, z, M)$ where
+    \begin{itemize}
+        \item
+            $\varphi \in \{\text{PREPARE, CONFIRM, EXTERNALIZE}\}$,
+        \item
+            $b, p', p, c, h$ are ballots,
+        \item
+            $z$ is a value,
+        \item
+            $M$ is a set of messages
+    \end{itemize}
+    is called a ballot state, and each node must maintain one during the ballot protocol.
+\end{defn}
+
+
+\begin{defn}\label{Ballot Message}
+    Any message that a well-behaved node sends is one of the following messages:
+    \begin{itemize}
+        \item
+            $(\text{PREPARE}, v, i, b, p, p', c.n, h.n, D)$,
+        \item
+            $(\text{CONFIRM}, v, i, b, p.n, p'.n, c.n, h.n, D)$,
+        \item
+            $(\text{EXTERNALIZE}, v, i, c.x, c.n, h.n, D)$,
+    \end{itemize}
+    and the phase in the message must match the phase in the state.
+\end{defn}
+
+\begin{defn}\label{Initial Ballot State}
+    The state such that
+    \begin{itemize}
+        \item
+            $\varphi = \text{PREPARE}$
+        \item
+            $b = p = p' = c = h = \textbf{0}$
+        \item
+            $z = \bot$
+        \item
+            $M = \emptyset$
+    \end{itemize}
+    is called the initial ballot state, and every well-behaved node must have this state when the ballot protocol starts.
+\end{defn}
+
 The 9 steps to update the local state that appears on P.24 can be understood as following:
 
 \begin{enumerate}
