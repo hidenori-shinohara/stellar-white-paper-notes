@@ -165,6 +165,22 @@
     is called the initial ballot state, and every well-behaved node must have this state when the ballot protocol starts.
 \end{defn}
 
+There are exactly two ways in which a well-behaved node is allowed to change the state:
+\begin{itemize}
+    \item
+        When a node confirms a new value through the nomination protocol,
+    \item
+        When a node receives a new message from another node.
+\end{itemize}
+
+\todo[inline,caption={}]{
+    Explain how a node should update its state upon confirming a new value.
+}
+
+\todo[inline,caption={}]{
+    Explain how a node should update its state upon receiving a new message.
+}
+
 The 9 steps to update the local state that appears on P.24 can be understood as following:
 
 \begin{enumerate}
