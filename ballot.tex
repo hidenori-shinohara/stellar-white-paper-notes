@@ -163,7 +163,6 @@
     is called the initial ballot state, and every well-behaved node must have this state when the ballot protocol starts.
 \end{defn}
 
-
 There are exactly two ways in which a well-behaved node is allowed to change the state:
 \begin{itemize}
     \item
@@ -175,7 +174,7 @@ There are exactly two ways in which a well-behaved node is allowed to change the
 We will call them Transition Type 1 and Type 2, respectively.
 
 \begin{defn}[Transition Type 1]
-    When $c_{high} = 0$, a node may update $x_{next}$ in response to a NOMINATE message.
+    When $h = 0$, a node may update $z$ in response to a NOMINATE message.
 \end{defn}
 
 \begin{defn}[Transition Type 2]
@@ -184,24 +183,26 @@ We will call them Transition Type 1 and Type 2, respectively.
     }
     Upon receiving a new ballot message $m$, node $v$ adds $m$ to $M$ and updates its state as following:
     \begin{enumerate}
-        \item
+        \item % 1
             If $\varphi = \text{PREPARE}$ and $m$ lets $v$ accept new ballots as prepared, update $p$ and $p'$.
             Afterwards, if either $p \gnsim h$ or $p' \gnsim h$, then set $c \leftarrow \textbf{0}$.
-        \item
+        \item % 2
             If $\varphi = \text{PREPARE}$ and $m$ lets $v$ confirm new higher ballots prepared, then raise $h$ to the highest such ballot and set $z \leftarrow h.x$.
-        \item
+        \item % 3
+            If $\varphi = \text{PREPARE}, c = 0, b \leq h$, and neither $p \gnsim h$ nor $p' \gnsim h$, then set $c$ to the lowest ballot satisfiying $b \leq c \lnsim h$.
+        \item % 4
             If $\varphi = \text{PREPARE}$ and $v$ accepts \textit{commit} for one or more ballots, set $c$ to the lowest such ballot, then set $h$ to the highest ballot such that $v$ accepts all $\{ \textit{commit } b' \mid c \lesssim b' \lesssim h \}$, and set $\varphi \leftarrow \text{CONFIRM}$.
             Also, set $z \leftarrow h.x$ after updating $h$, and unless $h \lesssim b$, set $b \leftarrow h$.
-        \item
+        \item % 5
             If $\varphi = \text{CONFIRM}$ and the received messaged lets $v$ accept new ballots prepared, raise $p$ to the highest accepted prepared ballot such that $p \sim c$.
-        \item
-            If $\varphi = \text{CONFIRM}$ and the received message lets $v$ accept new ballots prepared, raise $P$ to the highest accepted ballot such that $p \sim c$.
-        \item
-            If $\varphi = \text{CONFIRM}$ and $v$ accepts more commit messages or raise $b_{cur}$, then let $h'$ be the highest ballot such that $v$ accepts all $\{ \textit{commit } b' \mid b \lnsim b' \lnsim h' \}$  (if any).
+        \item % 6
+            If $\varphi = \text{CONFIRM}$ and $v$ accepts more commit messages or raise $b$, then let $h'$ be the highest ballot such that $v$ accepts all $\{ \textit{commit } b' \mid b \lnsim b' \lnsim h' \}$  (if any).
             If there exists such an $h'$ and $h' > h$, then set $h \leftarrow h'$, and, if necessary, raise $c$ to the lowest ballot such that $v$ accepts all $\{ \textit{commit } b' \mid c \lnsim b' \lnsim h \}$.
-        \item
+        \item % 7
             If $\varphi = \text{CONFIRM}$ and $v$ confirms $\textit{commit } c'$ for any $c'$, set $c$ and $h$ to the lowest and highest such ballots, set $\varphi \leftarrow \text{EXTERNALIZE}$, externalize $c.x$ and terminate.
-        \item
+        \item % 8
+            If $\varphi = \{ \text{PREPARE}, \text{CONFIRM} \}$ and $b < h$, then set $b \leftarrow h$.
+        \item % 9
             If $\varphi = \{ \text{PREPARE}, \text{CONFIRM} \}$ and $\exists S \subseteq M_v$ such that the set of senders $\{ v_{m'} \mid m' \in S \}$ is $v$-blocking and $\forall m' \in S, b_{m'}.n > b_v.n$, then set $b \leftarrow \ev{n, z}$, where $n$ is the lowest coutner for which no such $S$ exists.
             Repeat the previous steps after updating $b$.
     \end{enumerate}
