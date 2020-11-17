@@ -120,7 +120,7 @@
 
 \subsubsection{Concrete Ballot Protocol}
 
-\begin{defn}\label{Ballot State}
+\begin{defn}[Ballot State]
     The tuple $(\varphi, b, p', p, c, h, z, M)$ where
     \begin{itemize}
         \item
@@ -135,7 +135,18 @@
     is called a ballot state, and each node must maintain one during the ballot protocol.
 \end{defn}
 
-\begin{defn}\label{Ballot Message}
+\begin{defn}[Meaning of Variables]
+    $ $
+    \todo[inline,caption={}]{
+        FInish the rest.
+    }
+    \begin{itemize}
+        \item
+            $p', p$ are the two highest ballots accepted as prepared such that $p' \lnsim p$, where $p' = \textbf{0}$ or $p = p' = \textbf{0}$ if there are no such ballots.
+    \end{itemize}
+\end{defn}
+
+\begin{defn}[Ballot Message]
     Any message that a well-behaved node sends is one of the following messages:
     \begin{itemize}
         \item
@@ -148,7 +159,7 @@
     and the phase in the message must match the phase in the state.
 \end{defn}
 
-\begin{defn}\label{PREPARE}
+\begin{defn}[PREPARE]
     $(\text{PREPARE}, v, i, b, p, p', c.n, h.n, D)$ encodes
     \begin{itemize}
         \item
@@ -232,9 +243,27 @@ We will now prove invariants of states in the concrete ballot protocol.
 \end{thm}
 
 \begin{proof}
-    \todo[inline,caption={}]{
-        prove this!
-    }
+    $p = p' = \textbf{0}$ in the initial state, so this invariant holds in the initial state.
+    We update $p, p'$ only in Step (1) and (5).
+    \begin{itemize}
+        \item
+            After Step (1), the invariant must hold because we update $p, p'$ such that they are the two highest ballots accepted as prepared such that $p' \lnsim p$, where $p' = \textbf{0}$ or $p = p' = \textbf{0}$ if there are no such ballots.
+            \begin{itemize}
+                \item
+                    If $p = p' = \textbf{0}$, then we are done.
+                \item
+                    If $p' = \textbf{0} \ne p$, then $p' \lnsim p$.
+                \item
+                    Otherwise, $p' \lnsim p$.
+            \end{itemize}
+        \item
+            Step (5):
+            \todo[inline,caption={}]{
+                Interesting!
+                I might need to prove other things first.
+                $p \sim c$ makes me think that $c \ne \textbf{0}$, but it's not obvious to me!
+            }
+    \end{itemize}
 \end{proof}
 
 \begin{thm}
