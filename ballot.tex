@@ -148,6 +148,26 @@
     and the phase in the message must match the phase in the state.
 \end{defn}
 
+\begin{defn}\label{PREPARE}
+    $(\text{PREPARE}, v, i, b, p, p', c.n, h.n, D)$ encodes
+    \begin{itemize}
+        \item
+            $\{ \textit{abort } b' \lor \textit{accept(abort $b'$)} \mid b' \lnsim b \}$
+        \item
+            $\{ \textit{accept(abort $b'$)} \mid b' \lnsim p \}$
+        \item
+            $\{ \textit{accept(abort $b'$)} \mid b' \lnsim p' \}$
+        \item
+            $\{ \textit{commit } b' \mid c.n \ne 0 \land c \lesssim b' \lesssim h \}$
+    \end{itemize}
+\end{defn}
+
+\todo[inline,caption={}]{
+    Add CONFIRM, EXTERNALIZE.
+    But when I think about it, this part may not be super necessary?
+    Can we prove all the invariants without defining what messages look like?
+}
+
 \begin{defn}\label{Initial Ballot State}
     The state such that
     \begin{itemize}
