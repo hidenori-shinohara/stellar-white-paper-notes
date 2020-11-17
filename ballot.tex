@@ -186,14 +186,14 @@ We will call them Transition Type 1 and Type 2, respectively.
         \item % 2
             If $\varphi = \text{PREPARE}$ and $m$ lets $v$ confirm new higher ballots prepared, then raise $h$ to the highest such ballot and set $z \leftarrow h.x$.
         \item % 3
-            If $\varphi = \text{PREPARE}, c = \textbf{0}, b \leq h$, and neither $p \gnsim h$ nor $p' \gnsim h$, then set $c$ to the lowest ballot satisfiying $b \leq c \lnsim h$.
+            If $\varphi = \text{PREPARE}, c = \textbf{0}, b \leq h$, and neither $p \gnsim h$ nor $p' \gnsim h$, then set $c$ to the lowest ballot satisfiying $b \leq c \lesssim h$.
         \item % 4
             If $\varphi = \text{PREPARE}$ and $v$ accepts \textit{commit} for one or more ballots, set $c$ to the lowest such ballot, then set $h$ to the highest ballot such that $v$ accepts all $\{ \textit{commit } b' \mid c \lesssim b' \lesssim h \}$, and set $\varphi \leftarrow \text{CONFIRM}$.
             Also, set $z \leftarrow h.x$ after updating $h$, and unless $h \lesssim b$, set $b \leftarrow h$.
         \item % 5
-            If $\varphi = \text{CONFIRM}$ and the received messaged lets $v$ accept new ballots prepared, raise $p$ to the highest accepted prepared ballot such that $p \sim c$.
+            If $\varphi = \text{CONFIRM}$ and the received message lets $v$ accept new ballots prepared, raise $p$ to the highest accepted prepared ballot such that $p \sim c$.
         \item % 6
-            If $\varphi = \text{CONFIRM}$ and $v$ accepts more commit messages or raises $b$, then let $h'$ be the highest ballot such that $v$ accepts all $\{ \textit{commit } b' \mid b \lnsim b' \lnsim h' \}$  (if any).
+            If $\varphi = \text{CONFIRM}$ and $v$ accepts more commit messages or raises $b$, then let $h'$ be the highest ballot such that $v$ accepts all $\{ \textit{commit } b' \mid b \lesssim b' \lesssim h' \}$  (if any).
             If there exists such an $h'$ and $h' > h$, then set $h \leftarrow h'$, and, if necessary, raise $c$ to the lowest ballot such that $v$ accepts all $\{ \textit{commit } b' \mid c \lesssim b' \lesssim h \}$.
         \item % 7
             If $\varphi = \text{CONFIRM}$ and $v$ confirms $\textit{commit } c'$ for any $c'$, set $c$ and $h$ to the lowest and highest such ballots, set $\varphi \leftarrow \text{EXTERNALIZE}$, externalize $c.x$ and terminate.
