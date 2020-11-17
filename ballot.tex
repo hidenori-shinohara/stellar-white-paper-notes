@@ -281,8 +281,12 @@ We will now prove invariants of states in the concrete ballot protocol.
 \end{thm}
 
 \begin{proof}
+    It suffices to show that if $\varphi = \text{PREPARE}$ and $v$ has confirmed a ballot as prepared, then $h \ne \textbf{0}$.
+
+    This invariant holds in the initial state because $v$ has not confirmed anything initially.
     \todo[inline,caption={}]{
-        prove this!
+        Prove this!
+        This is a bit more complicated than I thought!
     }
 \end{proof}
 
