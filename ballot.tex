@@ -277,17 +277,38 @@ We will now prove invariants of states in the concrete ballot protocol.
 \end{proof}
 
 \begin{thm}
-    If $\varphi = \text{PREPARE}$ and $h = \textbf{0}$, then $v$ has not confirmed any ballot as prepared.
+    If $v$ has confirmed any ballot as prepared, $h \ne \textbf{0}$.
 \end{thm}
 
 \begin{proof}
-    It suffices to show that if $\varphi = \text{PREPARE}$ and $v$ has confirmed a ballot as prepared, then $h \ne \textbf{0}$.
+    It suffices to show that it is impossible that
+    \begin{itemize}
+        \item
+            $v$ has confirmed a ballot as prepared, and
+        \item
+            $h = \textbf{0}$.
+    \end{itemize}
 
     This invariant holds in the initial state because $v$ has not confirmed anything initially.
-    \todo[inline,caption={}]{
-        Prove this!
-        This is a bit more complicated than I thought!
-    }
+
+    Suppose that the invariant holds in the current state.
+    Then there are 3 possible ways in which the invariant can be violated.
+    \begin{enumerate}[label=(\roman*)]
+        \item
+            $v$ has confirmed a ballot as prepared, and $h \ne \textbf{0}$.
+            But a new messages lets $v$ set $h \leftarrow \textbf{0}$.
+        \item
+            $v$ has not confirmed a ballot as prepared, and $h = \textbf{0}$.
+            But a new messages lets $v$ confirm a ballot as prepared without updating value of $h$.
+        \item
+            $v$ has not confirmed a ballot as prepared, and $h \ne \textbf{0}$.
+            But a new messages lets $v$ confirm a ballot as prepared and set $h \leftarrow \textbf{0}$.
+    \end{enumerate}
+    We will use the fact that none of the actions sets $h \leftarrow \textbf{0}$.
+    Thus (i) and (ii) are impossible.
+    Moreover, if $h = \textbf{0}$ and a new message lets $v$ confirm a ballot as prepared, Step (2) forces $v$ to update the value of $h$ a nonzero value.
+
+    Thus it is impossible to reach a state where $v$ has confirmed a ballot as prepared, and $h = \textbf{0}$.
 \end{proof}
 
 \begin{thm}
