@@ -204,11 +204,11 @@ There are exactly two ways in which a well-behaved node is allowed to change the
 
 We will call them Transition Type 1 and Type 2, respectively.
 
-\begin{defn}[Transition Type 1]
+\begin{defn}[Transition Type 1]\label{transition_type_1}
     When $h = 0$, a node may update $z$ in response to a NOMINATE message.
 \end{defn}
 
-\begin{defn}[Transition Type 2]
+\begin{defn}[Transition Type 2]\label{transition_type_2}
     Upon receiving a new ballot message $m$, node $v$ adds $m$ to $M$ and updates its state as following:
     \begin{enumerate}
         \item % 1
@@ -276,7 +276,7 @@ We will now prove invariants of states in the concrete ballot protocol.
     }
 \end{proof}
 
-\begin{thm}
+\begin{thm}\label{nonzero_h_if_confirmed}
     If $v$ has confirmed any ballot as prepared, $h \ne \textbf{0}$.
 \end{thm}
 
@@ -292,7 +292,7 @@ We will now prove invariants of states in the concrete ballot protocol.
     This invariant holds in the initial state because $v$ has not confirmed anything initially.
 
     Suppose that the invariant holds in the current state.
-    Then there are 3 possible ways in which the invariant can be violated.
+    Then there are $3 = 2^2 - 1$ possible ways in which the invariant can be violated.
     \begin{enumerate}[label=(\roman*)]
         \item
             $v$ has confirmed a ballot as prepared, and $h \ne \textbf{0}$.
@@ -316,8 +316,53 @@ We will now prove invariants of states in the concrete ballot protocol.
 \end{thm}
 
 \begin{proof}
-    \todo[inline,caption={}]{
-        prove this!
-    }
+    It suffices to show that, at any given moment,
+    \begin{enumerate}[label=(\alph*)]
+        \item % (a)
+            $\varphi \ne \text{PREPARE}$, or
+        \item % (b)
+            $h = \textbf{0}$, or
+        \item % (c)
+            $h$ is the highest ballot confirmed as prepared.
+    \end{enumerate}
+    This invariant holds in the initial state since $h = \textbf{0}$.
+    Suppose that the invariant is true in the current state.
+    There are $7 = 2^3 - 1$ possible ways in which the invariant can be violated.
+    \begin{enumerate}[label=(\roman*)]
+        \item % i
+            (a), (b), (c) all hold in the current state, but all of them become false after one message.
+        \item % ii
+            Only (a) and (b) hold in the current state, but they become false after one message.
+        \item % iii
+            Only (a) and (c) hold in the current state, but they become false after one message.
+        \item % iv
+            Only (b) and (c) hold in the current state, but they become false after one message.
+        \item % v
+            Only (a) holds in the current state, but it becomes false after one message.
+        \item % vi
+            Only (b) holds in the current state, but it becomes false after one message.
+        \item % vii
+            Only (c) holds in the current state, but it becomes false after one message.
+    \end{enumerate}
+
+    First, it is easy to see that, if $\varphi \ne \text{PREPARE}$, then no message can set $\varphi \leftarrow \text{PREPARE}$.
+    Therefore, (i), (ii), (iii) and (v) are impossible.
+
+    By taking the contrapositive of Theorem~\ref{nonzero_h_if_confirmed}, we know that if $h = \textbf{0}$, then $v$ has not confirmed any ballot as prepared.
+    Thus (iv) is impossible.
+
+    We will now examine option (vi).
+    Suppose $\varphi = \text{PREPARE}, h = \textbf{0}$.
+    The only way for $v$ to set $h$ to a ballot that is not $\textbf{0}$ while having $\varphi = \text{PREPARE}$ is Step (2) in Transition Type 2(\ref{transition_type_2}).
+    However, Step (2) sets $h$ to the highest ballot confirmed as prepared, so (c) becomes true through the step.
+    Therefore, (vi) is impossible.
+
+    Similarly, consider option (vii).
+    Then we have $\varphi = \text{PREPARE}, h \ne \textbf{0}$, and $h$ is the highest ballot confirmed as prepared.
+    For (c) to become false, we need to either update the value of $h$, or confirm another ballot as prepared while keeping $\varphi = \text{PREPARE}$.
+    This means we must take Step (2) in Transition Type 2(\ref{transition_type_2}), and that means we will udpate $h$ to the highest ballot confirmed as prepared.
+    Thus (c) continues to hold and (vii) is impossible.
+
+    Hence, we confirm that the invariant always holds.
 \end{proof}
 
