@@ -244,33 +244,32 @@ We will now prove invariants of states in the concrete ballot protocol.
 
 \begin{proof}
     It suffices to show that it is impossible that
-    \begin{itemize}
-        \item
+    \begin{enumerate}[label=(\alph*)]
+        \item % a
             $v$ has confirmed a ballot as prepared, and
-        \item
+        \item % b
             $h = \textbf{0}$.
-    \end{itemize}
+    \end{enumerate}
 
     This invariant holds in the initial state because $v$ has not confirmed anything initially.
 
     Suppose that the invariant holds in the current state.
     Then there are $3 = 2^2 - 1$ possible ways in which the invariant can be violated.
     \begin{enumerate}[label=(\roman*)]
-        \item
-            $v$ has confirmed a ballot as prepared, and $h \ne \textbf{0}$.
-            But a new messages lets $v$ set $h \leftarrow \textbf{0}$.
-        \item
-            $v$ has not confirmed a ballot as prepared, and $h = \textbf{0}$.
-            But a new messages lets $v$ confirm a ballot as prepared without updating value of $h$.
-        \item
-            $v$ has not confirmed a ballot as prepared, and $h \ne \textbf{0}$.
-            But a new messages lets $v$ confirm a ballot as prepared and set $h \leftarrow \textbf{0}$.
+        \item % i
+            (a) currently holds and (b) does not.
+            After some actions caused by a new message, (b) becomes true.
+        \item % ii
+            (a) does not hold and (b) currently holds.
+            After some actions caused by a new message, (a) becomes true.
+        \item % iii
+            Neither (a) nor (b) holds.
+            After some actions caused by a new message, both become true.
     \end{enumerate}
-    We will use the fact that none of the actions sets $h \leftarrow \textbf{0}$.
-    Thus (i) and (ii) are impossible.
-    Moreover, if $h = \textbf{0}$ and a new message lets $v$ confirm a ballot as prepared, Step (2) forces $v$ to update the value of $h$ a nonzero value.
-
-    Thus it is impossible to reach a state where $v$ has confirmed a ballot as prepared, and $h = \textbf{0}$.
+    Since none of the actions sets $h \leftarrow \textbf{0}$, (i) and (iii) are impossible.
+    Moreover, if $h = \textbf{0}$ and a new message lets $v$ confirm a ballot as prepared, Step (2) forces $v$ to update the value of $h$ to a nonzero value.
+    It is possible that $v$ performs some other actions after Step (2), but no action sets $h \leftarrow \textbf{0}$, so (b) will never hold.
+    In other words, (ii) is impossible.
 \end{proof}
 
 \begin{lem}\label{lem_h_highest_ballot}
