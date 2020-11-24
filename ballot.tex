@@ -338,6 +338,49 @@ We will now prove invariants of states in the concrete ballot protocol.
 \end{proof}
 
 \begin{thm}
+    If $\varphi = \text{CONFIRM}$, then $h$ is the highest ballot for which $v$ accepted commit.
+\end{thm}
+
+\begin{proof}
+    It suffices to show that, at any given moment,
+    \begin{enumerate}[label=(\alph*)]
+        \item % (a)
+            $\varphi \ne \text{CONFIRM}$, or
+        \item % (b)
+            $h$ is the highest ballot for which $v$ accepted \textit{commit}.
+    \end{enumerate}
+    The invariant holds initially since (a) holds in the initial state.
+    Suppose that the invariant holds in some state.
+    There are $3 = 2^2 - 1$ ways in which this can be violated:
+    \begin{enumerate}[label=(\roman*)]
+        \item  % (i)
+            Only (a) currently holds, and (a) becomes false.
+        \item  % (ii)
+            Only (b) currently holds, and (b) becomes false.
+        \item  % (iii)
+            Both (a) and (b) currently hold, and both become false.
+    \end{enumerate}
+    We will consider each possibility separately:
+    \begin{enumerate}[label=(\roman*)]
+        \item  % (i)
+            Suppose that only (a) holds currently.
+            In other words, $\varphi \ne \text{CONFIRM}$ and $h$ is not the highest ballot for which $v$ accepted \textit{commit}.
+            \todo[inline,caption={}]{
+                Finish this.
+            }
+        \item  % (ii)
+            \todo[inline,caption={}]{
+                Finish this.
+            }
+        \item  % (iii)
+            \todo[inline,caption={}]{
+                Finish this.
+            }
+    \end{enumerate}
+\end{proof}
+
+
+\begin{thm}
     If $h \ne \textbf{0}$, then $z = h.x$.
 \end{thm}
 
