@@ -205,7 +205,8 @@ There are exactly two ways in which a well-behaved node is allowed to change the
 We will call them Transition Type 1 and Type 2, respectively.
 
 \begin{defn}[Transition Type 1]\label{transition_type_1}
-    When $h = 0$, a node may update $z$ in response to a NOMINATE message.
+    When $h = \textbf{0}$, a node may update $z$ in response to a NOMINATE message.
+    If $z$ was $\bot$, then $b \leftarrow \ev{1, z}$.
 \end{defn}
 
 \begin{defn}[Transition Type 2]\label{transition_type_2}
@@ -334,6 +335,56 @@ We will now prove invariants of states in the concrete ballot protocol.
 
 \begin{proof}
     Lemma~\ref{nonzero_h_if_confirmed} and~\ref{lem_h_highest_ballot}.
+\end{proof}
+
+\begin{thm}
+    If $h \ne \textbf{0}$, then $z = h.x$.
+\end{thm}
+
+\begin{proof}
+    It suffices to show that, at any given moment,
+    \begin{enumerate}[label=(\alph*)]
+        \item % (a)
+            $h = \textbf{0}$, or
+        \item % (b)
+            $z = h.x$.
+    \end{enumerate}
+    The invariant holds initially since (a) holds in the initial state.
+    Suppose that the invariant holds in some state.
+    There are $3 = 2^2 - 1$ ways in which this can be violated:
+    \begin{enumerate}[label=(\roman*)]
+        \item  % (i)
+            Only (a) currently holds, and (a) becomes false.
+        \item  % (ii)
+            Only (b) currently holds, and (b) becomes false.
+        \item  % (iii)
+            Both (a) and (b) currently hold, and both become false.
+    \end{enumerate}
+    Since no action sets $h \leftarrow \textbf{0}$, (i) and (iii) are impossible.
+    We will prove that (ii) is impossible.
+    We modify $z$ and/or $h$ are Transition Type 1, and Step (2), (4), (6), and (7) in Transition Type 2.
+    \begin{itemize}
+        \item
+            Transition Type 1: Since we are dealing with Case (ii), we assume $h \ne \textbf{0}$.
+            Then $v$ will not perform Transition Type 1.
+            In other words, $v$ will not alter the value of $z$ or $h.x$, so (b) cannot become false.
+        \item
+            Step (2) sets $z \leftarrow h.x$, so (b) holds after Step (2).
+        \item
+            Step (4) sets $z \leftarrow h.x$, so (b) holds after Step (4).
+        \item
+            Step (6)
+            \todo[inline,caption={}]{
+                It looks like I need to know that $b \sim h$.
+                If I know that, I can say that $h' \sim b \sim h$, so $h' \sim h$.
+            }
+        \item
+            Step (7)
+            \todo[inline,caption={}]{
+                It looks like the value doesn't change once we get to COMMIT?
+                I'm not quite sure how I can prove this step.
+            }
+    \end{itemize}
 \end{proof}
 
 \begin{thm}
