@@ -380,7 +380,11 @@ We will now prove invariants of states in the concrete ballot protocol.
 
 \begin{proof}
     \todo[inline,caption={}]{
-        prove this!
+        Prove this!
+        PREPARE messages encode a vote to \textit{commit} $c, \cdots, h$ if $c \ne \textbf{0}$.
+        So, $v$ has voted $\textit{commit }c$ for sure if $c \ne \textbf{0}$.
+        How do I know that it is the lowest such ballot?
+        The accepted part is easy because as soon as $v$ accepts commit, $\varphi$ becomes CONFIRM.
     }  
 \end{proof}
 
@@ -426,6 +430,20 @@ We will now prove invariants of states in the concrete ballot protocol.
             }
     \end{enumerate}
 \end{proof}
+
+\begin{thm}
+    If $\varphi = \text{PREPARE}$, then $c.n \leq h.n \leq b.n$.
+\end{thm}
+
+\begin{proof}
+    $ $
+    \todo[inline,caption={}]{
+        This is going to help me prove the invariant in Figure 16 in the white paper.
+        And this doesn't seem terribly hard.
+        next action?
+    }
+\end{proof}
+
 
 
 \begin{thm}
