@@ -337,6 +337,54 @@ We will now prove invariants of states in the concrete ballot protocol.
     Lemma~\ref{nonzero_h_if_confirmed} and~\ref{lem_h_highest_ballot}.
 \end{proof}
 
+
+\begin{lem}
+    If $\varphi = \text{PREPARE}$, then $v$ has confirmed $c$ as prepared.
+\end{lem}
+
+\begin{proof}
+    It suffices to show that, at any given moment,
+    \begin{enumerate}[label=(\alph*)]
+        \item % (a)
+            $\varphi \ne \text{PREPARE}$, or
+        \item % (b)
+            $v$ has confirmed $c$ as prepared.
+    \end{enumerate}
+    Note that every node confirms $\textbf{0}$ as prepared vacuously because $\{ \textit{abort } b' \mid b' \lnsim \textbf{0} \} = \emptyset$.
+    Thus the invariant holds initially since (b) holds in the initial state.
+    Suppose that the invariant holds in some state.
+    Since no action sets $\varphi \leftarrow \text{PREPARE}$, there is no state in which (a) becomes true after an action.
+    Thus we only need to consider the possibility where only (b) holds in the current state, and (b) becomes false after an action.
+    In other words, $\varphi = \text{PREPARE}$ and $v$ has confirmed $c$ as prepared in the current state, but after an action, $v$ has not confirmed $c$ as prepared.
+    Since the FBA does not have a way to ``un-confirm" a statement, this means $c$ changed to something $v$ has not confirmed as prepared.
+    There are exactly two actions that modify $c$ while keeping $\varphi = \text{PREPARE}$:
+    \begin{itemize}
+        \item
+            Step (1) may set $c \leftarrow \textbf{0}$.
+            As discussed above, every node confirms $\textbf{0}$ as prepared vacuously, so (b) cannot become false after Step (1).
+        \item
+            Step (3) may update $c$ such that $c \lesssim h$.
+            Lemma~\ref{lem_h_highest_ballot} shows that $v$ must have confirmed $h$ as prepared.
+            In other words, $v$ must have confirmed abort $b'$ for all $b' \lnsim h$.
+            Since $b' \lnsim c \land c \lesssim h \implies b' \lnsim h$, $v$ must have confirmed the new $c$ as prepared.
+            In other words, (b) does not become false after Step (3).
+    \end{itemize}
+    Therefore, if $\varphi = \text{PREPARE}$, then $v$ has confirmed $c$ as prepared.
+\end{proof}
+
+
+\begin{thm}
+    Suppose $\varphi = \text{PREPARE}$.
+    If $c \ne \textbf{0}$, then $c$ is the lowest ballot for which $v$ has voted \textit{commit} and not accepted \textit{abort}.
+\end{thm}
+
+\begin{proof}
+    \todo[inline,caption={}]{
+        prove this!
+    }  
+\end{proof}
+
+
 \begin{thm}
     If $\varphi = \text{CONFIRM}$, then $h$ is the highest ballot for which $v$ accepted \textit{commit}.
 \end{thm}
