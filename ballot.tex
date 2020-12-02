@@ -22,6 +22,43 @@
     \end{align*}
 \end{defn}
 
+\begin{exmp}
+    While this may seem relatively straightforward, I found this unexpectedly complicated.
+    Here are some basic properties:
+    \begin{itemize}
+        \item
+            $b_1 \lesssim b_2 \lesssim b_3 \implies b_1 \lesssim b_2$.
+        \item
+            $b_1 \lesssim b_2 \lnsim b_3 \implies b_1 \lnsim b_2$.
+        \item
+            $b_1 \lnsim b_2 \lesssim b_3 \implies b_1 \lnsim b_2$.
+        \item
+            $b_1 \lnsim b_2 \implies b_1 < b_2$.
+        \item
+            $b_1 \sim b_2 \implies b_1 \lesssim b_2 \lor b_2 \lesssim b_1$.
+        \item
+            $b_1 \nsim b_2 \implies b_1 \lnsim b_2 \lor b_2 \lnsim b_1$.
+    \end{itemize}
+
+    One might mistakenly assume that the following may hold:
+    \begin{itemize}
+        \item
+            $b_1 \lesssim b_2 \lesssim b_3 \implies b_1 \lesssim b_3$.
+            \begin{itemize}
+                \item
+                    This is not true in general.
+                    For instance, $b_1 = (1, x), b_2 = (2, y), b_3 = (3, x)$ would be a counterexample.
+            \end{itemize}
+        \item
+            $b_1 < b_2  \implies b_1 \lnsim b_2$.
+            \begin{itemize}
+                \item
+                    This is not true in general.
+                    For instance, $b_1 = (1, x), b_2 = (2, x)$ would be a counterexample.
+            \end{itemize}
+    \end{itemize}
+\end{exmp}
+
 \begin{defn}[Commit]
     For a given ballot $b$, \textit{commit} $b$ is a shorthand for ``I have confirmed \textoverline{\textit{commit} $b'$} for all $b' \lnsim b$."
 \end{defn}
