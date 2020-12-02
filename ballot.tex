@@ -328,7 +328,7 @@ We will now prove invariants of states in the concrete ballot protocol.
     Hence, we confirm that the invariant always holds.
 \end{proof}
 
-\begin{thm}
+\begin{thm}\label{h_highest_ballot_confirmed_prepared}
     Suppose $\varphi = \text{PREPARE}$.
     $h$ is the highest ballot confirmed as prepared, or $\textbf{0}$ if none.
 \end{thm}
@@ -372,6 +372,52 @@ We will now prove invariants of states in the concrete ballot protocol.
     Therefore, if $\varphi = \text{PREPARE}$, then $v$ has confirmed $c$ as prepared.
 \end{proof}
 
+\begin{lem}\label{c_n_leq_h_n_leq_b_n}
+    $c.n \leq h.n \leq b.n$.
+\end{lem}
+
+\begin{proof}
+    This holds in the initial state since $c.n = h.n = b.n = 0$.
+    The only way to violate this invariant is to start with a state where only (b) holds, and after an action (b) no longer holds.
+    There are several actions that modify at least one of $c.n, h.n, b.n$:
+    \begin{itemize}
+        \item
+            Transition Type 1:
+            Suppose $c.n \leq h.n \leq b.n$.
+            If Transition Type 1 is applied, $h = \textbf{0}$.
+            Thus $c.n = h.n = 0$.
+            Transtion Type 1 may update $b \leftarrow \ev{1, z}$.
+            Since $0 \leq 1$, (b) continues to hold after Transition Type 1.
+        \item
+            Transition Type 2:
+            Step (9) requires the node to repeat the previous steps if some action takes place.
+            Thus Step (8) is the last step that any node tries to apply upon receiving any new message.
+            Since Step (8) ensures that $h \leq b$, we know that $h.n \leq b.n$ always.
+            We will now check if $c.n \leq h.n$ continues to hold.
+            \begin{itemize}
+                \item
+                    Step (2) modifies $h$.
+                    Suppose that $v$ had confirmed at least one ballot prepared.
+                    By Theorem~\ref{h_highest_ballot_confirmed_prepared}, $h$ is the highest ballot confirmed prepared.
+                    Step (2) raises $h$ to a higher ballot, so $c.n \leq h.n$ continues to hold.
+
+                    Now we will consider the case where $v$ had not confirmed any ballot prepared.
+                    By Theorem~\ref{h_highest_ballot_confirmed_prepared}, $h = \textbf{0}$.
+                    Step (2) raises $h$ to a higher ballot, so $c.n \leq h.n$ continues to hold.
+                \item
+                    Step (3), (4) and (6) explicitly set $c$ such that $c \lesssim h$, so $c.n \leq h.n$ continues to hold.
+                \item
+                    Step (7) explicitly require $c \leq h$, so $c.n \leq h.n$.
+            \end{itemize}
+    \end{itemize}
+    Therefore, $c.n \leq h.n \leq b.n$.
+\end{proof}
+
+\begin{rem}
+    Lemma~\ref{c_n_leq_h_n_leq_b_n} may not hold while executing some steps.
+    For instance, Step (2) may update $h$ such that $b < h$, and Lemma~\ref{c_n_leq_h_n_leq_b_n} may not hold until we get to Step (8).
+    Here, we only consider the state after completing all the actions associated to the new message.
+\end{rem}
 
 \begin{thm}
     Suppose $\varphi = \text{PREPARE}$.
@@ -430,21 +476,6 @@ We will now prove invariants of states in the concrete ballot protocol.
             }
     \end{enumerate}
 \end{proof}
-
-\begin{thm}
-    If $\varphi = \text{PREPARE}$, then $c.n \leq h.n \leq b.n$.
-\end{thm}
-
-\begin{proof}
-    $ $
-    \todo[inline,caption={}]{
-        This is going to help me prove the invariant in Figure 16 in the white paper.
-        And this doesn't seem terribly hard.
-        next action?
-    }
-\end{proof}
-
-
 
 \begin{thm}
     If $h \ne \textbf{0}$, then $z = h.x$.
