@@ -231,7 +231,7 @@
     Can we prove all the invariants without defining what messages look like?
 }
 
-\begin{defn}\label{Initial Ballot State}
+\begin{defn}[Initial Ballot State]\label{Initial Ballot State}
     The state such that
     \begin{itemize}
         \item
@@ -527,6 +527,29 @@ We will now prove invariants of states in the concrete ballot protocol.
                 Finish this.
             }
     \end{enumerate}
+\end{proof}
+
+\begin{thm}
+    If $h \ne 0$, then $b \sim h$.
+\end{thm}
+
+\begin{proof}
+    % This is definitely true because we can derive this from the invariant in the paper
+    % and c_n_leq_h_n_leq_b_n
+    \todo[inline,caption={}]{
+        prove this!
+    }
+\end{proof}
+
+\begin{thm}
+    If $c \ne 0$, then $c \sim h$.
+\end{thm}
+
+\begin{proof}
+    % This is definitely true because this is a weak version of the invariant in the paper.
+    \todo[inline,caption={}]{
+        prove this!
+    }
 \end{proof}
 
 \begin{thm}
