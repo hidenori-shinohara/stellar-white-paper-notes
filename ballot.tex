@@ -78,8 +78,9 @@
             $(n, x)$ & $x = a$                           & $x = b$                           & $x = c$ & $x = d$                           & $x = e$                           \\ \hline
             $n = 1$  & \cellcolor{blue!25}\textit{abort} & \cellcolor{blue!25}\textit{abort} &         & \cellcolor{blue!25}\textit{abort} & \cellcolor{blue!25}\textit{abort} \\ \hline
             $n = 2$  & \cellcolor{blue!25}\textit{abort} & \cellcolor{blue!25}\textit{abort} &         & \cellcolor{blue!25}\textit{abort} & \cellcolor{blue!25}\textit{abort} \\ \hline
-            $n = 3$  & \cellcolor{blue!25}\textit{abort} & \cellcolor{blue!25}\textit{abort} &         &                                   &                                   \\ \hline
+            $n = 3$  & \cellcolor{blue!25}\textit{abort} & \cellcolor{blue!25}\textit{abort} & prepare &                                   &                                   \\ \hline
             $n = 4$  &                                   &                                   &         &                                   &                                   \\ \hline
+            $n = 5$  &                                   &                                   &         &                                   &                                   \\ \hline
         \end{tabular}
     \end{center}
 
@@ -93,6 +94,20 @@
             $(3, d)$ is \textit{not} $\lnsim (3, c)$ even though $(3, d) \nsim (3, c)$.
             This is because $(3, d)$ is \textit{not} $\leq (3, c)$.
     \end{itemize}
+
+    Note that it is possible to confirm a ballot as prepared, and later confirm a different ballot with a different value as prepared.
+    In the example above, it is possible to confirm to prepare $(5, d)$ by voting for the following red aborting statements:
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            $(n, x)$ & $x = a$                           & $x = b$                           & $x = c$                          & $x = d$                           & $x = e$                           \\ \hline
+            $n = 1$  & \cellcolor{blue!25}\textit{abort} & \cellcolor{blue!25}\textit{abort} & \cellcolor{red!25}\textit{abort} & \cellcolor{blue!25}\textit{abort} & \cellcolor{blue!25}\textit{abort} \\ \hline
+            $n = 2$  & \cellcolor{blue!25}\textit{abort} & \cellcolor{blue!25}\textit{abort} & \cellcolor{red!25}\textit{abort} & \cellcolor{blue!25}\textit{abort} & \cellcolor{blue!25}\textit{abort} \\ \hline
+            $n = 3$  & \cellcolor{blue!25}\textit{abort} & \cellcolor{blue!25}\textit{abort} & \cellcolor{red!25}\textit{abort} &                                   & \cellcolor{red!25}\textit{abort}  \\ \hline
+            $n = 4$  & \cellcolor{red!25}\textit{abort}  & \cellcolor{red!25}\textit{abort}  & \cellcolor{red!25}\textit{abort} &                                   & \cellcolor{red!25}\textit{abort}  \\ \hline
+            $n = 5$  & \cellcolor{red!25}\textit{abort}  & \cellcolor{red!25}\textit{abort}  & \cellcolor{red!25}\textit{abort} & prepare                           &                                   \\ \hline
+        \end{tabular}
+    \end{center}
 \end{exmp}
 
 \begin{defn}[Prepare]\label{def_prepare}
