@@ -564,6 +564,46 @@ We will now prove invariants of states in the concrete ballot protocol.
     }
 \end{proof}
 
+\begin{lem}\label{b_non_decreasing}
+    $b$ is non-decreasing within a phase.
+\end{lem}
+
+\begin{proof}
+    \todo[inline,caption={}]{
+        See P.22 of the white paper.
+    }
+\end{proof}
+
+\begin{lem}\label{h_non_decreasing}
+    $h$ is non-decreasing within a phase.
+\end{lem}
+
+\begin{proof}
+    \todo[inline,caption={}]{
+        See P.22 of the white paper.
+    }
+\end{proof}
+
+\begin{lem}
+    If $v$ has accepted a commit message for some ballot, $v$ no longer changes $h.x$.
+\end{lem}
+
+\begin{proof}
+    \todo[inline,caption={}]{
+        I think we need Lemma~\ref{h_non_decreasing}.
+    }
+\end{proof}
+
+\begin{lem}
+    If $\varphi \ne \text{PREPARE}$, $v$ has accepted a commit message for at least one ballot.
+\end{lem}
+
+\begin{proof}
+    The only action that takes place when $\varphi = \text{PREPARE}$ and sets $\varphi$ to a different phase is Step (4).
+    $v$ performs Step (4) if and only if $v$ accepts a commit message for at least one ballot.
+    Therefore, if $\varphi \ne \text{PREPARE}$, $v$ must have accepted a commit message for at least one ballot.
+\end{proof}
+
 \begin{thm}
     If $h \ne \textbf{0}$, then $z = h.x$.
 \end{thm}
