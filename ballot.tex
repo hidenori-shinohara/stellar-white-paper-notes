@@ -549,7 +549,7 @@ We will now prove invariants of states in the concrete ballot protocol.
     \todo[inline,caption={}]{
         This is definitely true because we can derive this from the invariant in the paper
         and Lemma \ref{c_n_leq_h_n_leq_b_n}.
-        prove this!
+        I think I might be able to use Lemma~\ref{h_no_longer_changes_after_accepting_commit}.
     }
 \end{proof}
 
@@ -584,7 +584,7 @@ We will now prove invariants of states in the concrete ballot protocol.
     }
 \end{proof}
 
-\begin{lem}
+\begin{lem}\label{h_no_longer_changes_after_accepting_commit}
     If $v$ has accepted a commit message for some ballot, $v$ no longer changes $h.x$.
 \end{lem}
 
