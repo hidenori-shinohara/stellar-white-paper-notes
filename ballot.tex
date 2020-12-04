@@ -596,14 +596,41 @@ We will now prove invariants of states in the concrete ballot protocol.
 \end{proof}
 
 \begin{lem}
-    If $\varphi \ne \text{PREPARE}$, $v$ has accepted a commit message for at least one ballot.
+    $\varphi \ne \text{PREPARE}$ if and only if $v$ has accepted a commit message for at least one ballot.
 \end{lem}
 
 \begin{proof}
-    The only action that takes place when $\varphi = \text{PREPARE}$ and sets $\varphi$ to a different phase is Step (4).
-    $v$ performs Step (4) if and only if $v$ accepts a commit message for at least one ballot.
-    Therefore, if $\varphi \ne \text{PREPARE}$, $v$ must have accepted a commit message for at least one ballot.
+    $ $
+    \begin{enumerate}[label=(\alph*)]
+        \item
+            $\varphi \ne \text{PREPARE}$.
+        \item
+            $v$ has accepted a commit message for at least one ballot.
+    \end{enumerate}
+    We want to show that (a) is true if and only if (b) is true.
+    In the initial state, neither (a) nor (b) is true.
+
+    Suppose that both (a) and (b) are true in some state.
+    Since no action sets $\varphi \leftarrow \text{PREPARE}$ and $v$ cannot ``un-accept" a message, (a) and (b) should remain true.
+
+
+    Suppose that neither (a) nor (b) is true in some state.
+
+    \begin{itemize}
+        \item
+            Suppose that some action causes (a) to be true in the next state.
+            The only action that takes place when $\varphi = \text{PREPARE}$ and sets $\varphi$ to a different phase is Step (4).
+            $v$ performs Step (4) if and only if $v$ accepts a commit message for at least one ballot.
+            Therefore, if $\varphi \ne \text{PREPARE}$, $v$ must have accepted a commit message for at least one ballot.
+            Thus (b) must become true in the next state.
+        \item
+            Suppose that some action causes (b) to be true in the next state.
+            Whenever $\varphi = \text{PREPARE}$ and $v$ accepts a commit message for at least one ballot, $v$ performs (4).
+            (4) sets $\varphi \leftarrow \text{CONFIRM}$, so (a) also becomes true in the next state.
+    \end{itemize}
+    Therefore, if at least one of (a) or (b) becomes true in the next state, both of them will.
 \end{proof}
+
 
 \begin{thm}
     If $h \ne \textbf{0}$, then $z = h.x$.
