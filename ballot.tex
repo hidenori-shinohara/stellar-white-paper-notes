@@ -631,6 +631,35 @@ We will now prove invariants of states in the concrete ballot protocol.
     Therefore, if at least one of (a) or (b) becomes true in the next state, both of them will.
 \end{proof}
 
+\begin{lem}
+    If $\varphi = \text{PREPARE}$, then $h \leq p$.
+\end{lem}
+
+\begin{proof}
+    It suffices to show that, at any given moment,
+    \begin{enumerate}[label=(\alph*)]
+        \item % (a)
+            $\varphi \ne \text{PREPARE}$, or
+        \item % (b)
+            $h \leq p$.
+    \end{enumerate}
+    The invariant holds initially since (b) holds in the initial state.
+    Suppose that the invariant holds in some state.
+    Since no action assigns $\varphi \leftarrow \text{PREPARE}$, no action turns (a) from true to false.
+    Thus we only need to consider a situation where only (b) currently holds and (b) does not hold in the next state.
+    In other words, we will assume that $\varphi = \text{PREPARE}$ and $h \leq p$.
+    Suppose that a new message keeps $\varphi = \text{PREPARE}$ and updates at least one of $h$ or $p$.
+    \begin{itemize}
+        \item
+            $p$ is non-decreasing in the PREPARE phase because the only action that updates $p$ is (1).
+        \item
+            $h$ is updated in the PREPARE phase only through (2).
+            Since $h$ is the highest ballot confirmed as prepared, $h$ must have been accepted as prepared. 
+            Since (1) updates $p$ to be the highest ballot accepted as prepared, $h \leq p$.
+    \end{itemize}
+    Thus $h \leq p$ must continue to hold.
+    Hence, we confirm that the invariant always holds.
+\end{proof}
 
 \begin{thm}
     If $h \ne \textbf{0}$, then $z = h.x$.
